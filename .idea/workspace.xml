@@ -1,0 +1,193 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="e4351343-8dd4-456c-b15c-e5ddc34bc82c" name="Default Changelist" comment="" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="DatabaseView">
+    <option name="SHOW_INTERMEDIATE" value="true" />
+    <option name="GROUP_DATA_SOURCES" value="true" />
+    <option name="GROUP_SCHEMA" value="true" />
+    <option name="GROUP_CONTENTS" value="false" />
+    <option name="SORT_POSITIONED" value="false" />
+    <option name="SHOW_EMPTY_GROUPS" value="false" />
+    <option name="AUTO_SCROLL_FROM_SOURCE" value="false" />
+    <option name="HIDDEN_KINDS">
+      <set />
+    </option>
+    <expand>
+      <path>
+        <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
+        <item name="evaluation@localhost" type="feb32156:DbDataSourceImpl" />
+      </path>
+      <path>
+        <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
+        <item name="evaluation@localhost" type="feb32156:DbDataSourceImpl" />
+        <item name="schemas" type="d4e8921:DatabaseStructure$FamilyGroup" />
+      </path>
+      <path>
+        <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
+        <item name="evaluation@localhost" type="feb32156:DbDataSourceImpl" />
+        <item name="schemas" type="d4e8921:DatabaseStructure$FamilyGroup" />
+        <item name="evaluation: schema" type="76f4a085:MysqlImplModel$Schema" />
+      </path>
+      <path>
+        <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
+        <item name="evaluation@localhost" type="feb32156:DbDataSourceImpl" />
+        <item name="schemas" type="d4e8921:DatabaseStructure$FamilyGroup" />
+        <item name="evaluation: schema" type="76f4a085:MysqlImplModel$Schema" />
+        <item name="user: table" type="285a2a93:MysqlImplModel$Table" />
+      </path>
+    </expand>
+    <select />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Interface" />
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="MavenImportPreferences">
+    <option name="generalSettings">
+      <MavenGeneralSettings>
+        <option name="userSettingsFile" value="D:\DevelopeKit_Java\Maven\apache-maven-3.6.2-bin\apache-maven-3.6.2\conf\settings.xml" />
+      </MavenGeneralSettings>
+    </option>
+  </component>
+  <component name="ProjectId" id="1aa4CzzEhQ0RSmZCWU4pHeMEAPm" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showExcludedFiles" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="DatabaseDriversLRU" value="mysql" />
+    <property name="RequestMappingsPanelOrder0" value="0" />
+    <property name="RequestMappingsPanelOrder1" value="1" />
+    <property name="RequestMappingsPanelWidth0" value="75" />
+    <property name="RequestMappingsPanelWidth1" value="75" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="aspect.path.notification.shown" value="true" />
+    <property name="settings.editor.selected.configurable" value="MavenSettings" />
+  </component>
+  <component name="RunManager">
+    <configuration name="DemoApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
+      <module name="educational-evaluation" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.watermelon.DemoApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+  </component>
+  <component name="ServiceViewManager">
+    <option name="viewStates">
+      <list>
+        <serviceView>
+          <treeState>
+            <expand>
+              <path>
+                <item name="services root" type="e789fda9:ObjectUtils$Sentinel" />
+                <item name="root:evaluation@localhost" type="7427dc5b:ServiceModel$ServiceGroupNode" />
+              </path>
+              <path>
+                <item name="services root" type="e789fda9:ObjectUtils$Sentinel" />
+                <item name="root:evaluation@localhost" type="7427dc5b:ServiceModel$ServiceGroupNode" />
+                <item name="com.intellij.database.console.session.MessageBusSession@22ea8800" type="9fbbdea:ServiceModel$ServiceNode" />
+              </path>
+            </expand>
+            <select />
+          </treeState>
+        </serviceView>
+      </list>
+    </option>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="e4351343-8dd4-456c-b15c-e5ddc34bc82c" name="Default Changelist" comment="" />
+      <created>1586960246271</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1586960246271</updated>
+      <workItem from="1586960251892" duration="4592000" />
+    </task>
+    <task id="LOCAL-00001" summary="evaluation v0.0.1 des:project structure complete">
+      <created>1586964820663</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1586964820663</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="evaluation v0.0.1 des:project structure complete" />
+    <option name="LAST_COMMIT_MESSAGE" value="evaluation v0.0.1 des:project structure complete" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="233" y="39" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1586962779135">
+      <screen x="0" y="0" width="1280" height="760" />
+    </state>
+    <state x="233" y="39" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1280.760@0.0.1280.760" timestamp="1586962779135" />
+    <state x="194" y="0" key="CommitChangelistDialog2" timestamp="1586964818760">
+      <screen x="0" y="0" width="1280" height="760" />
+    </state>
+    <state x="194" y="0" key="CommitChangelistDialog2/0.0.1280.760@0.0.1280.760" timestamp="1586964818760" />
+    <state width="1238" height="244" key="GridCell.Tab.0.bottom" timestamp="1586964569487">
+      <screen x="0" y="0" width="1280" height="760" />
+    </state>
+    <state width="1238" height="244" key="GridCell.Tab.0.bottom/0.0.1280.760@0.0.1280.760" timestamp="1586964569487" />
+    <state width="1238" height="244" key="GridCell.Tab.0.center" timestamp="1586964569487">
+      <screen x="0" y="0" width="1280" height="760" />
+    </state>
+    <state width="1238" height="244" key="GridCell.Tab.0.center/0.0.1280.760@0.0.1280.760" timestamp="1586964569487" />
+    <state width="1238" height="244" key="GridCell.Tab.0.left" timestamp="1586964569487">
+      <screen x="0" y="0" width="1280" height="760" />
+    </state>
+    <state width="1238" height="244" key="GridCell.Tab.0.left/0.0.1280.760@0.0.1280.760" timestamp="1586964569487" />
+    <state width="1238" height="244" key="GridCell.Tab.0.right" timestamp="1586964569487">
+      <screen x="0" y="0" width="1280" height="760" />
+    </state>
+    <state width="1238" height="244" key="GridCell.Tab.0.right/0.0.1280.760@0.0.1280.760" timestamp="1586964569487" />
+    <state width="1238" height="244" key="GridCell.Tab.1.bottom" timestamp="1586964569488">
+      <screen x="0" y="0" width="1280" height="760" />
+    </state>
+    <state width="1238" height="244" key="GridCell.Tab.1.bottom/0.0.1280.760@0.0.1280.760" timestamp="1586964569488" />
+    <state width="1238" height="244" key="GridCell.Tab.1.center" timestamp="1586964569488">
+      <screen x="0" y="0" width="1280" height="760" />
+    </state>
+    <state width="1238" height="244" key="GridCell.Tab.1.center/0.0.1280.760@0.0.1280.760" timestamp="1586964569488" />
+    <state width="1238" height="244" key="GridCell.Tab.1.left" timestamp="1586964569487">
+      <screen x="0" y="0" width="1280" height="760" />
+    </state>
+    <state width="1238" height="244" key="GridCell.Tab.1.left/0.0.1280.760@0.0.1280.760" timestamp="1586964569487" />
+    <state width="1238" height="244" key="GridCell.Tab.1.right" timestamp="1586964569488">
+      <screen x="0" y="0" width="1280" height="760" />
+    </state>
+    <state width="1238" height="244" key="GridCell.Tab.1.right/0.0.1280.760@0.0.1280.760" timestamp="1586964569488" />
+    <state width="214" height="477" key="HiddenNamespacesPopup" timestamp="1586960894523">
+      <screen x="0" y="0" width="1280" height="760" />
+    </state>
+    <state width="214" height="477" key="HiddenNamespacesPopup/0.0.1280.760@0.0.1280.760" timestamp="1586960894523" />
+    <state x="350" y="20" key="com.intellij.database.view.ui.AbstractDbRefactoringDialog" timestamp="1586963380096">
+      <screen x="0" y="0" width="1280" height="760" />
+    </state>
+    <state x="350" y="20" key="com.intellij.database.view.ui.AbstractDbRefactoringDialog/0.0.1280.760@0.0.1280.760" timestamp="1586963380096" />
+  </component>
+</project>
