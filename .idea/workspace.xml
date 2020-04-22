@@ -1,7 +1,26 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="e4351343-8dd4-456c-b15c-e5ddc34bc82c" name="Default Changelist" comment="" />
+    <list default="true" id="e4351343-8dd4-456c-b15c-e5ddc34bc82c" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/watermelon/config/DruidConfig.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/watermelon/config/ShiroConfig.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/watermelon/config/UserRealm.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/watermelon/entity/Permission.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/watermelon/entity/Role.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/watermelon/mapper/PermissionMapper.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/watermelon/mapper/RoleMapper.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/watermelon/service/PermissionService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/watermelon/service/PermissionServiceImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/watermelon/service/RoleService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/watermelon/service/RoleServiceImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/mapper/permissionMapper.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/mapper/roleMapper.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/css/index.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/2c06650b-e540-484e-a22c-965455a92eb2.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/2c06650b-e540-484e-a22c-965455a92eb2/storage_v2/_src_/schema/information_schema.FNRwLQ.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -33,6 +52,13 @@
         <item name="evaluation@localhost" type="feb32156:DbDataSourceImpl" />
         <item name="schemas" type="d4e8921:DatabaseStructure$FamilyGroup" />
         <item name="evaluation: schema" type="76f4a085:MysqlImplModel$Schema" />
+      </path>
+      <path>
+        <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
+        <item name="evaluation@localhost" type="feb32156:DbDataSourceImpl" />
+        <item name="schemas" type="d4e8921:DatabaseStructure$FamilyGroup" />
+        <item name="evaluation: schema" type="76f4a085:MysqlImplModel$Schema" />
+        <item name="permission: table" type="285a2a93:MysqlImplModel$Table" />
       </path>
       <path>
         <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
@@ -78,7 +104,17 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/main/resources/static" />
     <property name="settings.editor.selected.configurable" value="MavenSettings" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\Programs\JAVA\JavaWeb\educational-evaluation\src\main\resources\static" />
+      <recent name="D:\Programs\JAVA\JavaWeb\educational-evaluation\src\main\resources\mapper" />
+      <recent name="D:\Programs\JAVA\JavaWeb\educational-evaluation\src\main\java\com\watermelon\mapper" />
+      <recent name="D:\Programs\JAVA\JavaWeb\educational-evaluation\src\main\java\com\watermelon\entity" />
+      <recent name="D:\Programs\JAVA\JavaWeb\educational-evaluation\src\main\java\com\watermelon\service" />
+    </key>
   </component>
   <component name="RunManager">
     <configuration name="DemoApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
@@ -94,17 +130,7 @@
       <list>
         <serviceView>
           <treeState>
-            <expand>
-              <path>
-                <item name="services root" type="e789fda9:ObjectUtils$Sentinel" />
-                <item name="root:evaluation@localhost" type="7427dc5b:ServiceModel$ServiceGroupNode" />
-              </path>
-              <path>
-                <item name="services root" type="e789fda9:ObjectUtils$Sentinel" />
-                <item name="root:evaluation@localhost" type="7427dc5b:ServiceModel$ServiceGroupNode" />
-                <item name="com.intellij.database.console.session.MessageBusSession@22ea8800" type="9fbbdea:ServiceModel$ServiceNode" />
-              </path>
-            </expand>
+            <expand />
             <select />
           </treeState>
         </serviceView>
@@ -121,7 +147,10 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1586960246271</updated>
-      <workItem from="1586960251892" duration="4592000" />
+      <workItem from="1586960251892" duration="4742000" />
+      <workItem from="1587002869487" duration="597000" />
+      <workItem from="1587012494486" duration="1830000" />
+      <workItem from="1587559994847" duration="3195000" />
     </task>
     <task id="LOCAL-00001" summary="evaluation v0.0.1 des:project structure complete">
       <created>1586964820663</created>
@@ -149,38 +178,38 @@
       <screen x="0" y="0" width="1280" height="760" />
     </state>
     <state x="194" y="0" key="CommitChangelistDialog2/0.0.1280.760@0.0.1280.760" timestamp="1586964818760" />
-    <state width="1238" height="244" key="GridCell.Tab.0.bottom" timestamp="1586964569487">
+    <state width="846" height="131" key="GridCell.Tab.0.bottom" timestamp="1587560031066">
       <screen x="0" y="0" width="1280" height="760" />
     </state>
-    <state width="1238" height="244" key="GridCell.Tab.0.bottom/0.0.1280.760@0.0.1280.760" timestamp="1586964569487" />
-    <state width="1238" height="244" key="GridCell.Tab.0.center" timestamp="1586964569487">
+    <state width="846" height="131" key="GridCell.Tab.0.bottom/0.0.1280.760@0.0.1280.760" timestamp="1587560031066" />
+    <state width="846" height="131" key="GridCell.Tab.0.center" timestamp="1587560031065">
       <screen x="0" y="0" width="1280" height="760" />
     </state>
-    <state width="1238" height="244" key="GridCell.Tab.0.center/0.0.1280.760@0.0.1280.760" timestamp="1586964569487" />
-    <state width="1238" height="244" key="GridCell.Tab.0.left" timestamp="1586964569487">
+    <state width="846" height="131" key="GridCell.Tab.0.center/0.0.1280.760@0.0.1280.760" timestamp="1587560031065" />
+    <state width="846" height="131" key="GridCell.Tab.0.left" timestamp="1587560031063">
       <screen x="0" y="0" width="1280" height="760" />
     </state>
-    <state width="1238" height="244" key="GridCell.Tab.0.left/0.0.1280.760@0.0.1280.760" timestamp="1586964569487" />
-    <state width="1238" height="244" key="GridCell.Tab.0.right" timestamp="1586964569487">
+    <state width="846" height="131" key="GridCell.Tab.0.left/0.0.1280.760@0.0.1280.760" timestamp="1587560031063" />
+    <state width="846" height="131" key="GridCell.Tab.0.right" timestamp="1587560031066">
       <screen x="0" y="0" width="1280" height="760" />
     </state>
-    <state width="1238" height="244" key="GridCell.Tab.0.right/0.0.1280.760@0.0.1280.760" timestamp="1586964569487" />
-    <state width="1238" height="244" key="GridCell.Tab.1.bottom" timestamp="1586964569488">
+    <state width="846" height="131" key="GridCell.Tab.0.right/0.0.1280.760@0.0.1280.760" timestamp="1587560031066" />
+    <state width="1238" height="244" key="GridCell.Tab.1.bottom" timestamp="1586964999809">
       <screen x="0" y="0" width="1280" height="760" />
     </state>
-    <state width="1238" height="244" key="GridCell.Tab.1.bottom/0.0.1280.760@0.0.1280.760" timestamp="1586964569488" />
-    <state width="1238" height="244" key="GridCell.Tab.1.center" timestamp="1586964569488">
+    <state width="1238" height="244" key="GridCell.Tab.1.bottom/0.0.1280.760@0.0.1280.760" timestamp="1586964999809" />
+    <state width="1238" height="244" key="GridCell.Tab.1.center" timestamp="1586964999809">
       <screen x="0" y="0" width="1280" height="760" />
     </state>
-    <state width="1238" height="244" key="GridCell.Tab.1.center/0.0.1280.760@0.0.1280.760" timestamp="1586964569488" />
-    <state width="1238" height="244" key="GridCell.Tab.1.left" timestamp="1586964569487">
+    <state width="1238" height="244" key="GridCell.Tab.1.center/0.0.1280.760@0.0.1280.760" timestamp="1586964999809" />
+    <state width="1238" height="244" key="GridCell.Tab.1.left" timestamp="1586964999808">
       <screen x="0" y="0" width="1280" height="760" />
     </state>
-    <state width="1238" height="244" key="GridCell.Tab.1.left/0.0.1280.760@0.0.1280.760" timestamp="1586964569487" />
-    <state width="1238" height="244" key="GridCell.Tab.1.right" timestamp="1586964569488">
+    <state width="1238" height="244" key="GridCell.Tab.1.left/0.0.1280.760@0.0.1280.760" timestamp="1586964999808" />
+    <state width="1238" height="244" key="GridCell.Tab.1.right" timestamp="1586964999809">
       <screen x="0" y="0" width="1280" height="760" />
     </state>
-    <state width="1238" height="244" key="GridCell.Tab.1.right/0.0.1280.760@0.0.1280.760" timestamp="1586964569488" />
+    <state width="1238" height="244" key="GridCell.Tab.1.right/0.0.1280.760@0.0.1280.760" timestamp="1586964999809" />
     <state width="214" height="477" key="HiddenNamespacesPopup" timestamp="1586960894523">
       <screen x="0" y="0" width="1280" height="760" />
     </state>
@@ -189,5 +218,9 @@
       <screen x="0" y="0" width="1280" height="760" />
     </state>
     <state x="350" y="20" key="com.intellij.database.view.ui.AbstractDbRefactoringDialog/0.0.1280.760@0.0.1280.760" timestamp="1586963380096" />
+    <state x="436" y="298" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1587561823435">
+      <screen x="0" y="0" width="1280" height="760" />
+    </state>
+    <state x="436" y="298" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1280.760@0.0.1280.760" timestamp="1587561823435" />
   </component>
 </project>

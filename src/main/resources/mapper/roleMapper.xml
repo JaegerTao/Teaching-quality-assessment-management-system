@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.watermelon.mapper.RoleMapper">
+
+    <select id="getRoleById" parameterType="int" resultType="Role">
+        select * from role where id = #{id}
+    </select>
+
+    <select id="getRoleByName" parameterType="String" resultType="Role">
+        select * from role where name = #{name}
+    </select>
+
+    <select id="getRolesPermissionsId" parameterType="int" resultType="int">
+        select permission_id from role_permission where role_id = #{id}
+    </select>
+
+    <select id="listRole" resultType="Role">
+        select * from role
+    </select>
+
+</mapper>

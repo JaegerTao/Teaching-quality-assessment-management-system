@@ -1,0 +1,53 @@
+package com.watermelon.service;
+
+import com.watermelon.entity.Permission;
+import com.watermelon.entity.Role;
+import com.watermelon.mapper.PermissionMapper;
+import com.watermelon.mapper.RoleMapper;
+import org.springframework.beans.factory.annotation.Autowired;
+
+import java.util.ArrayList;
+import java.util.List;
+
+public class RoleServiceImpl implements RoleService {
+
+    @Autowired
+    private RoleMapper roleMapper;
+
+    @Autowired
+    private PermissionMapper permissionMapper;
+
+    @Override
+    public Role getRoleById(int id) {
+        Role role = roleMapper.getRoleById(id);
+        role.setPermissions((ArrayList<Permission>) getRolesPermissions(id));
+        return role;
+    }
+
+    @Override
+    public Role getRoleByName(String name) {
+        Role role = roleMapper.getRoleByName(name);
+        role.setPermissions((ArrayList<Permission>) getRolesPermissions(role.getId()));
+        return role;
+    }
+
+    @Override
+    public List<Integer> getPermissionsId(int id) {
+        return roleMapper.getRolesPermissionsId(id);
+    }
+
+    @Override
+    public List<Permission> getRolesPermissions(int id) {
+        List<Integer> permsIds = roleMapper.getRolesPermissionsId(id);
+        List<Permission> list = new ArrayList<>();
+        for (Integer i : permsIds){
+            list.add(permissionMapper.getPermissionById(i));
+        }
+        return list;
+    }
+
+    @Override
+    public List<Role> listRole() {
+        return roleMapper.listRole();
+    }
+}
