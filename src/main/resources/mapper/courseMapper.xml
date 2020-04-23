@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.watermelon.mapper.CourseMapper">
+
+    <select id="getCourseById" parameterType="int" resultType="Course">
+        select * from course where course_id = #{id}
+    </select>
+
+    <select id="getCourseByName" parameterType="String" resultType="Course">
+        select * from role where name = #{name}
+    </select>
+
+    <select id="listCourse" resultType="Course">
+        select * from role
+    </select>
+
+    <insert id="addCourse" parameterType="Course">
+        insert into course (course_id, number, name, course_type, course_class, course_dep, score, time)
+            values(#{id},#{number},#{name},#{courseType},#{courseClass},#{courseDept},#{score},#{time});
+    </insert>
+
+    <update id="updateCourse" parameterType="Course">
+        update course set number=#{number},name=#{name},course_type=#{courseType},course_class=#{courseClass},course_dep=#{courseDept},score=#{score},time=#{time}
+            where course_id=#{id}
+    </update>
+
+    <delete id="deleteCourse" parameterType="int">
+        delete from course where course_id = #{id}
+    </delete>
+
+</mapper>
