@@ -5,7 +5,7 @@
 <mapper namespace="com.watermelon.mapper.RoleMapper">
 
     <select id="getRoleById" parameterType="int" resultType="Role">
-        select * from role where id = #{id}
+        select * from role where role_id = #{id}
     </select>
 
     <select id="getRoleByName" parameterType="String" resultType="Role">

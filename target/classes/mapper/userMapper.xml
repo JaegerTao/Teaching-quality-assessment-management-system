@@ -16,14 +16,18 @@
     </select>
 
     <insert id="addUser" parameterType="User">
-        insert into user (id,name,password) values(#{id},#{name},#{password})
+        insert into user (user_id,name,password) values(#{id},#{name},#{password})
     </insert>
 
     <update id="updateUser" parameterType="User">
-        update user set name=#{name},password=#{password} where id = #{id}
+        update user set name=#{name},password=#{password} where user_id = #{id}
     </update>
 
     <delete id="deleteUser" parameterType="User">
         delete from user where user_id = #{id}
     </delete>
+
+    <select id="getUserNumber" resultType="int">
+        select count(*) from user
+    </select>
 </mapper>

@@ -2,24 +2,42 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="e4351343-8dd4-456c-b15c-e5ddc34bc82c" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/watermelon/config/DruidConfig.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/watermelon/config/ShiroConfig.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/watermelon/config/UserRealm.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/watermelon/entity/Permission.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/watermelon/entity/Role.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/watermelon/mapper/PermissionMapper.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/watermelon/mapper/RoleMapper.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/watermelon/service/PermissionService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/watermelon/service/PermissionServiceImpl.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/watermelon/service/RoleService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/watermelon/service/RoleServiceImpl.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/mapper/permissionMapper.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/mapper/roleMapper.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/css/index.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/2c06650b-e540-484e-a22c-965455a92eb2.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/2c06650b-e540-484e-a22c-965455a92eb2/storage_v2/_src_/schema/information_schema.FNRwLQ.meta" beforeDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_attoparser_attoparser_2_0_5_RELEASE.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_boot_spring_boot_starter_thymeleaf_2_2_2_RELEASE.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_thymeleaf_extras_thymeleaf_extras_java8time_3_0_4_RELEASE.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_thymeleaf_thymeleaf_3_0_11_RELEASE.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_thymeleaf_thymeleaf_spring5_3_0_11_RELEASE.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_unbescape_unbescape_1_1_6_RELEASE.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/watermelon/controller/UserController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/templates/index.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/templates/login.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/templates/register.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/templates/user/add.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/templates/user/update.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/templates/user/view.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/educational-evaluation.iml" beforeDir="false" afterPath="$PROJECT_DIR$/educational-evaluation.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/watermelon/config/ShiroConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/watermelon/config/ShiroConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/watermelon/config/UserRealm.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/watermelon/config/UserRealm.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/watermelon/controller/IndexController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/watermelon/controller/IndexController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/watermelon/entity/Permission.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/watermelon/entity/Permission.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/watermelon/entity/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/watermelon/entity/User.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/watermelon/mapper/UserMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/watermelon/mapper/UserMapper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/watermelon/service/RoleServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/watermelon/service/RoleServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/watermelon/service/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/watermelon/service/UserService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/watermelon/service/UserServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/watermelon/service/UserServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/mapper/permissionMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/mapper/permissionMapper.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/mapper/roleMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/mapper/roleMapper.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/mapper/userMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/mapper/userMapper.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/application.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/watermelon/controller/IndexController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/watermelon/controller/IndexController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/watermelon/entity/User.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/watermelon/entity/User.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/watermelon/mapper/UserMapper.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/watermelon/mapper/UserMapper.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/watermelon/service/UserService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/watermelon/service/UserService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/watermelon/service/UserServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/watermelon/service/UserServiceImpl.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/mapper/userMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/mapper/userMapper.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -58,13 +76,6 @@
         <item name="evaluation@localhost" type="feb32156:DbDataSourceImpl" />
         <item name="schemas" type="d4e8921:DatabaseStructure$FamilyGroup" />
         <item name="evaluation: schema" type="76f4a085:MysqlImplModel$Schema" />
-        <item name="permission: table" type="285a2a93:MysqlImplModel$Table" />
-      </path>
-      <path>
-        <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
-        <item name="evaluation@localhost" type="feb32156:DbDataSourceImpl" />
-        <item name="schemas" type="d4e8921:DatabaseStructure$FamilyGroup" />
-        <item name="evaluation: schema" type="76f4a085:MysqlImplModel$Schema" />
         <item name="user: table" type="285a2a93:MysqlImplModel$Table" />
       </path>
     </expand>
@@ -75,6 +86,7 @@
       <list>
         <option value="Interface" />
         <option value="Class" />
+        <option value="HTML File" />
       </list>
     </option>
   </component>
@@ -97,14 +109,16 @@
   </component>
   <component name="PropertiesComponent">
     <property name="DatabaseDriversLRU" value="mysql" />
+    <property name="DefaultHtmlFileTemplate" value="HTML File" />
     <property name="RequestMappingsPanelOrder0" value="0" />
     <property name="RequestMappingsPanelOrder1" value="1" />
     <property name="RequestMappingsPanelWidth0" value="75" />
     <property name="RequestMappingsPanelWidth1" value="75" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/main/resources/static" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../shiro-demo" />
     <property name="settings.editor.selected.configurable" value="MavenSettings" />
   </component>
   <component name="RecentsManager">
@@ -130,7 +144,17 @@
       <list>
         <serviceView>
           <treeState>
-            <expand />
+            <expand>
+              <path>
+                <item name="services root" type="e789fda9:ObjectUtils$Sentinel" />
+                <item name="root:evaluation@localhost" type="7427dc5b:ServiceModel$ServiceGroupNode" />
+              </path>
+              <path>
+                <item name="services root" type="e789fda9:ObjectUtils$Sentinel" />
+                <item name="root:evaluation@localhost" type="7427dc5b:ServiceModel$ServiceGroupNode" />
+                <item name="com.intellij.database.console.session.MessageBusSession@142956a3" type="9fbbdea:ServiceModel$ServiceNode" />
+              </path>
+            </expand>
             <select />
           </treeState>
         </serviceView>
@@ -150,7 +174,8 @@
       <workItem from="1586960251892" duration="4742000" />
       <workItem from="1587002869487" duration="597000" />
       <workItem from="1587012494486" duration="1830000" />
-      <workItem from="1587559994847" duration="3195000" />
+      <workItem from="1587559994847" duration="3912000" />
+      <workItem from="1587608609770" duration="8917000" />
     </task>
     <task id="LOCAL-00001" summary="evaluation v0.0.1 des:project structure complete">
       <created>1586964820663</created>
@@ -159,7 +184,14 @@
       <option name="project" value="LOCAL" />
       <updated>1586964820663</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="evaluation v0.0.2 des:project shiro druid mybatis import">
+      <created>1587570235590</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1587570235590</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -167,49 +199,74 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="evaluation v0.0.1 des:project structure complete" />
-    <option name="LAST_COMMIT_MESSAGE" value="evaluation v0.0.1 des:project structure complete" />
+    <MESSAGE value="evaluation v0.0.2 des:project shiro druid mybatis import" />
+    <option name="LAST_COMMIT_MESSAGE" value="evaluation v0.0.2 des:project shiro druid mybatis import" />
   </component>
   <component name="WindowStateProjectService">
     <state x="233" y="39" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1586962779135">
       <screen x="0" y="0" width="1280" height="760" />
     </state>
     <state x="233" y="39" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1280.760@0.0.1280.760" timestamp="1586962779135" />
-    <state x="194" y="0" key="CommitChangelistDialog2" timestamp="1586964818760">
+    <state x="371" y="127" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1587621347012">
       <screen x="0" y="0" width="1280" height="760" />
     </state>
-    <state x="194" y="0" key="CommitChangelistDialog2/0.0.1280.760@0.0.1280.760" timestamp="1586964818760" />
-    <state width="846" height="131" key="GridCell.Tab.0.bottom" timestamp="1587560031066">
+    <state x="371" y="127" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1280.760@0.0.1280.760" timestamp="1587621347012" />
+    <state x="194" y="0" key="CommitChangelistDialog2" timestamp="1587570232881">
       <screen x="0" y="0" width="1280" height="760" />
     </state>
-    <state width="846" height="131" key="GridCell.Tab.0.bottom/0.0.1280.760@0.0.1280.760" timestamp="1587560031066" />
-    <state width="846" height="131" key="GridCell.Tab.0.center" timestamp="1587560031065">
+    <state x="194" y="0" key="CommitChangelistDialog2/0.0.1280.760@0.0.1280.760" timestamp="1587570232881" />
+    <state x="421" y="136" key="FileChooserDialogImpl" timestamp="1587609098373">
       <screen x="0" y="0" width="1280" height="760" />
     </state>
-    <state width="846" height="131" key="GridCell.Tab.0.center/0.0.1280.760@0.0.1280.760" timestamp="1587560031065" />
-    <state width="846" height="131" key="GridCell.Tab.0.left" timestamp="1587560031063">
+    <state x="421" y="136" key="FileChooserDialogImpl/0.0.1280.760@0.0.1280.760" timestamp="1587609098373" />
+    <state width="1238" height="150" key="GridCell.Tab.0.bottom" timestamp="1587626474319">
       <screen x="0" y="0" width="1280" height="760" />
     </state>
-    <state width="846" height="131" key="GridCell.Tab.0.left/0.0.1280.760@0.0.1280.760" timestamp="1587560031063" />
-    <state width="846" height="131" key="GridCell.Tab.0.right" timestamp="1587560031066">
+    <state width="1238" height="150" key="GridCell.Tab.0.bottom/0.0.1280.760@0.0.1280.760" timestamp="1587626474319" />
+    <state width="1238" height="150" key="GridCell.Tab.0.center" timestamp="1587626474319">
       <screen x="0" y="0" width="1280" height="760" />
     </state>
-    <state width="846" height="131" key="GridCell.Tab.0.right/0.0.1280.760@0.0.1280.760" timestamp="1587560031066" />
-    <state width="1238" height="244" key="GridCell.Tab.1.bottom" timestamp="1586964999809">
+    <state width="1238" height="150" key="GridCell.Tab.0.center/0.0.1280.760@0.0.1280.760" timestamp="1587626474319" />
+    <state width="1238" height="150" key="GridCell.Tab.0.left" timestamp="1587626474319">
       <screen x="0" y="0" width="1280" height="760" />
     </state>
-    <state width="1238" height="244" key="GridCell.Tab.1.bottom/0.0.1280.760@0.0.1280.760" timestamp="1586964999809" />
-    <state width="1238" height="244" key="GridCell.Tab.1.center" timestamp="1586964999809">
+    <state width="1238" height="150" key="GridCell.Tab.0.left/0.0.1280.760@0.0.1280.760" timestamp="1587626474319" />
+    <state width="1238" height="150" key="GridCell.Tab.0.right" timestamp="1587626474319">
       <screen x="0" y="0" width="1280" height="760" />
     </state>
-    <state width="1238" height="244" key="GridCell.Tab.1.center/0.0.1280.760@0.0.1280.760" timestamp="1586964999809" />
-    <state width="1238" height="244" key="GridCell.Tab.1.left" timestamp="1586964999808">
+    <state width="1238" height="150" key="GridCell.Tab.0.right/0.0.1280.760@0.0.1280.760" timestamp="1587626474319" />
+    <state width="1238" height="150" key="GridCell.Tab.1.bottom" timestamp="1587626474319">
       <screen x="0" y="0" width="1280" height="760" />
     </state>
-    <state width="1238" height="244" key="GridCell.Tab.1.left/0.0.1280.760@0.0.1280.760" timestamp="1586964999808" />
-    <state width="1238" height="244" key="GridCell.Tab.1.right" timestamp="1586964999809">
+    <state width="1238" height="150" key="GridCell.Tab.1.bottom/0.0.1280.760@0.0.1280.760" timestamp="1587626474319" />
+    <state width="1238" height="150" key="GridCell.Tab.1.center" timestamp="1587626474319">
       <screen x="0" y="0" width="1280" height="760" />
     </state>
-    <state width="1238" height="244" key="GridCell.Tab.1.right/0.0.1280.760@0.0.1280.760" timestamp="1586964999809" />
+    <state width="1238" height="150" key="GridCell.Tab.1.center/0.0.1280.760@0.0.1280.760" timestamp="1587626474319" />
+    <state width="1238" height="150" key="GridCell.Tab.1.left" timestamp="1587626474319">
+      <screen x="0" y="0" width="1280" height="760" />
+    </state>
+    <state width="1238" height="150" key="GridCell.Tab.1.left/0.0.1280.760@0.0.1280.760" timestamp="1587626474319" />
+    <state width="1238" height="150" key="GridCell.Tab.1.right" timestamp="1587626474319">
+      <screen x="0" y="0" width="1280" height="760" />
+    </state>
+    <state width="1238" height="150" key="GridCell.Tab.1.right/0.0.1280.760@0.0.1280.760" timestamp="1587626474319" />
+    <state width="1238" height="236" key="GridCell.Tab.2.bottom" timestamp="1587625426287">
+      <screen x="0" y="0" width="1280" height="760" />
+    </state>
+    <state width="1238" height="236" key="GridCell.Tab.2.bottom/0.0.1280.760@0.0.1280.760" timestamp="1587625426287" />
+    <state width="1238" height="236" key="GridCell.Tab.2.center" timestamp="1587625426287">
+      <screen x="0" y="0" width="1280" height="760" />
+    </state>
+    <state width="1238" height="236" key="GridCell.Tab.2.center/0.0.1280.760@0.0.1280.760" timestamp="1587625426287" />
+    <state width="1238" height="236" key="GridCell.Tab.2.left" timestamp="1587625426287">
+      <screen x="0" y="0" width="1280" height="760" />
+    </state>
+    <state width="1238" height="236" key="GridCell.Tab.2.left/0.0.1280.760@0.0.1280.760" timestamp="1587625426287" />
+    <state width="1238" height="236" key="GridCell.Tab.2.right" timestamp="1587625426287">
+      <screen x="0" y="0" width="1280" height="760" />
+    </state>
+    <state width="1238" height="236" key="GridCell.Tab.2.right/0.0.1280.760@0.0.1280.760" timestamp="1587625426287" />
     <state width="214" height="477" key="HiddenNamespacesPopup" timestamp="1586960894523">
       <screen x="0" y="0" width="1280" height="760" />
     </state>
@@ -218,6 +275,10 @@
       <screen x="0" y="0" width="1280" height="760" />
     </state>
     <state x="350" y="20" key="com.intellij.database.view.ui.AbstractDbRefactoringDialog/0.0.1280.760@0.0.1280.760" timestamp="1586963380096" />
+    <state x="324" y="205" key="com.intellij.ide.util.TipDialog" timestamp="1587608677187">
+      <screen x="0" y="0" width="1280" height="760" />
+    </state>
+    <state x="324" y="205" key="com.intellij.ide.util.TipDialog/0.0.1280.760@0.0.1280.760" timestamp="1587608677187" />
     <state x="436" y="298" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1587561823435">
       <screen x="0" y="0" width="1280" height="760" />
     </state>

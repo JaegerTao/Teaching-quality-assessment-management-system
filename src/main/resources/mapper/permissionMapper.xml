@@ -5,7 +5,7 @@
 <mapper namespace="com.watermelon.mapper.PermissionMapper">
 
     <select id="getPermissionById" parameterType="int" resultType="Permission">
-        select * from permission where id = #{id}
+        select * from permission where permission_id = #{id}
     </select>
 
     <select id="getPermissionByName" parameterType="String" resultType="Permission">

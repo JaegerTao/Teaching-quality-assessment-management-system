@@ -1,6 +1,9 @@
 package com.watermelon.config;
 
+import com.watermelon.entity.Permission;
+import com.watermelon.entity.Role;
 import com.watermelon.entity.User;
+import com.watermelon.service.RoleService;
 import com.watermelon.service.UserService;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.*;
@@ -17,6 +20,9 @@ public class UserRealm extends AuthorizingRealm {
     @Autowired
     private UserService userService;
 
+    @Autowired
+    private RoleService roleService;
+
     //授权
     @Override
     protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection collection) {
@@ -27,7 +33,11 @@ public class UserRealm extends AuthorizingRealm {
 
         SimpleAuthorizationInfo info = new SimpleAuthorizationInfo();
 
-        info.addStringPermission(null);
+        Role role = roleService.getRoleById(user.getRoleId());
+        info.addRole(String.valueOf(role));
+        for (Permission perms : role.getPermissions()){
+            info.addStringPermission(perms.getPerms());
+        }
         return info;
     }
 
@@ -42,6 +52,6 @@ public class UserRealm extends AuthorizingRealm {
         if (user == null) {
             return null;
         }
-        return new SimpleAuthenticationInfo(user, user.getPassword(), ByteSource.Util.bytes(user.getName()), getName());
+        return new SimpleAuthenticationInfo(user, user.getPassword(), getName());
     }
 }

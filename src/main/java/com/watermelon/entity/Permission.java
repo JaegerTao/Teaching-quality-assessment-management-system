@@ -11,5 +11,8 @@ public class Permission {
 
     private int id;
     private String name;
+    private String url;
+    private String perms;
+    private String type;
 
 }
