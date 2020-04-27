@@ -17,4 +17,14 @@ public interface RoleService {
 
     List<Role> listRole();
 
+    void addRole(Role role);
+
+    void updateRole(Role role);
+
+    void deleteRole(int id);
+
+    void addRolePermission(int roleId,int permsId);
+
+    void deleteRolePermission(int permsId);
+
 }

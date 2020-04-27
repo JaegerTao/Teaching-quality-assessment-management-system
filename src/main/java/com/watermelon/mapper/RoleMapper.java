@@ -10,12 +10,24 @@ import java.util.List;
 @Repository
 public interface RoleMapper {
 
-    public Role getRoleById(int id);
+    Role getRoleById(int id);
 
-    public Role getRoleByName(String name);
+    Role getRoleByName(String name);
 
-    public List<Integer> getRolesPermissionsId(int id);
+    List<Integer> getRolesPermissionsId(int id);
 
-    public List<Role> listRole();
+    List<Role> listRole();
+
+    void addRole(Role role);
+
+    void updateRole(Role role);
+
+    void deleteRole(int id);
+
+    void addRolePermission(int roleId,int permsId);
+
+    void deleteRolePermission(int permsId);
+
+
 
 }

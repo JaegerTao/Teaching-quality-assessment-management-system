@@ -27,4 +27,19 @@ public class PermissionServiceImpl implements PermissionService {
     public List<Permission> listPermission() {
         return permissionMapper.listPermission();
     }
+
+    @Override
+    public void addPermission(Permission permission) {
+        permissionMapper.addPermission(permission);
+    }
+
+    @Override
+    public void updatePermission(Permission permission) {
+        permissionMapper.updatePermission(permission);
+    }
+
+    @Override
+    public void deletePermission(int id) {
+        permissionMapper.deletePermission(id);
+    }
 }

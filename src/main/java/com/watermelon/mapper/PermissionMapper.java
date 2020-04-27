@@ -16,4 +16,10 @@ public interface PermissionMapper {
 
     List<Permission> listPermission();
 
+    void addPermission(Permission permission);
+
+    void updatePermission(Permission permission);
+
+    void deletePermission(int id);
+
 }

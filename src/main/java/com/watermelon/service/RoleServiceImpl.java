@@ -52,4 +52,29 @@ public class RoleServiceImpl implements RoleService {
     public List<Role> listRole() {
         return roleMapper.listRole();
     }
+
+    @Override
+    public void addRole(Role role) {
+        roleMapper.addRole(role);
+    }
+
+    @Override
+    public void updateRole(Role role) {
+        roleMapper.updateRole(role);
+    }
+
+    @Override
+    public void deleteRole(int id) {
+        roleMapper.deleteRole(id);
+    }
+
+    @Override
+    public void addRolePermission(int roleId, int permsId) {
+        roleMapper.addRolePermission(roleId,permsId);
+    }
+
+    @Override
+    public void deleteRolePermission(int permsId) {
+        roleMapper.deleteRolePermission(permsId);
+    }
 }

@@ -4,6 +4,18 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.watermelon.mapper.RoleMapper">
 
+    <insert id="addRole" parameterType="Role">
+        insert into role (role_id, name) values(#{id},#{name});
+    </insert>
+
+    <update id="updateRole" parameterType="Role">
+        update role set name=#{name} where role_id={#id}
+    </update>
+
+    <delete id="deleteRole" parameterType="int">
+        delete from role where role_id=#{id}
+    </delete>
+
     <select id="getRoleById" parameterType="int" resultType="Role">
         select * from role where role_id = #{id}
     </select>
@@ -12,12 +24,22 @@
         select * from role where name = #{name}
     </select>
 
+    <select id="listRole" resultType="Role">
+        select * from role
+    </select>
+
+    <!-- 维护role_permission表 -->
+    <insert id="addRolePermission" parameterType="int">
+        insert into role_permission (role_id, permission_id) values(#{roleId},#{permsId})
+    </insert>
+
     <select id="getRolesPermissionsId" parameterType="int" resultType="int">
         select permission_id from role_permission where role_id = #{id}
     </select>
 
-    <select id="listRole" resultType="Role">
-        select * from role
-    </select>
+    <delete id="deleteRolePermission" parameterType="int">
+        delete from role_permission where role_id=#{roleId} and permission_id=#{permsId}
+    </delete>
+
 
 </mapper>

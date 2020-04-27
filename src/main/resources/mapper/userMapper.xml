@@ -23,7 +23,7 @@
         update user set name=#{name},password=#{password} where user_id = #{id}
     </update>
 
-    <delete id="deleteUser" parameterType="User">
+    <delete id="deleteUser" parameterType="int">
         delete from user where user_id = #{id}
     </delete>
 
