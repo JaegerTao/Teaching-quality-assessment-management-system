@@ -2,15 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="e4351343-8dd4-456c-b15c-e5ddc34bc82c" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/watermelon/entity/Department.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/watermelon/mapper/DepartmentMapper.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/watermelon/service/DepartmentService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/watermelon/service/DepartmentServiceImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/mapper/departmentMapper.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/watermelon/mapper/PermissionMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/watermelon/mapper/PermissionMapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/watermelon/mapper/RoleMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/watermelon/mapper/RoleMapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/watermelon/service/RoleService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/watermelon/service/RoleService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/watermelon/service/RoleServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/watermelon/service/RoleServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/mapper/permissionMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/mapper/permissionMapper.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/mapper/roleMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/mapper/roleMapper.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/mapper/userMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/mapper/userMapper.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -49,14 +46,7 @@
         <item name="evaluation@localhost" type="feb32156:DbDataSourceImpl" />
         <item name="schemas" type="d4e8921:DatabaseStructure$FamilyGroup" />
         <item name="evaluation: schema" type="76f4a085:MysqlImplModel$Schema" />
-        <item name="permission: table" type="285a2a93:MysqlImplModel$Table" />
-      </path>
-      <path>
-        <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
-        <item name="evaluation@localhost" type="feb32156:DbDataSourceImpl" />
-        <item name="schemas" type="d4e8921:DatabaseStructure$FamilyGroup" />
-        <item name="evaluation: schema" type="76f4a085:MysqlImplModel$Schema" />
-        <item name="role: table" type="285a2a93:MysqlImplModel$Table" />
+        <item name="department: table" type="285a2a93:MysqlImplModel$Table" />
       </path>
     </expand>
     <select />
@@ -66,8 +56,8 @@
       <list>
         <option value="HTML File" />
         <option value="FxmlFile" />
-        <option value="Class" />
         <option value="Interface" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -155,7 +145,8 @@
       <workItem from="1587559994847" duration="3912000" />
       <workItem from="1587608609770" duration="21683000" />
       <workItem from="1587716066484" duration="994000" />
-      <workItem from="1587984791207" duration="5670000" />
+      <workItem from="1587984791207" duration="6106000" />
+      <workItem from="1588054319114" duration="3805000" />
     </task>
     <task id="LOCAL-00001" summary="evaluation v0.0.1 des:project structure complete">
       <created>1586964820663</created>
@@ -185,7 +176,14 @@
       <option name="project" value="LOCAL" />
       <updated>1587649428938</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="evaluation v0.0.5 des:add role permission modify function">
+      <created>1588001792829</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1588001792829</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -196,25 +194,26 @@
     <MESSAGE value="evaluation v0.0.2 des:project shiro druid mybatis import" />
     <MESSAGE value="evaluation v0.0.3 des:thymeleaf import,database user role permission relation built" />
     <MESSAGE value="evaluation v0.0.4 des:course function almost complete" />
-    <option name="LAST_COMMIT_MESSAGE" value="evaluation v0.0.4 des:course function almost complete" />
+    <MESSAGE value="evaluation v0.0.5 des:add role permission modify function" />
+    <option name="LAST_COMMIT_MESSAGE" value="evaluation v0.0.5 des:add role permission modify function" />
   </component>
   <component name="WindowStateProjectService">
     <state x="233" y="39" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1586962779135">
       <screen x="0" y="0" width="1280" height="760" />
     </state>
     <state x="233" y="39" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1280.760@0.0.1280.760" timestamp="1586962779135" />
-    <state x="446" y="90" key="#com.intellij.ide.util.MemberChooser" timestamp="1588001710987">
+    <state x="446" y="90" key="#com.intellij.ide.util.MemberChooser" timestamp="1588064092953">
       <screen x="0" y="0" width="1280" height="760" />
     </state>
-    <state x="446" y="90" key="#com.intellij.ide.util.MemberChooser/0.0.1280.760@0.0.1280.760" timestamp="1588001710987" />
+    <state x="446" y="90" key="#com.intellij.ide.util.MemberChooser/0.0.1280.760@0.0.1280.760" timestamp="1588064092953" />
     <state x="371" y="127" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1587621347012">
       <screen x="0" y="0" width="1280" height="760" />
     </state>
     <state x="371" y="127" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1280.760@0.0.1280.760" timestamp="1587621347012" />
-    <state x="194" y="0" key="CommitChangelistDialog2" timestamp="1587649426084">
+    <state x="194" y="0" key="CommitChangelistDialog2" timestamp="1588001790581">
       <screen x="0" y="0" width="1280" height="760" />
     </state>
-    <state x="194" y="0" key="CommitChangelistDialog2/0.0.1280.760@0.0.1280.760" timestamp="1587649426084" />
+    <state x="194" y="0" key="CommitChangelistDialog2/0.0.1280.760@0.0.1280.760" timestamp="1588001790581" />
     <state x="321" y="186" key="DUMP_DIALOG_DIMENSION_KEY" timestamp="1587633346882">
       <screen x="0" y="0" width="1280" height="760" />
     </state>
@@ -283,10 +282,10 @@
       <screen x="0" y="0" width="1280" height="760" />
     </state>
     <state x="350" y="20" key="com.intellij.database.view.ui.AbstractDbRefactoringDialog/0.0.1280.760@0.0.1280.760" timestamp="1586963380096" />
-    <state x="324" y="205" key="com.intellij.ide.util.TipDialog" timestamp="1587716079745">
+    <state x="324" y="205" key="com.intellij.ide.util.TipDialog" timestamp="1588054361164">
       <screen x="0" y="0" width="1280" height="760" />
     </state>
-    <state x="324" y="205" key="com.intellij.ide.util.TipDialog/0.0.1280.760@0.0.1280.760" timestamp="1587716079745" />
+    <state x="324" y="205" key="com.intellij.ide.util.TipDialog/0.0.1280.760@0.0.1280.760" timestamp="1588054361163" />
     <state x="436" y="298" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1587561823435">
       <screen x="0" y="0" width="1280" height="760" />
     </state>
@@ -299,9 +298,9 @@
       <screen x="0" y="0" width="1280" height="760" />
     </state>
     <state x="299" y="172" width="672" height="677" key="run.anything.popup/0.0.1280.760@0.0.1280.760" timestamp="1587641073956" />
-    <state x="304" y="83" width="672" height="678" key="search.everywhere.popup" timestamp="1587995474368">
+    <state x="305" y="84" width="672" height="678" key="search.everywhere.popup" timestamp="1588064507168">
       <screen x="0" y="0" width="1280" height="760" />
     </state>
-    <state x="304" y="83" width="672" height="678" key="search.everywhere.popup/0.0.1280.760@0.0.1280.760" timestamp="1587995474368" />
+    <state x="305" y="84" width="672" height="678" key="search.everywhere.popup/0.0.1280.760@0.0.1280.760" timestamp="1588064507168" />
   </component>
 </project>
