@@ -2,12 +2,21 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="e4351343-8dd4-456c-b15c-e5ddc34bc82c" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/watermelon/entity/Department.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/watermelon/mapper/DepartmentMapper.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/watermelon/service/DepartmentService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/watermelon/service/DepartmentServiceImpl.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/mapper/departmentMapper.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/watermelon/controller/AdminController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/watermelon/entity/Admin.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/watermelon/entity/Student.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/watermelon/entity/Teacher.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/watermelon/mapper/AdminMapper.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/watermelon/service/AdminService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/watermelon/service/AdminServiceImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/mapper/adminMapper.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/18e01fad-677f-4c70-9ea8-f745da4afd61.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/18e01fad-677f-4c70-9ea8-f745da4afd61.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/watermelon/controller/TeachController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/watermelon/controller/TeachController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/watermelon/entity/Permission.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/watermelon/entity/Permission.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/watermelon/entity/Role.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/watermelon/entity/Role.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/watermelon/entity/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/watermelon/entity/User.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -40,13 +49,6 @@
         <item name="evaluation@localhost" type="feb32156:DbDataSourceImpl" />
         <item name="schemas" type="d4e8921:DatabaseStructure$FamilyGroup" />
         <item name="evaluation: schema" type="76f4a085:MysqlImplModel$Schema" />
-      </path>
-      <path>
-        <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
-        <item name="evaluation@localhost" type="feb32156:DbDataSourceImpl" />
-        <item name="schemas" type="d4e8921:DatabaseStructure$FamilyGroup" />
-        <item name="evaluation: schema" type="76f4a085:MysqlImplModel$Schema" />
-        <item name="department: table" type="285a2a93:MysqlImplModel$Table" />
       </path>
     </expand>
     <select />
@@ -146,7 +148,9 @@
       <workItem from="1587608609770" duration="21683000" />
       <workItem from="1587716066484" duration="994000" />
       <workItem from="1587984791207" duration="6106000" />
-      <workItem from="1588054319114" duration="3805000" />
+      <workItem from="1588054319114" duration="3853000" />
+      <workItem from="1588174595106" duration="1658000" />
+      <workItem from="1588214224139" duration="3803000" />
     </task>
     <task id="LOCAL-00001" summary="evaluation v0.0.1 des:project structure complete">
       <created>1586964820663</created>
@@ -183,19 +187,30 @@
       <option name="project" value="LOCAL" />
       <updated>1588001792829</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="evaluation v0.0.6 des:Department function import">
+      <created>1588091227379</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1588091227379</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
   </component>
   <component name="VcsManagerConfiguration">
+    <ignored-roots>
+      <path value="$PROJECT_DIR$/Teaching-quality-assessment-management-system" />
+    </ignored-roots>
     <MESSAGE value="evaluation v0.0.1 des:project structure complete" />
     <MESSAGE value="evaluation v0.0.2 des:project shiro druid mybatis import" />
     <MESSAGE value="evaluation v0.0.3 des:thymeleaf import,database user role permission relation built" />
     <MESSAGE value="evaluation v0.0.4 des:course function almost complete" />
     <MESSAGE value="evaluation v0.0.5 des:add role permission modify function" />
-    <option name="LAST_COMMIT_MESSAGE" value="evaluation v0.0.5 des:add role permission modify function" />
+    <MESSAGE value="evaluation v0.0.6 des:Department function import" />
+    <option name="LAST_COMMIT_MESSAGE" value="evaluation v0.0.6 des:Department function import" />
   </component>
   <component name="WindowStateProjectService">
     <state x="233" y="39" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1586962779135">
@@ -210,10 +225,10 @@
       <screen x="0" y="0" width="1280" height="760" />
     </state>
     <state x="371" y="127" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1280.760@0.0.1280.760" timestamp="1587621347012" />
-    <state x="194" y="0" key="CommitChangelistDialog2" timestamp="1588001790581">
+    <state x="194" y="0" key="CommitChangelistDialog2" timestamp="1588091224773">
       <screen x="0" y="0" width="1280" height="760" />
     </state>
-    <state x="194" y="0" key="CommitChangelistDialog2/0.0.1280.760@0.0.1280.760" timestamp="1588001790581" />
+    <state x="194" y="0" key="CommitChangelistDialog2/0.0.1280.760@0.0.1280.760" timestamp="1588091224773" />
     <state x="321" y="186" key="DUMP_DIALOG_DIMENSION_KEY" timestamp="1587633346882">
       <screen x="0" y="0" width="1280" height="760" />
     </state>
@@ -274,18 +289,18 @@
       <screen x="0" y="0" width="1280" height="760" />
     </state>
     <state width="214" height="477" key="HiddenNamespacesPopup/0.0.1280.760@0.0.1280.760" timestamp="1586960894523" />
-    <state x="142" y="23" key="SettingsEditor" timestamp="1587721075565">
+    <state x="142" y="23" key="SettingsEditor" timestamp="1588175298581">
       <screen x="0" y="0" width="1280" height="760" />
     </state>
-    <state x="142" y="23" key="SettingsEditor/0.0.1280.760@0.0.1280.760" timestamp="1587721075564" />
-    <state x="350" y="20" key="com.intellij.database.view.ui.AbstractDbRefactoringDialog" timestamp="1586963380096">
+    <state x="142" y="23" key="SettingsEditor/0.0.1280.760@0.0.1280.760" timestamp="1588175298581" />
+    <state x="350" y="20" key="com.intellij.database.view.ui.AbstractDbRefactoringDialog" timestamp="1588216649055">
       <screen x="0" y="0" width="1280" height="760" />
     </state>
-    <state x="350" y="20" key="com.intellij.database.view.ui.AbstractDbRefactoringDialog/0.0.1280.760@0.0.1280.760" timestamp="1586963380096" />
-    <state x="324" y="205" key="com.intellij.ide.util.TipDialog" timestamp="1588054361164">
+    <state x="350" y="20" key="com.intellij.database.view.ui.AbstractDbRefactoringDialog/0.0.1280.760@0.0.1280.760" timestamp="1588216649055" />
+    <state x="324" y="205" key="com.intellij.ide.util.TipDialog" timestamp="1588214222876">
       <screen x="0" y="0" width="1280" height="760" />
     </state>
-    <state x="324" y="205" key="com.intellij.ide.util.TipDialog/0.0.1280.760@0.0.1280.760" timestamp="1588054361163" />
+    <state x="324" y="205" key="com.intellij.ide.util.TipDialog/0.0.1280.760@0.0.1280.760" timestamp="1588214222876" />
     <state x="436" y="298" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1587561823435">
       <screen x="0" y="0" width="1280" height="760" />
     </state>
