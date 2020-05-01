@@ -35,7 +35,7 @@ public class CourseManageController {
         return map;
     }
 
-    @PostMapping("/deleteCourse/${id}")
+    @PostMapping("/deleteCourse/{id}")
     public Map<String, String> deleteCourse(@RequestParam int id){
         courseService.deleteCourse(id);
         Map<String,String> map = new HashMap<>();
