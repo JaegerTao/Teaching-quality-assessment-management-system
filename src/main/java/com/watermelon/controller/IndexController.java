@@ -21,7 +21,7 @@ public class IndexController {
     @Autowired
     private UserService userService;
 
-    @RequestMapping({"/"})
+    @GetMapping({"/"})
     public String index() {
         return "index";
     }
@@ -56,7 +56,7 @@ public class IndexController {
         }
     }
 
-    @RequestMapping("/toRegister")
+    @GetMapping("/toRegister")
     public String toRegister() {
         return "register";
     }
@@ -71,7 +71,7 @@ public class IndexController {
         return "redirect:toLogin";
     }
 
-    @RequestMapping("/logout")
+    @GetMapping("/logout")
     public String logout(){
         Subject subject = SecurityUtils.getSubject();
         subject.logout();
@@ -79,7 +79,7 @@ public class IndexController {
     }
 
     @ResponseBody
-    @RequestMapping("/noAuth")
+    @GetMapping("/noAuth")
     public String noAuth() {
         return "未经授权，无法访问该页面！";
     }
