@@ -27,3 +27,5 @@ mybatis:
   configuration:
     mapUnderscoreToCamelCase: true
 
+#swagger接口文档开关
+switch-swagger-up: true
