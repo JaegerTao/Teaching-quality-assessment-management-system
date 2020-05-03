@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.watermelon.mapper.AdminMapper">
+
+    <select id="getAdminById" parameterType="int" resultType="Admin">
+        select * from admin where admin_id=#{id}
+    </select>
+
+    <insert id="addAdmin" parameterType="Admin">
+        insert into admin (admin_id, name, gender, tel) values(#{id},#{name},#{gender},#{tel});
+    </insert>
+
+    <update id="updateAdmin" parameterType="Admin">
+        update admin set name=#{name},gender=#{gender},tel=#{tel} where admin_id=#{id}
+    </update>
+
+    <delete id="deleteAdmin" parameterType="int">
+        delete from admin where admin_id = #{id}
+    </delete>
+
+</mapper>
