@@ -27,5 +27,13 @@ mybatis:
   configuration:
     mapUnderscoreToCamelCase: true
 
+#配置日志输出等级以及日志文件输出位置
+#logging:
+#  level:
+#    root: info
+#    com.watermleon: info
+#  file:
+#    name: log\project.log
+
 #swagger接口文档开关
 switch-swagger-up: true
