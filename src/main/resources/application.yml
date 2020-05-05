@@ -1,9 +1,12 @@
+server:
+  port: 8084
+
 spring:
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
     url: jdbc:mysql://localhost:3306/evaluation?serverTimezone=UTC
     username: root
-    password: 105036
+    password: root
     type: com.alibaba.druid.pool.DruidDataSource
 
     initialSize: 5
@@ -26,4 +29,5 @@ mybatis:
   mapper-locations: classpath:mapper/*.xml
   configuration:
     mapUnderscoreToCamelCase: true
-
+    # 在控制台显示 sql 语句
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
