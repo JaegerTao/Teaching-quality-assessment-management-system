@@ -2,6 +2,7 @@ package com.watermelon.service;
 
 import com.watermelon.entity.Role;
 import com.watermelon.entity.User;
+import com.watermelon.mapper.RoleMapper;
 import com.watermelon.mapper.UserMapper;
 import org.apache.shiro.crypto.hash.Md5Hash;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,6 +15,12 @@ public class UserServiceImpl implements UserService {
 
     @Autowired
     private UserMapper userMapper;
+
+    @Autowired
+    private RoleMapper roleMapper;
+
+    @Autowired
+    private RoleService roleService;
 
     @Override
     public int registerUser(String username,String password){
@@ -29,13 +36,14 @@ public class UserServiceImpl implements UserService {
     @Override
     public User getUserById(int id) {
         User user = userMapper.getUserById(id);
-        Role role = new Role();
+        user.setRole(roleMapper.getRoleById(user.getRoleId()));
         return user;
     }
 
     @Override
     public User getUserByName(String name) {
         User user = userMapper.getUserByName(name);
+        user.setRole(roleMapper.getRoleById(user.getRoleId()));
         return user;
     }
 
@@ -60,7 +68,12 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public List<User> listUser() {
-        return userMapper.listUser();
+        List<User> list = userMapper.listUser();
+        for (User user : list){
+            Role role = roleService.getRoleById(user.getRoleId());
+            user.setRole(role);
+        }
+        return list;
     }
 
 

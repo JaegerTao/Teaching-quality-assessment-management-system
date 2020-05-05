@@ -13,6 +13,16 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
 import java.util.ArrayList;
 
+/**
+ * Swagger配置类
+ * 设置扫描接口的范围和接口文档页面的相关信息并动态生成API文档
+ * 扫描范围 com.watermelon.controller包下的所有类的所有方法
+ * API文档访问路径 /swagger-ui.html
+ * 开启方式 application.yml -> switch-swagger-up: true
+ * 默认状态 开启
+ * 版本 1.0
+ * 日期 2020/5/3
+ */
 @Configuration
 @EnableSwagger2
 public class SwaggerConfig {

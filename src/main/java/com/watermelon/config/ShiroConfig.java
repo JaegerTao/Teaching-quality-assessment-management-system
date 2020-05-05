@@ -10,6 +10,16 @@ import org.springframework.context.annotation.Configuration;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
+/**
+ * Shiro配置类
+ * 配置Shiro的权限访问逻辑，对url进行过滤并验证身份和访问权限
+ * Realm UserRealm
+ * 加密方式 MD5加密
+ * 映射次数 1
+ * 盐值 默认未开启
+ * 版本 2.0
+ * 日期 2020/4/22
+ */
 @Configuration
 public class ShiroConfig {
 

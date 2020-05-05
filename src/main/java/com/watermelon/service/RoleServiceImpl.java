@@ -50,7 +50,11 @@ public class RoleServiceImpl implements RoleService {
 
     @Override
     public List<Role> listRole() {
-        return roleMapper.listRole();
+        List<Role> list = roleMapper.listRole();
+        for (Role role : list){
+            role.setPermissions((ArrayList<Permission>) getRolesPermissions(role.getId()));
+        }
+        return list;
     }
 
     @Override

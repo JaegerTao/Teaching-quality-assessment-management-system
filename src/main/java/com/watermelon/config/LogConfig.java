@@ -11,6 +11,13 @@ import org.springframework.web.context.request.ServletRequestAttributes;
 
 import javax.servlet.http.HttpServletRequest;
 
+/**
+ * 日志配置类
+ * 通过AOP拦截请求，记录请求的相关信息和返回值的相关信息
+ * 将获取的信息保存至/Log/project.log文件中
+ * 版本 1.0
+ * 日期 2020/5/4
+ */
 @Aspect
 @Configuration
 public class LogConfig {
