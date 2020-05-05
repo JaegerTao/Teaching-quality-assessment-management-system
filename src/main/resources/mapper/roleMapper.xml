@@ -21,11 +21,11 @@
     </select>
 
     <select id="getRoleByName" parameterType="String" resultType="Role">
-        select * from role where name = #{name}
+        select role_id as id, name  from role where name = #{name}
     </select>
 
     <select id="listRole" resultType="Role">
-        select * from role
+        select role_id as id, name from role
     </select>
 
     <!-- 维护role_permission表 -->

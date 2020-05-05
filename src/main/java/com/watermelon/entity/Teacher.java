@@ -18,7 +18,7 @@ public class Teacher extends User {
      * birth 出生日期
      * entranceDate 入职日期
      * jobTitle 职称
-     * grantDate 支撑授予时间
+     * grantDate 职称授予时间
      * politicalStatus 政治面貌
      * degree 学历
      * graduateSchool 毕业院校

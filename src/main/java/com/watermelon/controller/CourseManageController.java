@@ -18,7 +18,7 @@ public class CourseManageController {
     private CourseService courseService;
 
     @PostMapping("/addCourse")
-    public Map<String, String> addCourse(Course course){
+    public Map<String, String> addCourse(@RequestParam(value="course",required=false)Course course){
         courseService.addCourse(course);
         Map<String,String> map = new HashMap<>();
         map.put("status","200");
@@ -27,7 +27,7 @@ public class CourseManageController {
     }
 
     @PostMapping("/updateCourse")
-    public Map<String, String> updateCourse(Course course){
+    public Map<String, String> updateCourse(@RequestParam(value="course",required=false) Course course){
         courseService.updateCourse(course);
         Map<String,String> map = new HashMap<>();
         map.put("status","200");
@@ -35,8 +35,9 @@ public class CourseManageController {
         return map;
     }
 
-    @PostMapping("/deleteCourse/{id}")
-    public Map<String, String> deleteCourse(@RequestParam int id){
+
+    @GetMapping("/deleteCourse/{id}")
+    public Map<String, String> deleteCourse(@RequestParam(value="id",required=false) int id){
         courseService.deleteCourse(id);
         Map<String,String> map = new HashMap<>();
         map.put("status","200");
