@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.watermelon.mapper.EvaluationItemMapper">
+
+    <select id="getEvaluationsByRoleId" parameterType="int" resultType="EvaluationItem">
+        select * from evaluation_item e where role_id=#{id} order by weight desc
+    </select>
+
+    <select id="getEvaluationItemById" parameterType="int" resultType="EvaluationItem">
+        select * from evaluation_item where id=#{id}
+    </select>
+
+
+    <insert id="insertEvaluationItem" parameterType="EvaluationItem">
+        insert into evaluation_item(content,role_id,weight) values(#{content},#{roleId},#{weight});
+    </insert>
+
+    <update id="updateEvaluationItem" parameterType="EvaluationItem">
+        update evaluation_item set content=#{content},weight=#{weight} where id=#{id}
+    </update>
+
+    <delete id="deleteEvaluationItem" parameterType="int">
+        delete from evaluation_item where id = #{id}
+    </delete>
+
+</mapper>
