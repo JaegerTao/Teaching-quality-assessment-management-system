@@ -26,19 +26,19 @@ public class AdminController {
     private PermissionService permissionService;
 
     @PostMapping("/addUser")
-    public String addUser(@RequestParam User user) {
+    public String addUser(@RequestParam(value="user",required=false) User user) {
         userService.addUser(user);
         return "/user/add";
     }
 
     @PostMapping("/updateUser")
-    public String updateUser(@RequestParam User user){
+    public String updateUser(@RequestParam(value="user",required=false) User user){
         userService.updateUser(user);
         return "redirect:/admin/listUser";
     }
 
     @GetMapping("/deleteUser")
-    public String deleteUser(@RequestParam int id){
+    public String deleteUser(@RequestParam(value="id",required=false) int id){
         userService.deleteUser(id);
         return "redirect:/admin/listUser";
     }
@@ -51,19 +51,19 @@ public class AdminController {
     }
 
     @PostMapping("/addRole")
-    public String addRole(@RequestParam Role role){
+    public String addRole(@RequestParam(value="role",required=false) Role role){
         roleService.addRole(role);
         return "redirect:/admin/listRole";
     }
 
     @PostMapping("/updateRole")
-    public String updateRole(@RequestParam Role role){
+    public String updateRole(@RequestParam(value="role",required=false) Role role){
         roleService.updateRole(role);
         return "redirect:/admin/listRole";
     }
 
     @GetMapping("/deleteRole")
-    public String deleteRole(@RequestParam int id){
+    public String deleteRole(@RequestParam(value="id",required=false) int id){
         roleService.deleteRole(id);
         return "redirect:/admin/listRole";
     }
@@ -75,19 +75,19 @@ public class AdminController {
     }
 
     @PostMapping("/addPerms")
-    public String addPerms(@RequestParam Permission permission){
+    public String addPerms(@RequestParam(value="permission",required=false) Permission permission){
         permissionService.addPermission(permission);
         return "redirect:/admin/listPerms";
     }
 
     @PostMapping("/updatePerms")
-    public String updatePerms(@RequestParam Permission permission) {
+    public String updatePerms(@RequestParam(value="permission",required=false) Permission permission) {
         permissionService.updatePermission(permission);
         return "redirect:/admin/listPerms";
     }
 
     @GetMapping("/deletePerms")
-    public String deletePerms(@RequestParam int id){
+    public String deletePerms(@RequestParam(value="id",required=false) int id){
         permissionService.deletePermission(id);
         return "redirect:/admin/listPerms";
     }

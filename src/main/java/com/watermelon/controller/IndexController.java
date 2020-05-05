@@ -32,7 +32,7 @@ public class IndexController {
     }
 
     @PostMapping("/login")
-    public String login(@RequestParam String username,@RequestParam String password, Model model) {
+    public String login(@RequestParam(value="username",required=false) String username,@RequestParam(value="password",required=false) String password, Model model) {
         //获取当前用户
         Subject subject = SecurityUtils.getSubject();
         UsernamePasswordToken token = new UsernamePasswordToken(username, password);
@@ -62,7 +62,7 @@ public class IndexController {
     }
 
     @PostMapping("/register")
-    public String register(@RequestParam String username,@RequestParam String password,@RequestParam String rePassword,Model model){
+    public String register(@RequestParam(value="username",required=false) String username,@RequestParam(value="username",required=false) String password,@RequestParam(value="username",required=false) String rePassword,Model model){
         if (!password.equals(rePassword)){
             model.addAttribute("msg", "两次输入密码不一致!");
             return "register";
