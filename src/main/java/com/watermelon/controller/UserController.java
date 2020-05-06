@@ -30,7 +30,6 @@ public class UserController {
         return "/user/update";
     }
 
-
     @GetMapping("/view")
     public String view() {
         return "/user/view";

@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.watermelon.mapper.EvaluationMapper">
+    <resultMap id="teacherResultMap" type="com.watermelon.entity.Teacher">
+        <id column="teacher_id" property="id"/>
+        <result column="name" property="name"/>
+    </resultMap>
+
+    <resultMap id="teacherResultMap2" type="Teacher">
+        <id column="teacher_id" property="id"/>
+        <result column="teacher_name" property="name"/>
+        <result column="department_name" property="departmentName"/>
+    </resultMap>
+
+    <resultMap id="courseResultMap" type="Course">
+        <id column="course_id" property="id"/>
+        <result column="name" property="name"/>
+        <result column="number" property="number"/>
+        <result column="course_type" property="courseType"/>
+        <result column="course_class" property="courseClass"/>
+        <result column="course_dep" property="courseDep"/>
+        <result column="score" property="score"/>
+        <result column="time" property="time"/>
+        <association property="teacher" javaType="Teacher">
+            <id column="teacher_id" property="id"/>
+            <result column="teacher_name" property="name"/>
+        </association>
+    </resultMap>
+
+    <select id="getTeachersByTeacherId" resultMap="teacherResultMap" parameterType="int">
+        select t.teacher_id,t.name
+        from teacher t
+        where department_id=
+            (select department_id
+            from teacher
+            where teacher_id=#{id}) and teacher_id!=#{id}
+    </select>
+
+    <select id="getCoursesByStuId" resultMap="courseResultMap" parameterType="int">
+        select course.`*`,teacher.teacher_id,teacher.name teacher_name
+        from teacher,course,class_course
+	    where class_course.teacher_id=teacher.teacher_id
+		    and class_course.course_id=course.course_id
+		    and class_course.class_id=
+		        (select class_id from student where student_id=#{id})
+    </select>
+
+    <select id="getTeachersBySuperId" resultMap="teacherResultMap2" parameterType="int">
+        select t.teacher_id,t.name as teacher_name,d.name as department_name
+        from (supervisor_teacher s
+        left join teacher t on t.teacher_id=s.teacher_id)
+        left join department d on d.department_id= t.department_id
+        where supervisor_id=#{id}
+    </select>
+
+</mapper>

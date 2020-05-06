@@ -5,6 +5,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.util.Date;
+import java.util.List;
 
 @Data
 @NoArgsConstructor
@@ -23,6 +24,7 @@ public class Student extends User {
     private float score;
     private Date birth;
     private Date entranceDate;
+    private List<Course> courseList;
 
     /**
      * 通过一个登录的User构造出Student

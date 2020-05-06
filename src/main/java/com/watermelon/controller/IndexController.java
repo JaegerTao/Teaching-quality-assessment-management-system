@@ -32,7 +32,6 @@ public class IndexController {
     }
 
     @PostMapping("/login")
-
     public String login(@RequestParam(value="username",required=false) String username,@RequestParam(value="password",required=false) String password, Model model) {
         //获取当前用户
         Subject subject = SecurityUtils.getSubject();

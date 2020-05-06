@@ -1,14 +1,12 @@
 package com.watermelon.service;
 
 import com.watermelon.entity.Role;
-import com.watermelon.entity.User;
 import com.watermelon.mapper.RoleMapper;
 import com.watermelon.mapper.UserMapper;
 import org.apache.shiro.crypto.hash.Md5Hash;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
 
 @Service
 public class UserServiceImpl implements UserService {

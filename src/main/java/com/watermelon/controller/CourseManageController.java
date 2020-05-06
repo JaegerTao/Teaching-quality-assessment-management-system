@@ -18,7 +18,6 @@ public class CourseManageController {
     private CourseService courseService;
 
     @PostMapping("/addCourse")
-
     public Map<String, String> addCourse(@RequestParam(value="course",required=false)Course course){
         courseService.addCourse(course);
         Map<String,String> map = new HashMap<>();
@@ -28,6 +27,7 @@ public class CourseManageController {
     }
 
     @PostMapping("/updateCourse")
+
     public Map<String, String> updateCourse(@RequestParam(value="course",required=false) Course course){
         courseService.updateCourse(course);
         Map<String,String> map = new HashMap<>();

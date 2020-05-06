@@ -1,5 +1,6 @@
-/.idea
-/.mvn
-/target
+/.idea/
+/.mvn/
+/target/
 .gitattributes
 *.iml
+>>>>>>>>> Temporary merge branch 2

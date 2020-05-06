@@ -21,7 +21,6 @@
     </select>
 
     <select id="getRoleByName" parameterType="String" resultType="Role">
-
         select role_id as id, name  from role where name = #{name}
     </select>
 
