@@ -4,6 +4,7 @@ import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.watermelon.entity.Course;
+import com.watermelon.entity.IndividualEvaluation;
 import com.watermelon.entity.Teacher;
 import com.watermelon.mapper.EvaluationMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,16 +19,20 @@ public class EvaluationServiceImpl implements EvaluationService{
     private EvaluationMapper evaluationMapper;
 
     @Override
-    public JSONArray getTeachersByTeacherId(int id) {
-        List<Teacher> teacherList = evaluationMapper.getTeachersByTeacherId(id);
-        JSONArray jsonArray = new JSONArray();
-        for(Teacher teacher : teacherList){
-            JSONObject jsonObject = new JSONObject();
-            jsonObject.put("id",teacher.getId());
-            jsonObject.put("name",teacher.getName());
-            jsonArray.add(jsonObject);
+    public JSONArray getCoursesByTeacherId(int id) {
+        List<Course> courseList = evaluationMapper.getCoursesByTeacherId(id);
+        System.out.println(courseList);
+        JSONArray courseJsonArray = new JSONArray();
+        JSONArray jsonArray = (JSONArray) JSON.toJSON(courseList);
+        for(Object jsonObject : jsonArray){
+            JSONObject newjsonObject = new JSONObject();
+            JSONObject oldjsonObject = (JSONObject) ((JSONObject)jsonObject).get("teacher");
+            newjsonObject.put("id",oldjsonObject.get("id"));
+            newjsonObject.put("name",oldjsonObject.get("name"));
+            ((JSONObject) jsonObject).put("teacher",newjsonObject);
+            courseJsonArray.add(jsonObject);
         }
-        return jsonArray;
+        return courseJsonArray;
     }
 
     @Override
@@ -52,4 +57,36 @@ public class EvaluationServiceImpl implements EvaluationService{
         }
         return courseJsonArray;
     }
+
+    @Override
+    public IndividualEvaluation getSuperIndiEvaluation(int superId, int teacherId) {
+        return evaluationMapper.getSuperIndiEvaluation(superId,teacherId);
+    }
+
+    @Override
+    public IndividualEvaluation getTeacherIndiEvaluation(int fromTeacherId, int toTeacherId, int courseId) {
+        return evaluationMapper.getTeacherIndiEvaluation(fromTeacherId,toTeacherId,courseId);
+    }
+
+    @Override
+    public IndividualEvaluation getStudentIndiEvaluation(int studentId, int teacherId, int courseId) {
+        return evaluationMapper.getStudentIndiEvaluation(studentId,teacherId,courseId);
+    }
+
+    @Override
+    public int addStudentIndiEvaluation(IndividualEvaluation individualEvaluation) {
+        return evaluationMapper.addStudentIndiEvaluation(individualEvaluation);
+    }
+
+    @Override
+    public int addTeacherIndiEvaluation(IndividualEvaluation individualEvaluation) {
+        return evaluationMapper.addTeacherIndiEvaluation(individualEvaluation);
+    }
+
+    @Override
+    public int addSuperIndiEvaluation(IndividualEvaluation individualEvaluation) {
+        return evaluationMapper.addStudentIndiEvaluation(individualEvaluation);
+    }
+
+
 }
