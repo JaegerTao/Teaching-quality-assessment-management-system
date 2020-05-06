@@ -12,6 +12,7 @@ import java.util.Date;
 public class Teacher extends User {
 
     /**
+     * teacherName 教师姓名
      * gender 性别
      * region 籍贯
      * totalClass 累计授课学时
@@ -23,9 +24,11 @@ public class Teacher extends User {
      * degree 学历
      * graduateSchool 毕业院校
      */
-    private int gender;
+    private String teacherName;
+    private String departmentName;
+    private Integer gender;
     private String region;
-    private int totalClass;
+    private Integer totalClass;
     private Date birth;
     private Date entranceDate;
     private String jobTile;
