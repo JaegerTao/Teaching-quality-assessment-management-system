@@ -23,9 +23,10 @@ public class Teacher extends User {
      * degree 学历
      * graduateSchool 毕业院校
      */
-    private int gender;
+    private String departmentName;
+    private Integer gender;
     private String region;
-    private int totalClass;
+    private Integer totalClass;
     private Date birth;
     private Date entranceDate;
     private String jobTile;
