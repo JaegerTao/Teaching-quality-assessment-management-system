@@ -50,17 +50,27 @@ public class RoleServiceImpl implements RoleService {
 
     @Override
     public List<Role> listRole() {
-        return roleMapper.listRole();
+        List<Role> list = roleMapper.listRole();
+        for (Role role : list){
+            role.setPermissions((ArrayList<Permission>) getRolesPermissions(role.getId()));
+        }
+        return list;
     }
 
     @Override
     public void addRole(Role role) {
-        roleMapper.addRole(role);
+        Role r = roleMapper.getRoleById(role.getId());
+        if (r==null){
+            roleMapper.addRole(role);
+        }
     }
 
     @Override
     public void updateRole(Role role) {
-        roleMapper.updateRole(role);
+        Role r = roleMapper.getRoleById(role.getId());
+        if (r!=null){
+            roleMapper.updateRole(role);
+        }
     }
 
     @Override

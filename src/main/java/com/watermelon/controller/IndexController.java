@@ -21,7 +21,7 @@ public class IndexController {
     @Autowired
     private UserService userService;
 
-    @RequestMapping({"/"})
+    @GetMapping({"/"})
     public String index() {
         return "index";
     }
@@ -32,7 +32,8 @@ public class IndexController {
     }
 
     @PostMapping("/login")
-    public String login(@RequestParam String username,@RequestParam String password, Model model) {
+
+    public String login(@RequestParam(value="username",required=false) String username,@RequestParam(value="password",required=false) String password, Model model) {
         //获取当前用户
         Subject subject = SecurityUtils.getSubject();
         UsernamePasswordToken token = new UsernamePasswordToken(username, password);
@@ -56,13 +57,13 @@ public class IndexController {
         }
     }
 
-    @RequestMapping("/toRegister")
+    @GetMapping("/toRegister")
     public String toRegister() {
         return "register";
     }
 
     @PostMapping("/register")
-    public String register(@RequestParam String username,@RequestParam String password,@RequestParam String rePassword,Model model){
+    public String register(@RequestParam(value="username",required=false) String username,@RequestParam(value="username",required=false) String password,@RequestParam(value="username",required=false) String rePassword,Model model){
         if (!password.equals(rePassword)){
             model.addAttribute("msg", "两次输入密码不一致!");
             return "register";
@@ -71,7 +72,7 @@ public class IndexController {
         return "redirect:toLogin";
     }
 
-    @RequestMapping("/logout")
+    @GetMapping("/logout")
     public String logout(){
         Subject subject = SecurityUtils.getSubject();
         subject.logout();
@@ -79,7 +80,7 @@ public class IndexController {
     }
 
     @ResponseBody
-    @RequestMapping("/noAuth")
+    @GetMapping("/noAuth")
     public String noAuth() {
         return "未经授权，无法访问该页面！";
     }

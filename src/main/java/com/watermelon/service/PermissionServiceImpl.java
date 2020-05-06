@@ -30,16 +30,25 @@ public class PermissionServiceImpl implements PermissionService {
 
     @Override
     public void addPermission(Permission permission) {
-        permissionMapper.addPermission(permission);
+        Permission permission1 = permissionMapper.getPermissionById(permission.getId());
+        if (permission1==null) {
+            permissionMapper.addPermission(permission);
+        }
     }
 
     @Override
     public void updatePermission(Permission permission) {
-        permissionMapper.updatePermission(permission);
+        Permission permission1 = permissionMapper.getPermissionById(permission.getId());
+        if (permission1!=null) {
+            permissionMapper.updatePermission(permission);
+        }
     }
 
     @Override
     public void deletePermission(int id) {
-        permissionMapper.deletePermission(id);
+        Permission permission1 = permissionMapper.getPermissionById(id);
+        if (permission1!=null) {
+            permissionMapper.deletePermission(id);
+        }
     }
 }

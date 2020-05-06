@@ -13,6 +13,18 @@ import javax.sql.DataSource;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * Druid数据连接池配置类
+ * 配置连接池的监控后台登录方式以及不进行监控的文件
+ * 开启方式 application.yml -> spring-datasource-type
+ * 默认状态 开启
+ * 初始连接 5
+ * 最小连接数 5
+ * 最大连接数 20
+ * 防火墙 默认开启
+ * 版本 1.0
+ * 时间 2020/4/15
+ */
 @Configuration
 public class DruidConfig {
 

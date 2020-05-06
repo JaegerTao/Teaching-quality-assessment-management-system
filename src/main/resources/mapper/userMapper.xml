@@ -4,15 +4,15 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.watermelon.mapper.UserMapper">
     <select id="listUser" resultType="User">
-        select * from user
+        select user_id as id, role_id, name, password, id_number from user
     </select>
 
     <select id="getUserById" resultType="User">
-        select * from user where user_id = #{id}
+        select user_id as id, role_id, name, password, id_number from user where user_id = #{id}
     </select>
 
     <select id="getUserByName" parameterType="String" resultType="User">
-        select * from user where name = #{name}
+        select user_id as id, role_id, name, password, id_number from user where name = #{name}
     </select>
 
     <insert id="addUser" parameterType="User">
