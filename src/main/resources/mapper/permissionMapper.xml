@@ -25,7 +25,11 @@
     </update>
 
     <delete id="deletePermission" parameterType="int">
-        delete from permission where and permission_id=#{id}
+        delete from permission where permission_id=#{id}
     </delete>
+
+    <select id="getPermissionNumber" resultType="int">
+        select count(*) from permission
+    </select>
 
 </mapper>

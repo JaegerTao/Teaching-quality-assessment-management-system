@@ -59,10 +59,9 @@ public class RoleServiceImpl implements RoleService {
 
     @Override
     public void addRole(Role role) {
-        Role r = roleMapper.getRoleById(role.getId());
-        if (r==null){
-            roleMapper.addRole(role);
-        }
+        int number = roleMapper.getRoleNumber();
+        role.setId(number+1);
+        roleMapper.addRole(role);
     }
 
     @Override
@@ -75,6 +74,10 @@ public class RoleServiceImpl implements RoleService {
 
     @Override
     public void deleteRole(int id) {
+        List<Integer> permsIds = roleMapper.getRolesPermissionsId(id);
+        for (int i : permsIds){
+            roleMapper.deleteRolePermission(id,i);
+        }
         roleMapper.deleteRole(id);
     }
 
@@ -84,7 +87,7 @@ public class RoleServiceImpl implements RoleService {
     }
 
     @Override
-    public void deleteRolePermission(int permsId) {
-        roleMapper.deleteRolePermission(permsId);
+    public void deleteRolePermission(int roleId,int permsId) {
+        roleMapper.deleteRolePermission(roleId,permsId);
     }
 }

@@ -30,10 +30,9 @@ public class PermissionServiceImpl implements PermissionService {
 
     @Override
     public void addPermission(Permission permission) {
-        Permission permission1 = permissionMapper.getPermissionById(permission.getId());
-        if (permission1==null) {
-            permissionMapper.addPermission(permission);
-        }
+        int number = permissionMapper.getPermissionNumber();
+        permission.setId(number+1);
+        permissionMapper.addPermission(permission);
     }
 
     @Override

@@ -1,10 +1,6 @@
 package com.watermelon.controller;
 
-import com.watermelon.entity.User;
-import com.watermelon.mapper.UserMapper;
 import com.watermelon.service.UserService;
-import com.watermelon.service.UserServiceImpl;
-import jdk.nashorn.internal.objects.annotations.Getter;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.IncorrectCredentialsException;
 import org.apache.shiro.authc.UnknownAccountException;
@@ -62,7 +58,7 @@ public class IndexController {
     }
 
     @PostMapping("/register")
-    public String register(@RequestParam(value="username",required=false) String username,@RequestParam(value="username",required=false) String password,@RequestParam(value="username",required=false) String rePassword,Model model){
+    public String register(@RequestParam(value="username",required=false) String username,@RequestParam(value="password",required=false) String password,@RequestParam(value="username",required=false) String rePassword,Model model){
         if (!password.equals(rePassword)){
             model.addAttribute("msg", "两次输入密码不一致!");
             return "register";

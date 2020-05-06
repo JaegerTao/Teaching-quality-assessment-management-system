@@ -26,13 +26,13 @@ public class AdminController {
     private PermissionService permissionService;
 
     @PostMapping("/addUser")
-    public String addUser(@RequestParam(value="user",required=false) User user) {
+    public String addUser(@RequestBody(required=false) User user) {
         userService.addUser(user);
         return "/user/add";
     }
 
     @PostMapping("/updateUser")
-    public String updateUser(@RequestParam(value="user",required=false) User user){
+    public String updateUser(@RequestBody(required=false) User user){
         userService.updateUser(user);
         return "redirect:/admin/listUser";
     }
@@ -51,13 +51,13 @@ public class AdminController {
     }
 
     @PostMapping("/addRole")
-    public String addRole(@RequestParam(value="role",required=false) Role role){
+    public String addRole(@RequestBody(required=false) Role role){
         roleService.addRole(role);
         return "redirect:/admin/listRole";
     }
 
     @PostMapping("/updateRole")
-    public String updateRole(@RequestParam(value="role",required=false) Role role){
+    public String updateRole(@RequestBody(required=false) Role role){
         roleService.updateRole(role);
         return "redirect:/admin/listRole";
     }
@@ -75,13 +75,14 @@ public class AdminController {
     }
 
     @PostMapping("/addPerms")
-    public String addPerms(@RequestParam(value="permission",required=false) Permission permission){
+    public String addPerms(@RequestBody(required=false) Permission permission){
+        System.out.println(permission);
         permissionService.addPermission(permission);
         return "redirect:/admin/listPerms";
     }
 
     @PostMapping("/updatePerms")
-    public String updatePerms(@RequestParam(value="permission",required=false) Permission permission) {
+    public String updatePerms(@RequestBody(required=false) Permission permission) {
         permissionService.updatePermission(permission);
         return "redirect:/admin/listPerms";
     }

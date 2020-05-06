@@ -3,7 +3,6 @@ package com.watermelon.controller;
 import com.watermelon.entity.Course;
 import com.watermelon.service.CourseService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
@@ -18,7 +17,7 @@ public class CourseManageController {
     private CourseService courseService;
 
     @PostMapping("/addCourse")
-    public Map<String, String> addCourse(@RequestParam(value="course",required=false)Course course){
+    public Map<String, String> addCourse(@RequestBody(required=false) Course course){
         courseService.addCourse(course);
         Map<String,String> map = new HashMap<>();
         map.put("status","200");
@@ -28,7 +27,7 @@ public class CourseManageController {
 
     @PostMapping("/updateCourse")
 
-    public Map<String, String> updateCourse(@RequestParam(value="course",required=false) Course course){
+    public Map<String, String> updateCourse(@RequestBody(required=false) Course course){
         courseService.updateCourse(course);
         Map<String,String> map = new HashMap<>();
         map.put("status","200");

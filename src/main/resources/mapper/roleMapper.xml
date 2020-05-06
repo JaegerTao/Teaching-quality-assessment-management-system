@@ -41,5 +41,7 @@
         delete from role_permission where role_id=#{roleId} and permission_id=#{permsId}
     </delete>
 
-
+    <select id="getRoleNumber" resultType="int">
+        select count(*) from role
+    </select>
 </mapper>
