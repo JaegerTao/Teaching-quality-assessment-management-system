@@ -1,11 +1,5 @@
-<<<<<<< HEAD
-/.idea/
-/target/
-*.iml
-=======
 /.idea
 /.mvn
 /target
 .gitattributes
 *.iml
->>>>>>> 6164ecd91cee4fdeb0b4fde1848e206a17abc62d
