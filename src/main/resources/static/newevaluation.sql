@@ -76,7 +76,6 @@ INSERT INTO `class_course` (`course_id`, `class_id`, `teacher_id`) VALUES
 	(1, 1, 5),
 	(1, 3, 5),
 	(1, 4, 5),
-	(2, 2, 5),
 	(2, 5, 6),
 	(3, 4, 6),
 	(4, 4, 6),
@@ -149,12 +148,10 @@ INSERT INTO `evaluation_item` (`id`, `content`, `role_id`, `weight`) VALUES
 
 -- 导出  表 evaluation.individual_evaluation 结构
 CREATE TABLE IF NOT EXISTS `individual_evaluation` (
-  `individual_id` int(11) NOT NULL AUTO_INCREMENT,
+  `individual_id` int(11) NOT NULL,
   `summary_id` int(11) DEFAULT NULL,
-  `role_id` int(11) DEFAULT NULL,
-  `from_id` int(11) DEFAULT NULL,
   `teacher_id` int(11) DEFAULT NULL,
-  `course_id` int(11) DEFAULT NULL,
+  `student_id` int(11) DEFAULT NULL,
   `score_1` int(11) DEFAULT NULL,
   `score_2` int(11) DEFAULT NULL,
   `score_3` int(11) DEFAULT NULL,
@@ -164,28 +161,16 @@ CREATE TABLE IF NOT EXISTS `individual_evaluation` (
   `total_score` decimal(10,0) DEFAULT NULL,
   `advice` varchar(1000) DEFAULT NULL,
   PRIMARY KEY (`individual_id`),
+  KEY `FK_Relationship_11` (`student_id`),
   KEY `FK_Relationship_12` (`summary_id`),
   KEY `FK_Relationship_13` (`teacher_id`),
-  KEY `FK_individual_evaluation_user` (`from_id`),
-  KEY `FK_individual_evaluation_role` (`role_id`),
-  KEY `FK_individual_evaluation_course` (`course_id`),
+  CONSTRAINT `FK_Relationship_11` FOREIGN KEY (`student_id`) REFERENCES `student` (`student_id`) ON DELETE RESTRICT ON UPDATE RESTRICT,
   CONSTRAINT `FK_Relationship_12` FOREIGN KEY (`summary_id`) REFERENCES `summary_evaluation` (`summary_id`) ON DELETE RESTRICT ON UPDATE RESTRICT,
-  CONSTRAINT `FK_Relationship_13` FOREIGN KEY (`teacher_id`) REFERENCES `teacher` (`teacher_id`) ON DELETE RESTRICT ON UPDATE RESTRICT,
-  CONSTRAINT `FK_individual_evaluation_course` FOREIGN KEY (`course_id`) REFERENCES `course` (`course_id`),
-  CONSTRAINT `FK_individual_evaluation_role` FOREIGN KEY (`role_id`) REFERENCES `role` (`role_id`),
-  CONSTRAINT `FK_individual_evaluation_user` FOREIGN KEY (`from_id`) REFERENCES `user` (`user_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8;
+  CONSTRAINT `FK_Relationship_13` FOREIGN KEY (`teacher_id`) REFERENCES `teacher` (`teacher_id`) ON DELETE RESTRICT ON UPDATE RESTRICT
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- 正在导出表  evaluation.individual_evaluation 的数据：~0 rows (大约)
 /*!40000 ALTER TABLE `individual_evaluation` DISABLE KEYS */;
-INSERT INTO `individual_evaluation` (`individual_id`, `summary_id`, `role_id`, `from_id`, `teacher_id`, `course_id`, `score_1`, `score_2`, `score_3`, `score_4`, `score_5`, `score_6`, `total_score`, `advice`) VALUES
-	(1, NULL, 4, 12, 6, 1, 5, 4, 3, 2, 5, 5, 4, '老师教的很好'),
-	(2, NULL, 2, 5, 7, 2, 5, 4, 3, 2, 5, 5, 4, NULL),
-	(3, NULL, 3, 4, 5, 5, 5, 4, 3, 2, 5, 5, 4, NULL),
-	(4, NULL, 3, 9, 2, 4, 5, 5, 5, 5, 5, 5, 5, '很好很好'),
-	(5, NULL, 3, 9, 5, 1, 5, 5, 5, 5, 5, 5, 5, '老师上课速度有点快，我有点更不上'),
-	(6, NULL, 3, 3, 5, 1, 5, 5, 5, 5, 5, 5, 5, '老师上课速度有点快，我有点更不上'),
-	(8, NULL, 2, 7, 2, 3, 4, 4, 4, 4, 4, 4, 4, '认真负责，教学计划制定得认真详细');
 /*!40000 ALTER TABLE `individual_evaluation` ENABLE KEYS */;
 
 -- 导出  表 evaluation.permission 结构
@@ -309,22 +294,25 @@ INSERT INTO `supervisor` (`supervisor_id`, `gender`, `name`) VALUES
 CREATE TABLE IF NOT EXISTS `supervisor_teacher` (
   `supervisor_id` int(11) NOT NULL,
   `teacher_id` int(11) NOT NULL,
+  `individual_id` int(11) DEFAULT NULL,
   PRIMARY KEY (`supervisor_id`,`teacher_id`),
   KEY `FK_supervisor_teacher_teacher` (`teacher_id`),
+  KEY `FK_supervisor_teacher_individual_evaluation` (`individual_id`),
+  CONSTRAINT `FK_supervisor_teacher_individual_evaluation` FOREIGN KEY (`individual_id`) REFERENCES `individual_evaluation` (`individual_id`),
   CONSTRAINT `FK_supervisor_teacher_supervisor` FOREIGN KEY (`supervisor_id`) REFERENCES `supervisor` (`supervisor_id`),
   CONSTRAINT `FK_supervisor_teacher_teacher` FOREIGN KEY (`teacher_id`) REFERENCES `teacher` (`teacher_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='督导可评价老师的关系表';
 
 -- 正在导出表  evaluation.supervisor_teacher 的数据：~7 rows (大约)
 /*!40000 ALTER TABLE `supervisor_teacher` DISABLE KEYS */;
-INSERT INTO `supervisor_teacher` (`supervisor_id`, `teacher_id`) VALUES
-	(11, 2),
-	(13, 2),
-	(11, 5),
-	(12, 5),
-	(11, 6),
-	(12, 6),
-	(11, 7);
+INSERT INTO `supervisor_teacher` (`supervisor_id`, `teacher_id`, `individual_id`) VALUES
+	(11, 2, NULL),
+	(11, 5, NULL),
+	(11, 6, NULL),
+	(11, 7, NULL),
+	(12, 5, NULL),
+	(12, 6, NULL),
+	(13, 2, NULL);
 /*!40000 ALTER TABLE `supervisor_teacher` ENABLE KEYS */;
 
 -- 导出  表 evaluation.teacher 结构
