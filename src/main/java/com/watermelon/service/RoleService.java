@@ -27,4 +27,5 @@ public interface RoleService {
 
     void deleteRolePermission(int roleId,int permsId);
 
+    int getMaxRoleId();
 }

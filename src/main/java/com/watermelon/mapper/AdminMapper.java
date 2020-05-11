@@ -16,4 +16,5 @@ public interface AdminMapper {
 
     void deleteAdmin(int id);
 
+    int getMaxAdminId();
 }

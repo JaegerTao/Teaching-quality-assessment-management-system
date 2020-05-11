@@ -12,4 +12,5 @@ public interface AdminService {
 
     void deleteAdmin(int id);
 
+    int getMaxAdminId();
 }

@@ -22,4 +22,5 @@ public interface CourseMapper {
 
     void deleteCourse(int id);
 
+    int getMaxCourseId();
 }

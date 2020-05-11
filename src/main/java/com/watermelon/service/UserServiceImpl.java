@@ -25,7 +25,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public int registerUser(String username,String password){
-        int count = userMapper.getUserNumber();
+        int count = userMapper.getMaxUserId();
         User user = new User();
         user.setId(count+1);
         user.setName(username);
@@ -75,6 +75,11 @@ public class UserServiceImpl implements UserService {
             user.setRole(role);
         }
         return list;
+    }
+
+    @Override
+    public int getMaxUserId() {
+        return getMaxUserId();
     }
 
 

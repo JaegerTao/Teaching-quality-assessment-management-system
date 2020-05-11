@@ -30,4 +30,8 @@
     <select id="getUserNumber" resultType="int">
         select count(*) from user
     </select>
+
+    <select id="getMaxUserId" resultType="int">
+        select max(user_id) from user
+    </select>
 </mapper>

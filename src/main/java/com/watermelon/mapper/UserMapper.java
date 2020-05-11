@@ -24,4 +24,5 @@ public interface UserMapper {
 
     int deleteUser(int id);
 
+    int getMaxUserId();
 }

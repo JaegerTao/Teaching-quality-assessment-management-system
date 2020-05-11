@@ -17,4 +17,6 @@ public interface DepartmentMapper {
     void updateDepartment(Department department);
 
     void deleteDepartment(int id);
+
+    int getMaxDepartmentId();
 }

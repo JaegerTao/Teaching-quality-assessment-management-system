@@ -24,4 +24,5 @@ public interface PermissionMapper {
 
     Integer getPermissionNumber();
 
+    int getMaxPermissionId();
 }

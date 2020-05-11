@@ -59,7 +59,13 @@ public class RoleServiceImpl implements RoleService {
 
     @Override
     public void addRole(Role role) {
-        int number = roleMapper.getRoleNumber();
+        int number = roleMapper.getMaxRoleId();
+        List<Permission> list = role.getPermissions();
+        if (list!=null){
+            for (Permission perms : list){
+                roleMapper.addRolePermission(role.getId(),perms.getId());
+            }
+        }
         role.setId(number+1);
         roleMapper.addRole(role);
     }
@@ -69,6 +75,14 @@ public class RoleServiceImpl implements RoleService {
         Role r = roleMapper.getRoleById(role.getId());
         if (r!=null){
             roleMapper.updateRole(role);
+            //删除role_permission表中此角色的所有权限并重新添加
+            roleMapper.deleteAllRolePermission(role.getId());
+            List<Permission> list = role.getPermissions();
+            if (list!=null){
+                for (Permission perms : list){
+                    roleMapper.addRolePermission(role.getId(),perms.getId());
+                }
+            }
         }
     }
 
@@ -89,5 +103,10 @@ public class RoleServiceImpl implements RoleService {
     @Override
     public void deleteRolePermission(int roleId,int permsId) {
         roleMapper.deleteRolePermission(roleId,permsId);
+    }
+
+    @Override
+    public int getMaxRoleId() {
+        return roleMapper.getMaxRoleId();
     }
 }

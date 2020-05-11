@@ -30,7 +30,7 @@ public class PermissionServiceImpl implements PermissionService {
 
     @Override
     public void addPermission(Permission permission) {
-        int number = permissionMapper.getPermissionNumber();
+        int number = permissionMapper.getMaxPermissionId();
         permission.setId(number+1);
         permissionMapper.addPermission(permission);
     }
@@ -49,5 +49,10 @@ public class PermissionServiceImpl implements PermissionService {
         if (permission1!=null) {
             permissionMapper.deletePermission(id);
         }
+    }
+
+    @Override
+    public int getMaxPermissionId() {
+        return permissionMapper.getMaxPermissionId();
     }
 }

@@ -15,6 +15,7 @@ public class DepartmentServiceImpl implements DepartmentService {
 
     @Override
     public void addDepartment(Department department) {
+        department.setId(departmentMapper.getMaxDepartmentId()+1);
         departmentMapper.addDepartment(department);
     }
 
@@ -31,5 +32,10 @@ public class DepartmentServiceImpl implements DepartmentService {
     @Override
     public void deleteDepartment(int id) {
         departmentMapper.deleteDepartment(id);
+    }
+
+    @Override
+    public int getMaxDepartmentId() {
+        return departmentMapper.getMaxDepartmentId();
     }
 }
