@@ -18,6 +18,7 @@ public class AdminServiceImpl implements AdminService {
 
     @Override
     public void addAdmin(Admin admin) {
+        admin.setId(adminMapper.getMaxAdminId()+1);
         adminMapper.addAdmin(admin);
     }
 
@@ -29,5 +30,10 @@ public class AdminServiceImpl implements AdminService {
     @Override
     public void deleteAdmin(int id) {
         adminMapper.deleteAdmin(id);
+    }
+
+    @Override
+    public int getMaxAdminId() {
+        return adminMapper.getMaxAdminId();
     }
 }

@@ -18,4 +18,5 @@ public interface PermissionService {
 
     void deletePermission(int id);
 
+    int getMaxPermissionId();
 }

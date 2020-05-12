@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.watermelon.mapper.SupervisorMapper">
+
+    <select id="getSupervisorById" parameterType="int" resultType="Supervisor">
+        select supervisor_id as id,name,gender from supervisor where supervisor_id=#{id}
+    </select>
+
+    <insert id="addSupervisor" parameterType="Supervisor">
+        insert into supervisor (supervisor_id, name, gender) values(#{id},#{name},#{gender});
+    </insert>
+
+    <update id="updateSupervisor" parameterType="Supervisor">
+        update supervisor set name=#{name},gender=#{gender} where supervisor_id=#{id}
+    </update>
+
+    <delete id="deleteSupervisor" parameterType="int">
+        delete from supervisor where supervisor_id = #{id}
+    </delete>
+
+    <select id="getMaxSupervisorId" resultType="int">
+        select max(supervisor_id) from supervisor
+    </select>
+</mapper>

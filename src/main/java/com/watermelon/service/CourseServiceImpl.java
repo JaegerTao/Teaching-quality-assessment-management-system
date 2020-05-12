@@ -30,6 +30,7 @@ public class CourseServiceImpl implements CourseService {
 
     @Override
     public int addCourse(Course course) {
+        course.setId(courseMapper.getMaxCourseId()+1);
         return courseMapper.addCourse(course);
     }
 
@@ -41,5 +42,10 @@ public class CourseServiceImpl implements CourseService {
     @Override
     public void deleteCourse(int id) {
         courseMapper.deleteCourse(id);
+    }
+
+    @Override
+    public int getMaxCourseId() {
+        return courseMapper.getMaxCourseId();
     }
 }

@@ -14,4 +14,5 @@ public interface DepartmentService {
 
     void deleteDepartment(int id);
 
+    int getMaxDepartmentId();
 }

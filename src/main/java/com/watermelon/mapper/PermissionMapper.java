@@ -22,4 +22,7 @@ public interface PermissionMapper {
 
     void deletePermission(int id);
 
+    Integer getPermissionNumber();
+
+    int getMaxPermissionId();
 }

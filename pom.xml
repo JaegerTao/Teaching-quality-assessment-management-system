@@ -19,7 +19,6 @@
     </properties>
 
     <dependencies>
-
         <!-- Aop依赖 -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -64,7 +63,6 @@
             <artifactId>lombok</artifactId>
         </dependency>
 
-
         <!-- swagger-ui依赖 -->
         <dependency>
             <groupId>io.springfox</groupId>
@@ -79,7 +77,6 @@
             <version>2.9.2</version>
         </dependency>
 
-
         <!-- fastjson -->
         <dependency>
             <groupId>com.alibaba</groupId>
@@ -87,7 +84,6 @@
             <version>1.2.58</version>
         </dependency>
 
-        <!-- 热加载 -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-devtools</artifactId>

@@ -13,11 +13,14 @@
     </select>
 
     <update id="updateDepartment" parameterType="Department">
-        update department set name=#{name} where department_id={#id}
+        update department set name=#{name} where department_id=#{id}
     </update>
 
     <delete id="deleteDepartment" parameterType="int">
         delete from department where department_id=#{id}
     </delete>
 
+    <select id="getMaxDepartmentId" resultType="int">
+        select max(department_id) from department
+    </select>
 </mapper>

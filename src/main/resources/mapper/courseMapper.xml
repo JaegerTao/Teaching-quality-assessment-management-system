@@ -9,11 +9,11 @@
     </select>
 
     <select id="getCourseByName" parameterType="String" resultType="Course">
-        select * from role where name = #{name}
+        select * from course where name = #{name}
     </select>
 
     <select id="listCourse" resultType="Course">
-        select * from role
+        select * from course
     </select>
 
     <insert id="addCourse" parameterType="Course">
@@ -30,4 +30,7 @@
         delete from course where course_id = #{id}
     </delete>
 
+    <select id="getMaxCourseId" resultType="int">
+        select max(course_id) from course
+    </select>
 </mapper>

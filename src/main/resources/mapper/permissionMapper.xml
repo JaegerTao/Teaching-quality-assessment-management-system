@@ -21,11 +21,18 @@
     </select>
 
     <update id="updatePermission" parameterType="Permission">
-        update permission set name=#{name},url=#{url},perms=#{perms},type=#{type} where parrent_id={#id}
+        update permission set name=#{name},url=#{url},perms=#{perms},type=#{type} where permission_id=#{id}
     </update>
 
     <delete id="deletePermission" parameterType="int">
-        delete from permission where and permission_id=#{id}
+        delete from permission where permission_id=#{id}
     </delete>
 
+    <select id="getPermissionNumber" resultType="int">
+        select count(*) from permission
+    </select>
+
+    <select id="getMaxPermissionId" resultType="int">
+        select max(permission_id) from permission
+    </select>
 </mapper>

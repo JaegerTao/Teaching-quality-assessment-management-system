@@ -25,6 +25,6 @@ public class Course {
     private String courseDep;
     private float score;
     private int time;
-    private Teacher teacher;
+//    private Teacher teacher;
 
 }

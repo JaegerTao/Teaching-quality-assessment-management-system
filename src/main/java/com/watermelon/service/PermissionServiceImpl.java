@@ -30,16 +30,13 @@ public class PermissionServiceImpl implements PermissionService {
 
     @Override
     public void addPermission(Permission permission) {
-
-        Permission permission1 = permissionMapper.getPermissionById(permission.getId());
-        if (permission1==null) {
-            permissionMapper.addPermission(permission);
-        }
+        int number = permissionMapper.getMaxPermissionId();
+        permission.setId(number+1);
+        permissionMapper.addPermission(permission);
     }
 
     @Override
     public void updatePermission(Permission permission) {
-
         Permission permission1 = permissionMapper.getPermissionById(permission.getId());
         if (permission1!=null) {
             permissionMapper.updatePermission(permission);
@@ -48,10 +45,14 @@ public class PermissionServiceImpl implements PermissionService {
 
     @Override
     public void deletePermission(int id) {
-
         Permission permission1 = permissionMapper.getPermissionById(id);
         if (permission1!=null) {
             permissionMapper.deletePermission(id);
         }
+    }
+
+    @Override
+    public int getMaxPermissionId() {
+        return permissionMapper.getMaxPermissionId();
     }
 }

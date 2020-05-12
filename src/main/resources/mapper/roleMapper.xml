@@ -9,7 +9,7 @@
     </insert>
 
     <update id="updateRole" parameterType="Role">
-        update role set name=#{name} where role_id={#id}
+        update role set name=#{name} where role_id=#{id}
     </update>
 
     <delete id="deleteRole" parameterType="int">
@@ -41,5 +41,15 @@
         delete from role_permission where role_id=#{roleId} and permission_id=#{permsId}
     </delete>
 
+    <delete id="deleteAllRolePermission" parameterType="int">
+        delete from role_permission where role_id=#{roleId}
+    </delete>
 
+    <select id="getRoleNumber" resultType="int">
+        select count(*) from role
+    </select>
+
+    <select id="getMaxRoleId" resultType="int">
+        select max(role_id) from role
+    </select>
 </mapper>

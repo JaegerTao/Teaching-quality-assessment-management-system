@@ -26,8 +26,11 @@ public interface RoleMapper {
 
     void addRolePermission(int roleId,int permsId);
 
-    void deleteRolePermission(int permsId);
+    void deleteRolePermission(int roleId,int permsId);
 
+    void deleteAllRolePermission(int roleId);
 
+    Integer getRoleNumber();
 
+    int getMaxRoleId();
 }

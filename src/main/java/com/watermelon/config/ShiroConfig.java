@@ -10,7 +10,6 @@ import org.springframework.context.annotation.Configuration;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
-
 /**
  * Shiro配置类
  * 配置Shiro的权限访问逻辑，对url进行过滤并验证身份和访问权限
@@ -50,9 +49,7 @@ public class ShiroConfig {
         filterMap.put("/user/add", "perms[user:add]");
         filterMap.put("/user/update", "perms[user:update]");
         filterMap.put("/user/view", "perms[user:view]");
-
         filterMap.put("/admin/*", "perms[user:add]");
-
 
         //usr路径下的所有页面都进行验证拦截
         filterMap.put("/user/*", "authc");

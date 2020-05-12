@@ -50,7 +50,6 @@ public class RoleServiceImpl implements RoleService {
 
     @Override
     public List<Role> listRole() {
-
         List<Role> list = roleMapper.listRole();
         for (Role role : list){
             role.setPermissions((ArrayList<Permission>) getRolesPermissions(role.getId()));
@@ -60,24 +59,39 @@ public class RoleServiceImpl implements RoleService {
 
     @Override
     public void addRole(Role role) {
-
-        Role r = roleMapper.getRoleById(role.getId());
-        if (r==null){
-            roleMapper.addRole(role);
+        int number = roleMapper.getMaxRoleId();
+        List<Permission> list = role.getPermissions();
+        if (list!=null){
+            for (Permission perms : list){
+                roleMapper.addRolePermission(role.getId(),perms.getId());
+            }
         }
+        role.setId(number+1);
+        roleMapper.addRole(role);
     }
 
     @Override
     public void updateRole(Role role) {
-
         Role r = roleMapper.getRoleById(role.getId());
         if (r!=null){
             roleMapper.updateRole(role);
+            //删除role_permission表中此角色的所有权限并重新添加
+            roleMapper.deleteAllRolePermission(role.getId());
+            List<Permission> list = role.getPermissions();
+            if (list!=null){
+                for (Permission perms : list){
+                    roleMapper.addRolePermission(role.getId(),perms.getId());
+                }
+            }
         }
     }
 
     @Override
     public void deleteRole(int id) {
+        List<Integer> permsIds = roleMapper.getRolesPermissionsId(id);
+        for (int i : permsIds){
+            roleMapper.deleteRolePermission(id,i);
+        }
         roleMapper.deleteRole(id);
     }
 
@@ -87,7 +101,12 @@ public class RoleServiceImpl implements RoleService {
     }
 
     @Override
-    public void deleteRolePermission(int permsId) {
-        roleMapper.deleteRolePermission(permsId);
+    public void deleteRolePermission(int roleId,int permsId) {
+        roleMapper.deleteRolePermission(roleId,permsId);
+    }
+
+    @Override
+    public int getMaxRoleId() {
+        return roleMapper.getMaxRoleId();
     }
 }

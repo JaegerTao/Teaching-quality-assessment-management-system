@@ -18,4 +18,5 @@ public interface CourseService {
 
     void deleteCourse(int id);
 
+    int getMaxCourseId();
 }

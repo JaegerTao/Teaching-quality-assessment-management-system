@@ -10,12 +10,12 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+
 @Service
 public class UserServiceImpl implements UserService {
 
     @Autowired
     private UserMapper userMapper;
-
 
     @Autowired
     private RoleMapper roleMapper;
@@ -25,7 +25,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public int registerUser(String username,String password){
-        int count = userMapper.getUserNumber();
+        int count = userMapper.getMaxUserId();
         User user = new User();
         user.setId(count+1);
         user.setName(username);
@@ -37,7 +37,6 @@ public class UserServiceImpl implements UserService {
     @Override
     public User getUserById(int id) {
         User user = userMapper.getUserById(id);
-
         user.setRole(roleMapper.getRoleById(user.getRoleId()));
         return user;
     }
@@ -45,7 +44,6 @@ public class UserServiceImpl implements UserService {
     @Override
     public User getUserByName(String name) {
         User user = userMapper.getUserByName(name);
-
         user.setRole(roleMapper.getRoleById(user.getRoleId()));
         return user;
     }
@@ -57,7 +55,6 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public int updateUser(User user) {
-
         User user1 = userMapper.getUserById(user.getId());
         if (user1==null){
             return -1;
@@ -72,13 +69,17 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public List<User> listUser() {
-
         List<User> list = userMapper.listUser();
         for (User user : list){
             Role role = roleService.getRoleById(user.getRoleId());
             user.setRole(role);
         }
         return list;
+    }
+
+    @Override
+    public int getMaxUserId() {
+        return getMaxUserId();
     }
 
 
