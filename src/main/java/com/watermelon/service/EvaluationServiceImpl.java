@@ -36,8 +36,8 @@ public class EvaluationServiceImpl implements EvaluationService{
     }
 
     @Override
-    public JSONArray getTeachersBySuperId(int id) {
-        String jsonString = JSON.toJSONString(evaluationMapper.getTeachersBySuperId(id));
+    public JSONArray getCoursesBySuperId(int id) {
+        String jsonString = JSON.toJSONString(evaluationMapper.getCoursesBySuperId(id));
         JSONArray jsonArray = JSON.parseArray(jsonString);
         return jsonArray;
     }
@@ -59,8 +59,8 @@ public class EvaluationServiceImpl implements EvaluationService{
     }
 
     @Override
-    public IndividualEvaluation getSuperIndiEvaluation(int superId, int teacherId) {
-        return evaluationMapper.getSuperIndiEvaluation(superId,teacherId);
+    public IndividualEvaluation getSuperIndiEvaluation(int superId, int teacherId, int courseId) {
+        return evaluationMapper.getSuperIndiEvaluation(superId,teacherId,courseId);
     }
 
     @Override
@@ -85,8 +85,6 @@ public class EvaluationServiceImpl implements EvaluationService{
 
     @Override
     public int addSuperIndiEvaluation(IndividualEvaluation individualEvaluation) {
-        return evaluationMapper.addStudentIndiEvaluation(individualEvaluation);
+        return evaluationMapper.addSuperIndiEvaluation(individualEvaluation);
     }
-
-
 }

@@ -23,14 +23,14 @@ public class EvaluationController {
     }
 
 
-    @GetMapping("/teachers/bySuperId")
+    @GetMapping("/courses/bySuperId")
     public Object findTeachersBySuperId(int id){
-        return ResultUtil.successJson(evaluationService.getTeachersBySuperId(id));
+        return ResultUtil.successJson(evaluationService.getCoursesBySuperId(id));
     }
 //获取个人评价
     @GetMapping("/superIndividualEvaluation")
-    public Object findSuperIndividualEvaluation(int superId,int teacherId){
-        return ResultUtil.successJson(evaluationService.getSuperIndiEvaluation(superId,teacherId));
+    public Object findSuperIndividualEvaluation(int superId,int teacherId, int courseId){
+        return ResultUtil.successJson(evaluationService.getSuperIndiEvaluation(superId,teacherId,courseId));
     }
 
     @GetMapping("/teacherIndividualEvaluation")
@@ -52,6 +52,12 @@ public class EvaluationController {
     @PostMapping("/teacherIndividualEvaluation")
     public Object addTeacherIndividualEvaluation(@RequestBody IndividualEvaluation individualEvaluation){
         evaluationService.addTeacherIndiEvaluation(individualEvaluation);
+        return ResultUtil.successJson();
+    }
+
+    @PostMapping("/superIndividualEvaluation")
+    public Object addSuperIndividualEvaluation(@RequestBody IndividualEvaluation individualEvaluation){
+        evaluationService.addSuperIndiEvaluation(individualEvaluation);
         return ResultUtil.successJson();
     }
 }

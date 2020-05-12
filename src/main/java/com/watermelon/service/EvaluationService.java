@@ -21,7 +21,7 @@ public interface EvaluationService {
      * @param id
      * @return
      */
-    JSONArray getTeachersBySuperId(int id);
+    JSONArray getCoursesBySuperId(int id);
 
     /**
      * 获取学生需要评价的课程（包括老师）列表
@@ -36,7 +36,7 @@ public interface EvaluationService {
      * @param teacherId
      * @return
      */
-    IndividualEvaluation getSuperIndiEvaluation(int superId, int teacherId);
+    IndividualEvaluation getSuperIndiEvaluation(int superId, int teacherId, int courseId);
 
     /**
      * 获取教师的个人评价

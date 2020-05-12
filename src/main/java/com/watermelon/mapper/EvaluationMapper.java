@@ -12,7 +12,7 @@ import java.util.List;
 public interface EvaluationMapper {
     List<Course> getCoursesByTeacherId(int id);
     List<Course> getCoursesByStuId(int id);
-    List<Teacher> getTeachersBySuperId(int id);
+    List<Course> getCoursesBySuperId(int id);
 
     /**
      * 获取督导的个人评价
@@ -20,7 +20,7 @@ public interface EvaluationMapper {
      * @param teacherId
      * @return
      */
-    IndividualEvaluation getSuperIndiEvaluation(int superId, int teacherId);
+    IndividualEvaluation getSuperIndiEvaluation(int superId, int teacherId, int courseId);
 
     /**
      * 获取教师的个人评价
