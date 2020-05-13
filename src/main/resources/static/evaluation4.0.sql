@@ -42,7 +42,7 @@ CREATE TABLE IF NOT EXISTS `class` (
   CONSTRAINT `FK_Relationship_1` FOREIGN KEY (`department_id`) REFERENCES `department` (`department_id`) ON DELETE RESTRICT ON UPDATE RESTRICT
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
--- 正在导出表  evaluation.class 的数据：~6 rows (大约)
+-- 正在导出表  evaluation.class 的数据：~5 rows (大约)
 /*!40000 ALTER TABLE `class` DISABLE KEYS */;
 INSERT INTO `class` (`class_id`, `department_id`, `number`, `name`, `grade`) VALUES
 	(1, 1, '1', '计算机科学与技术', '2017'),
@@ -94,17 +94,20 @@ CREATE TABLE IF NOT EXISTS `course` (
   `course_dep` varchar(128) DEFAULT NULL,
   `score` decimal(10,0) DEFAULT NULL,
   `time` int(11) DEFAULT NULL,
-  PRIMARY KEY (`course_id`)
+  `department_id` int(11) DEFAULT NULL,
+  PRIMARY KEY (`course_id`),
+  KEY `FK_course_department` (`department_id`),
+  CONSTRAINT `FK_course_department` FOREIGN KEY (`department_id`) REFERENCES `department` (`department_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- 正在导出表  evaluation.course 的数据：~5 rows (大约)
 /*!40000 ALTER TABLE `course` DISABLE KEYS */;
-INSERT INTO `course` (`course_id`, `number`, `name`, `course_type`, `course_class`, `course_dep`, `score`, `time`) VALUES
-	(1, '11A001', '计算机导论', '学科专业课程-专业核心课程', '必修课', '计算机科学学院', 2, 32),
-	(2, '11A003', '数字电路', '学科专业课程-专业核心课程', '必修课', '计算机科学学院', 5, 80),
-	(3, '11A023', 'IOS高级开发技术', '学科专业课程-特色创新课程', '必修课', '计算机科学学院', 4, 64),
-	(4, '11A022', '算法设计与分析', '专业方向课程-软件开发及应用方向', '必修课', '计算机科学学院', 4, 64),
-	(5, '11A015', '网页制作', '专业方向课程-软件开发及应用方向', '选修课', '计算机科学学院', 2, 32);
+INSERT INTO `course` (`course_id`, `number`, `name`, `course_type`, `course_class`, `course_dep`, `score`, `time`, `department_id`) VALUES
+	(1, '11A001', '计算机导论', '学科专业课程-专业核心课程', '必修课', '计算机科学学院', 2, 32, 2),
+	(2, '11A003', '数字电路', '学科专业课程-专业核心课程', '必修课', '计算机科学学院', 5, 80, 1),
+	(3, '11A023', 'IOS高级开发技术', '学科专业课程-特色创新课程', '必修课', '计算机科学学院', 4, 64, 1),
+	(4, '11A022', '算法设计与分析', '专业方向课程-软件开发及应用方向', '必修课', '计算机科学学院', 4, 64, 1),
+	(5, '11A015', '网页制作', '专业方向课程-软件开发及应用方向', '选修课', '计算机科学学院', 2, 32, 1);
 /*!40000 ALTER TABLE `course` ENABLE KEYS */;
 
 -- 导出  表 evaluation.department 结构
@@ -174,9 +177,9 @@ CREATE TABLE IF NOT EXISTS `individual_evaluation` (
   CONSTRAINT `FK_individual_evaluation_course` FOREIGN KEY (`course_id`) REFERENCES `course` (`course_id`),
   CONSTRAINT `FK_individual_evaluation_role` FOREIGN KEY (`role_id`) REFERENCES `role` (`role_id`),
   CONSTRAINT `FK_individual_evaluation_user` FOREIGN KEY (`from_id`) REFERENCES `user` (`user_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8;
 
--- 正在导出表  evaluation.individual_evaluation 的数据：~0 rows (大约)
+-- 正在导出表  evaluation.individual_evaluation 的数据：~9 rows (大约)
 /*!40000 ALTER TABLE `individual_evaluation` DISABLE KEYS */;
 INSERT INTO `individual_evaluation` (`individual_id`, `summary_id`, `role_id`, `from_id`, `teacher_id`, `course_id`, `score_1`, `score_2`, `score_3`, `score_4`, `score_5`, `score_6`, `total_score`, `advice`) VALUES
 	(1, NULL, 4, 12, 6, 1, 5, 4, 3, 2, 5, 5, 4, '老师教的很好'),
@@ -184,8 +187,12 @@ INSERT INTO `individual_evaluation` (`individual_id`, `summary_id`, `role_id`, `
 	(3, NULL, 3, 4, 5, 5, 5, 4, 3, 2, 5, 5, 4, NULL),
 	(4, NULL, 3, 9, 2, 4, 5, 5, 5, 5, 5, 5, 5, '很好很好'),
 	(5, NULL, 3, 9, 5, 1, 5, 5, 5, 5, 5, 5, 5, '老师上课速度有点快，我有点更不上'),
-	(6, NULL, 3, 3, 5, 1, 5, 5, 5, 5, 5, 5, 5, '老师上课速度有点快，我有点更不上'),
-	(8, NULL, 2, 7, 2, 3, 4, 4, 4, 4, 4, 4, 4, '认真负责，教学计划制定得认真详细');
+	(6, NULL, 3, 3, 5, 1, 4, 4, 4, 4, 4, 4, 4, '老师上课速度有点快，我有点更不上'),
+	(8, NULL, 2, 7, 2, 3, 4, 4, 4, 4, 4, 4, 4, '认真负责，教学计划制定得认真详细'),
+	(9, NULL, 4, 12, 2, 1, 5, 5, 5, 5, 5, 5, 5, '刘老师好'),
+	(13, NULL, 4, 12, 5, 2, 4, 4, 4, 4, 4, 4, 4, '我没有评价'),
+	(14, NULL, 3, 10, 5, 2, 4, 4, 4, 4, 4, 4, 4, NULL),
+	(15, NULL, 2, 7, 5, 5, 2, 2, 2, 2, 2, 2, 2, NULL);
 /*!40000 ALTER TABLE `individual_evaluation` ENABLE KEYS */;
 
 -- 导出  表 evaluation.permission 结构
@@ -214,7 +221,7 @@ CREATE TABLE IF NOT EXISTS `role` (
   PRIMARY KEY (`role_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
--- 正在导出表  evaluation.role 的数据：~4 rows (大约)
+-- 正在导出表  evaluation.role 的数据：~3 rows (大约)
 /*!40000 ALTER TABLE `role` DISABLE KEYS */;
 INSERT INTO `role` (`role_id`, `name`) VALUES
 	(1, '管理员'),
@@ -302,30 +309,31 @@ CREATE TABLE IF NOT EXISTS `supervisor` (
 INSERT INTO `supervisor` (`supervisor_id`, `gender`, `name`) VALUES
 	(11, 0, '王东东'),
 	(12, 0, '刘丽萍'),
-	(13, 1, '李益');
+	(13, 1, '李汉杰');
 /*!40000 ALTER TABLE `supervisor` ENABLE KEYS */;
 
--- 导出  表 evaluation.supervisor_teacher 结构
-CREATE TABLE IF NOT EXISTS `supervisor_teacher` (
+-- 导出  表 evaluation.supervisor_course 结构
+CREATE TABLE IF NOT EXISTS `supervisor_course` (
   `supervisor_id` int(11) NOT NULL,
+  `course_id` int(11) NOT NULL,
   `teacher_id` int(11) NOT NULL,
-  PRIMARY KEY (`supervisor_id`,`teacher_id`),
-  KEY `FK_supervisor_teacher_teacher` (`teacher_id`),
-  CONSTRAINT `FK_supervisor_teacher_supervisor` FOREIGN KEY (`supervisor_id`) REFERENCES `supervisor` (`supervisor_id`),
-  CONSTRAINT `FK_supervisor_teacher_teacher` FOREIGN KEY (`teacher_id`) REFERENCES `teacher` (`teacher_id`)
+  PRIMARY KEY (`supervisor_id`,`course_id`,`teacher_id`),
+  KEY `FK_supervisor_course_course` (`course_id`),
+  KEY `FK_supervisor_course_teacher` (`teacher_id`),
+  CONSTRAINT `FK_supervisor_course_course` FOREIGN KEY (`course_id`) REFERENCES `course` (`course_id`),
+  CONSTRAINT `FK_supervisor_course_supervisor` FOREIGN KEY (`supervisor_id`) REFERENCES `supervisor` (`supervisor_id`),
+  CONSTRAINT `FK_supervisor_course_teacher` FOREIGN KEY (`teacher_id`) REFERENCES `teacher` (`teacher_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='督导可评价老师的关系表';
 
--- 正在导出表  evaluation.supervisor_teacher 的数据：~7 rows (大约)
-/*!40000 ALTER TABLE `supervisor_teacher` DISABLE KEYS */;
-INSERT INTO `supervisor_teacher` (`supervisor_id`, `teacher_id`) VALUES
-	(11, 2),
-	(13, 2),
-	(11, 5),
-	(12, 5),
-	(11, 6),
-	(12, 6),
-	(11, 7);
-/*!40000 ALTER TABLE `supervisor_teacher` ENABLE KEYS */;
+-- 正在导出表  evaluation.supervisor_course 的数据：~2 rows (大约)
+/*!40000 ALTER TABLE `supervisor_course` DISABLE KEYS */;
+INSERT INTO `supervisor_course` (`supervisor_id`, `course_id`, `teacher_id`) VALUES
+	(11, 1, 5),
+	(12, 1, 2),
+	(12, 2, 6),
+	(12, 2, 7),
+	(13, 5, 2);
+/*!40000 ALTER TABLE `supervisor_course` ENABLE KEYS */;
 
 -- 导出  表 evaluation.teacher 结构
 CREATE TABLE IF NOT EXISTS `teacher` (
