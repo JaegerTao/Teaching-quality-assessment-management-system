@@ -2,6 +2,8 @@ package com.watermelon.service;
 
 import com.watermelon.entity.Supervisor;
 
+import java.util.List;
+
 public interface SupervisorService {
 
     Supervisor getSupervisorById(int id);
@@ -11,5 +13,7 @@ public interface SupervisorService {
     void updateSupervisor(Supervisor supervisor);
 
     void deleteSupervisor(int id);
+
+    List<Supervisor> listSupervisor();
 
 }

@@ -2,9 +2,11 @@ package com.watermelon.controller;
 
 import com.watermelon.entity.Permission;
 import com.watermelon.entity.Role;
+import com.watermelon.entity.Supervisor;
 import com.watermelon.entity.User;
 import com.watermelon.service.PermissionService;
 import com.watermelon.service.RoleService;
+import com.watermelon.service.SupervisorService;
 import com.watermelon.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -25,19 +27,22 @@ public class AdminController {
     @Autowired
     private PermissionService permissionService;
 
+    @Autowired
+    private SupervisorService supervisorService;
+
     @PostMapping("/addUser")
     public String addUser(@RequestBody(required=false) User user) {
         userService.addUser(user);
         return "/user/add";
     }
 
-    @PostMapping("/updateUser")
+    @PutMapping("/updateUser")
     public String updateUser(@RequestBody(required=false) User user){
         userService.updateUser(user);
         return "redirect:/admin/listUser";
     }
 
-    @GetMapping("/deleteUser")
+    @DeleteMapping("/deleteUser")
     public String deleteUser(@RequestParam(value="id",required=false) int id){
         userService.deleteUser(id);
         return "redirect:/admin/listUser";
@@ -56,13 +61,13 @@ public class AdminController {
         return "redirect:/admin/listRole";
     }
 
-    @PostMapping("/updateRole")
+    @PutMapping("/updateRole")
     public String updateRole(@RequestBody(required=false) Role role){
         roleService.updateRole(role);
         return "redirect:/admin/listRole";
     }
 
-    @GetMapping("/deleteRole")
+    @DeleteMapping("/deleteRole")
     public String deleteRole(@RequestParam(value="id",required=false) int id){
         roleService.deleteRole(id);
         return "redirect:/admin/listRole";
@@ -81,13 +86,13 @@ public class AdminController {
         return "redirect:/admin/listPerms";
     }
 
-    @PostMapping("/updatePerms")
+    @PutMapping("/updatePerms")
     public String updatePerms(@RequestBody(required=false) Permission permission) {
         permissionService.updatePermission(permission);
         return "redirect:/admin/listPerms";
     }
 
-    @GetMapping("/deletePerms")
+    @DeleteMapping("/deletePerms")
     public String deletePerms(@RequestParam(value="id",required=false) int id){
         permissionService.deletePermission(id);
         return "redirect:/admin/listPerms";
@@ -97,6 +102,31 @@ public class AdminController {
     @GetMapping("/listPerms")
     public List<Permission> listPermission(){
         return permissionService.listPermission();
+    }
+
+    @PostMapping("/addSupervisor")
+    public String addSupervisor(@RequestBody(required=false) Permission permission){
+        System.out.println(permission);
+        permissionService.addPermission(permission);
+        return "redirect:/admin/listPerms";
+    }
+
+    @PutMapping("/updateSupervisor")
+    public String updateSupervisor(@RequestBody(required=false) Permission permission) {
+        permissionService.updatePermission(permission);
+        return "redirect:/admin/listPerms";
+    }
+
+    @DeleteMapping("/deleteSupervisor")
+    public String deleteSupervisor(@RequestParam(value="id",required=false) int id){
+        permissionService.deletePermission(id);
+        return "redirect:/admin/listPerms";
+    }
+
+    @ResponseBody
+    @GetMapping("/listSupervisor")
+    public List<Supervisor> listSupervisor(){
+        return supervisorService.listSupervisor();
     }
 
 }

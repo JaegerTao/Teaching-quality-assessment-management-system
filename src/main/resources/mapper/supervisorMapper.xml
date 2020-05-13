@@ -23,4 +23,8 @@
     <select id="getMaxSupervisorId" resultType="int">
         select max(supervisor_id) from supervisor
     </select>
+
+    <select id="listSupervisor" resultType="Supervisor">
+        select supervisor_id as id,name,gender from supervisor
+    </select>
 </mapper>

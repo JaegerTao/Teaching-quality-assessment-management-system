@@ -34,6 +34,8 @@ public class IndexController {
         UsernamePasswordToken token = new UsernamePasswordToken(username, password);
         model.addAttribute("username",username);
 
+        System.out.println("username:"+username);
+        System.out.println("password:"+password);
 //        System.out.println(userService.encodeMD5(password));
 
         try {

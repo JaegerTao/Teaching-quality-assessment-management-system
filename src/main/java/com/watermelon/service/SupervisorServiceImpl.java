@@ -5,6 +5,8 @@ import com.watermelon.mapper.SupervisorMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class SupervisorServiceImpl implements SupervisorService {
 
@@ -33,5 +35,10 @@ public class SupervisorServiceImpl implements SupervisorService {
     @Override
     public void deleteSupervisor(int id) {
         supervisorMapper.deleteSupervisor(id);
+    }
+
+    @Override
+    public List<Supervisor> listSupervisor() {
+        return supervisorMapper.listSupervisor();
     }
 }
