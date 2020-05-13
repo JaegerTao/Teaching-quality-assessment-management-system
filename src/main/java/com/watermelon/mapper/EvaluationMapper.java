@@ -7,13 +7,16 @@ import com.watermelon.entity.Teacher;
 import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;
+import java.util.Map;
 
 @Mapper
 public interface EvaluationMapper {
+    // 获取可评价的课程老师列表
     List<Course> getCoursesByTeacherId(int id);
     List<Course> getCoursesByStuId(int id);
     List<Course> getCoursesBySuperId(int id);
 
+    //获取对应个人评价
     /**
      * 获取督导的个人评价
      * @param superId
@@ -38,6 +41,7 @@ public interface EvaluationMapper {
      */
     IndividualEvaluation getStudentIndiEvaluation(int studentId, int teacherId, int courseId);
 
+    // 添加个人评价
     /**
      * 添加学生的个人评价
      */
@@ -52,4 +56,8 @@ public interface EvaluationMapper {
      * 添加督导的个人评价
      */
     int addSuperIndiEvaluation(IndividualEvaluation individualEvaluation);
+
+    //获取教师总评价
+    List<Map> getSummaryEvaluation(int teacherId);
+
 }

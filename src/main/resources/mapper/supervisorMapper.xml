@@ -3,6 +3,9 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.watermelon.mapper.SupervisorMapper">
+    <select id="getAllSupervisor" resultType="Supervisor">
+        select supervisor_id as id,name,gender from supervisor order by name
+    </select>
 
     <select id="getSupervisorById" parameterType="int" resultType="Supervisor">
         select supervisor_id as id,name,gender from supervisor where supervisor_id=#{id}

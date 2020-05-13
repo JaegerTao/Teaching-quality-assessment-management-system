@@ -7,6 +7,7 @@ import com.watermelon.entity.IndividualEvaluation;
 import com.watermelon.entity.Teacher;
 
 import java.util.List;
+import java.util.Map;
 
 
 public interface EvaluationService {
@@ -69,5 +70,8 @@ public interface EvaluationService {
      * 添加督导的个人评价
      */
     int addSuperIndiEvaluation(IndividualEvaluation individualEvaluation);
+
+    //获取老师总评价
+    List<Map> getSummaryEvaluation(int teacherId);
 
 }

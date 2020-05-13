@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Map;
 
 @Service
 public class EvaluationServiceImpl implements EvaluationService{
@@ -43,18 +44,9 @@ public class EvaluationServiceImpl implements EvaluationService{
 
     @Override
     public JSONArray getCoursesByStuId(int id) {
-        List<Course> courseList = evaluationMapper.getCoursesByStuId(id);
-        JSONArray courseJsonArray = new JSONArray();
-        JSONArray jsonArray = (JSONArray) JSON.toJSON(courseList);
-        for(Object jsonObject : jsonArray){
-            JSONObject newjsonObject = new JSONObject();
-            JSONObject oldjsonObject = (JSONObject) ((JSONObject)jsonObject).get("teacher");
-            newjsonObject.put("id",oldjsonObject.get("id"));
-            newjsonObject.put("name",oldjsonObject.get("name"));
-            ((JSONObject) jsonObject).put("teacher",newjsonObject);
-            courseJsonArray.add(jsonObject);
-        }
-        return courseJsonArray;
+        String jsonString = JSON.toJSONString(evaluationMapper.getCoursesByStuId(id));
+        JSONArray jsonArray = JSON.parseArray(jsonString);
+        return jsonArray;
     }
 
     @Override
@@ -85,5 +77,10 @@ public class EvaluationServiceImpl implements EvaluationService{
     @Override
     public int addSuperIndiEvaluation(IndividualEvaluation individualEvaluation) {
         return evaluationMapper.addSuperIndiEvaluation(individualEvaluation);
+    }
+
+    @Override
+    public List<Map> getSummaryEvaluation(int teacherId) {
+        return evaluationMapper.getSummaryEvaluation(teacherId);
     }
 }

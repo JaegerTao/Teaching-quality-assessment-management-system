@@ -22,7 +22,6 @@ public class EvaluationController {
         return ResultUtil.successJson(evaluationService.getCoursesByStuId(id));
     }
 
-
     @GetMapping("/courses/bySuperId")
     public Object findTeachersBySuperId(int id){
         return ResultUtil.successJson(evaluationService.getCoursesBySuperId(id));
@@ -59,5 +58,10 @@ public class EvaluationController {
     public Object addSuperIndividualEvaluation(@RequestBody IndividualEvaluation individualEvaluation){
         evaluationService.addSuperIndiEvaluation(individualEvaluation);
         return ResultUtil.successJson();
+    }
+// 获取教师总评价
+    @GetMapping("/summaryEvaluation/byTeacherId")
+    public Object findSummaryEvaluation(int id){
+        return ResultUtil.successJson(evaluationService.getSummaryEvaluation(id));
     }
 }
