@@ -1,7 +1,7 @@
 package com.watermelon.service;
 
+import com.watermelon.entity.Role;
 import com.watermelon.entity.Student;
-import com.watermelon.entity.Teacher;
 import com.watermelon.entity.User;
 import com.watermelon.mapper.StudentMapper;
 import com.watermelon.mapper.UserMapper;
@@ -18,6 +18,9 @@ public class StudentServiceImpl implements StudentService {
 
     @Autowired
     private UserMapper userMapper;
+
+    @Autowired
+    private RoleService roleService;
 
     @Override
     public Student getStudentById(int id) {
@@ -53,6 +56,10 @@ public class StudentServiceImpl implements StudentService {
             User u = userMapper.getUserById(s.getId());
             if (u!=null){
                 s.addUserInfo(u);
+                Role r = roleService.getRoleById(s.getRoleId());
+                if (r!=null){
+                    s.setRole(r);
+                }
             }
         }
         return list;

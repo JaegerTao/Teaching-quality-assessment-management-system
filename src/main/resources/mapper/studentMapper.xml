@@ -4,14 +4,14 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.watermelon.mapper.StudentMapper">
 
-    <select id="getTStudentById" parameterType="int" resultType="Student">
+    <select id="getStudentById" parameterType="int" resultType="Student">
         select student_id as id,
             name,
             gender,
             birth,
             region,
             score,
-            entrance_date as entranceDate,
+            entrance_date as entranceDate
         from student where student_id=#{id}
     </select>
 
@@ -54,7 +54,7 @@
             birth,
             region,
             score,
-            entrance_date as entranceDate,
+            entrance_date as entranceDate
         from student
     </select>
 </mapper>

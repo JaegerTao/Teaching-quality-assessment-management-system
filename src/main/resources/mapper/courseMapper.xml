@@ -6,6 +6,24 @@
 
     <select id="getCourseById" parameterType="int" resultType="Course">
         select * from course where course_id = #{id}
+--         select c.'*',
+--             t.teacher_id as 'teacher.id',
+--             t.name,
+--             t.birth,
+--             t.region,
+--             t.total_class as 'teacher.totalClass',
+--             t.entrance_date as 'teacher.entranceDate',
+--             t.job_title as 'teacher.jobTitle',
+--             t.grant_date as 'teacher.grantDate',
+--             t.political_status as 'teacher.politicalStatus',
+--             t.degree,
+--             t.graduate_school as 'teacher.graduateSchool'
+--         from course as c,
+--             teacher as t,
+--             teacher_course as tc
+--         where tc.teacher_id = t.teacher_id and
+--             tc.course_id = c.course_id and
+--             course_id = #{id}
     </select>
 
     <select id="getCourseByName" parameterType="String" resultType="Course">
@@ -13,7 +31,30 @@
     </select>
 
     <select id="listCourse" resultType="Course">
-        select * from course
+        select c.course_id as id,
+            c.name,
+            c.number,
+            c.course_type as courseType,
+            c.course_class as courseClass,
+            c.course_dep as courseDep,
+            c.score,
+            c.time,
+            t.teacher_id as "teacher.id",
+            t.name as "teacher.name",
+            t.birth as "teacher.birth",
+            t.region as "teacher.region",
+            t.total_class as "teacher.totalClass",
+            t.entrance_date as "teacher.entranceDate",
+            t.job_title as "teacher.jobTitle",
+            t.grant_date as "teacher.grantDate",
+            t.political_status as "teacher.politicalStatus",
+            t.degree as "teacher.degree",
+            t.graduate_school as "teacher.graduateSchool"
+        from teacher_course as tc,
+            course as c,
+            teacher as t
+        where tc.teacher_id=t.teacher_id and
+            tc.course_id=c.course_id
     </select>
 
     <insert id="addCourse" parameterType="Course">

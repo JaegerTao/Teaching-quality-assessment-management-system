@@ -1,8 +1,11 @@
 package com.watermelon.service;
 
+import com.watermelon.entity.Department;
+import com.watermelon.entity.Role;
 import com.watermelon.entity.Teacher;
 import com.watermelon.entity.User;
 import com.watermelon.mapper.DepartmentMapper;
+import com.watermelon.mapper.RoleMapper;
 import com.watermelon.mapper.TeacherMapper;
 import com.watermelon.mapper.UserMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,7 +23,7 @@ public class TeacherServiceImpl implements TeacherService{
     private TeacherMapper teacherMapper;
 
     @Autowired
-    private DepartmentMapper departmentMapper;
+    private RoleService roleService;
 
     @Override
     public Teacher getTeacherById(int id) {
@@ -56,6 +59,10 @@ public class TeacherServiceImpl implements TeacherService{
             User u = userMapper.getUserById(t.getId());
             if (u!=null){
                 t.addUserInfo(u);
+                Role r = roleService.getRoleById(t.getRoleId());
+                if (r!=null){
+                    t.setRole(r);
+                }
             }
         }
         return list;
@@ -70,7 +77,8 @@ public class TeacherServiceImpl implements TeacherService{
         user.setId(teacher.getId());
         user.setName(teacher.getName());
         user.setPassword(teacher.getPassword());
-        user.setRoleId(teacher.getRoleId());
+        user.setRoleId(teacher.getRole().getId());
+        user.setRole(teacher.getRole());
         user.setIdNumber(teacher.getIdNumber());
         return user;
     }

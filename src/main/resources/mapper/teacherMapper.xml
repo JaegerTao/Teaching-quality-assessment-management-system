@@ -7,7 +7,7 @@
     <select id="getTeacherById" parameterType="int" resultType="Teacher">
         select t.teacher_id as id,
             t.name,
-            d.name as departmentName,
+            d.name as "department.name",
             t.gender,
             t.birth,
             t.region,
@@ -22,10 +22,11 @@
     </select>
 
     <insert id="addTeacher" parameterType="Teacher">
-        insert into teacher (teacher_id, name, gender, birth, region, total_class,
+        insert into teacher (teacher_id, department_id, name, gender, birth, region, total_class,
             entrance_date, job_title, grant_date, political_status, degree, graduate_school)
         values(
             #{id},
+            #{department.id},
             #{name},
             #{gender},
             #{birth},
@@ -42,6 +43,7 @@
     <update id="updateTeacher" parameterType="Teacher">
         update teacher set
             teacher_id = #{id},
+            department_id = #{department.id},
             name = #{name},
             gender = #{gender},
             birth = #{birth},
@@ -71,7 +73,8 @@
     <select id="listTeacher" resultType="Teacher">
         select t.teacher_id as id,
             t.name,
-            d.name as departmentName,
+            d.department_id as "department.id",
+            d.name as "department.name",
             t.gender,
             t.birth,
             t.region,

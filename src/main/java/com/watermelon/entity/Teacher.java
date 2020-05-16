@@ -24,7 +24,7 @@ public class Teacher extends User {
      * degree 学历
      * graduateSchool 毕业院校
      */
-    private String departmentName;
+    private Department department;
     private Integer gender;
     private String region;
     private Integer totalClass;
@@ -56,6 +56,7 @@ public class Teacher extends User {
         super.setPassword(user.getPassword());
         super.setRoleId(user.getRoleId());
         super.setRole(user.getRole());
+        super.setIdNumber(user.getIdNumber());
     }
 
 }

@@ -46,6 +46,7 @@ public class Student extends User {
         super.setPassword(user.getPassword());
         super.setRoleId(user.getRoleId());
         super.setRole(user.getRole());
+        super.setIdNumber(user.getIdNumber());
     }
 
 }
