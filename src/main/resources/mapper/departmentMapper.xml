@@ -20,6 +20,14 @@
         delete from department where department_id=#{id}
     </delete>
 
+    <select id="getDepartmentById" parameterType="int" resultType="Department">
+        select * from department where department_id=#{id}
+    </select>
+
+    <select id="getDepartmentByName" parameterType="String" resultType="Department">
+        select * from department where name=#{name}
+    </select>
+
     <select id="getMaxDepartmentId" resultType="int">
         select max(department_id) from department
     </select>

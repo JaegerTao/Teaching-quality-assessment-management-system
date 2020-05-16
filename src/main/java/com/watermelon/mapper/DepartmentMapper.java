@@ -10,6 +10,10 @@ import java.util.List;
 @Repository
 public interface DepartmentMapper {
 
+    Department getDepartmentById(int id);
+
+    Department getDepartmentByName(String name);
+
     void addDepartment(Department department);
 
     List<Department> listDepartment();

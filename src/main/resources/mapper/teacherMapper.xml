@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.watermelon.mapper.TeacherMapper">
+
+    <select id="getTeacherById" parameterType="int" resultType="Teacher">
+        select t.teacher_id as id,
+            t.name,
+            d.name as departmentName,
+            t.gender,
+            t.birth,
+            t.region,
+            t.total_class as totalClass,
+            t.entrance_date as entranceDate,
+            t.job_title as jobTitle,
+            t.grant_date as grantDate,
+            t.political_status as politicalStatus,
+            t.degree,
+            t.graduate_school as graduateSchool
+        from teacher as t, department as d where t.department_id=d.department_id and t.teacher_id=#{id}
+    </select>
+
+    <insert id="addTeacher" parameterType="Teacher">
+        insert into teacher (teacher_id, name, gender, birth, region, total_class,
+            entrance_date, job_title, grant_date, political_status, degree, graduate_school)
+        values(
+            #{id},
+            #{name},
+            #{gender},
+            #{birth},
+            #{region},
+            #{totalClass},
+            #{entranceDate},
+            #{jobTitle},
+            #{grantDate},
+            #{politicalStatus},
+            #{degree},
+            #{graduateSchool});
+    </insert>
+
+    <update id="updateTeacher" parameterType="Teacher">
+        update teacher set
+            teacher_id = #{id},
+            name = #{name},
+            gender = #{gender},
+            birth = #{birth},
+            region = #{region},
+            total_class = #{totalClass},
+            entrance_date = #{entranceDate},
+            job_title = #{jobTitle},
+            grant_date = #{grantDate},
+            political_status = #{politicalStatus},
+            degree = #{degree},
+            graduate_school = #{graduateSchool})
+        where teacher_id=#{id}
+    </update>
+
+    <update id="addTeacherDept" parameterType="int">
+        update teacher set department_id=#{deptId} where teacher_id=#{id}
+    </update>
+
+    <delete id="deleteTeacher" parameterType="int">
+        delete from teacher where teacher_id = #{id}
+    </delete>
+
+    <select id="getMaxTeacherId" resultType="int">
+        select max(teacher_id) from teacher
+    </select>
+
+    <select id="listTeacher" resultType="Teacher">
+        select t.teacher_id as id,
+            t.name,
+            d.name as departmentName,
+            t.gender,
+            t.birth,
+            t.region,
+            t.total_class as totalClass,
+            t.entrance_date as entranceDate,
+            t.job_title as jobTitle,
+            t.grant_date as grantDate,
+            t.political_status as politicalStatus,
+            t.degree,
+            t.graduate_school as graduateSchool
+        from teacher as t, department as d where t.department_id=d.department_id
+    </select>
+</mapper>
