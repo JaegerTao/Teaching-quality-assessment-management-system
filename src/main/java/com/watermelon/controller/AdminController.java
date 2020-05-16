@@ -1,13 +1,8 @@
 package com.watermelon.controller;
 
-import com.watermelon.entity.Permission;
-import com.watermelon.entity.Role;
-import com.watermelon.entity.User;
-import com.watermelon.service.PermissionService;
-import com.watermelon.service.RoleService;
-import com.watermelon.service.UserService;
+import com.watermelon.entity.*;
+import com.watermelon.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -25,19 +20,28 @@ public class AdminController {
     @Autowired
     private PermissionService permissionService;
 
+    @Autowired
+    private StudentService studentService;
+
+    @Autowired
+    private TeacherService teacherService;
+
+    @Autowired
+    private SupervisorService supervisorService;
+
     @PostMapping("/addUser")
     public String addUser(@RequestBody(required=false) User user) {
         userService.addUser(user);
         return "/user/add";
     }
 
-    @PostMapping("/updateUser")
+    @PutMapping("/updateUser")
     public String updateUser(@RequestBody(required=false) User user){
         userService.updateUser(user);
         return "redirect:/admin/listUser";
     }
 
-    @GetMapping("/deleteUser")
+    @DeleteMapping("/deleteUser")
     public String deleteUser(@RequestParam(value="id",required=false) int id){
         userService.deleteUser(id);
         return "redirect:/admin/listUser";
@@ -56,13 +60,13 @@ public class AdminController {
         return "redirect:/admin/listRole";
     }
 
-    @PostMapping("/updateRole")
+    @PutMapping("/updateRole")
     public String updateRole(@RequestBody(required=false) Role role){
         roleService.updateRole(role);
         return "redirect:/admin/listRole";
     }
 
-    @GetMapping("/deleteRole")
+    @DeleteMapping("/deleteRole")
     public String deleteRole(@RequestParam(value="id",required=false) int id){
         roleService.deleteRole(id);
         return "redirect:/admin/listRole";
@@ -81,13 +85,13 @@ public class AdminController {
         return "redirect:/admin/listPerms";
     }
 
-    @PostMapping("/updatePerms")
+    @PutMapping("/updatePerms")
     public String updatePerms(@RequestBody(required=false) Permission permission) {
         permissionService.updatePermission(permission);
         return "redirect:/admin/listPerms";
     }
 
-    @GetMapping("/deletePerms")
+    @DeleteMapping("/deletePerms")
     public String deletePerms(@RequestParam(value="id",required=false) int id){
         permissionService.deletePermission(id);
         return "redirect:/admin/listPerms";
@@ -97,6 +101,79 @@ public class AdminController {
     @GetMapping("/listPerms")
     public List<Permission> listPermission(){
         return permissionService.listPermission();
+    }
+
+    @PostMapping("/addSupervisor")
+    public String addSupervisor(@RequestBody(required=false) Permission permission){
+        System.out.println(permission);
+        permissionService.addPermission(permission);
+        return "redirect:/admin/listPerms";
+    }
+
+    @PutMapping("/updateSupervisor")
+    public String updateSupervisor(@RequestBody(required=false) Permission permission) {
+        permissionService.updatePermission(permission);
+        return "redirect:/admin/listPerms";
+    }
+
+    @DeleteMapping("/deleteSupervisor")
+    public String deleteSupervisor(@RequestParam(value="id",required=false) int id){
+        permissionService.deletePermission(id);
+        return "redirect:/admin/listPerms";
+    }
+
+    @ResponseBody
+    @GetMapping("/listSupervisor")
+    public List<Supervisor> listSupervisor(){
+        return supervisorService.listSupervisor();
+    }
+
+    @PostMapping("/addTeacher")
+    public String addTeacher(@RequestBody(required=false) Teacher teacher){
+        teacherService.addTeacher(teacher);
+        return "redirect:/admin/listPerms";
+    }
+
+    @PutMapping("/updateTeacher")
+    public String updateTeacher(@RequestBody(required=false) Teacher teacher) {
+        teacherService.updateTeacher(teacher);
+        return "redirect:/admin/listPerms";
+    }
+
+    @DeleteMapping("/deleteTeacher")
+    public String deleteTeacher(@RequestParam(value="id",required=false) int id){
+        teacherService.deleteTeacher(id);
+        return "redirect:/admin/listPerms";
+    }
+
+    @ResponseBody
+    @GetMapping("/listTeacher")
+    public List<Teacher> listTeacher(){
+        return teacherService.listTeacher();
+    }
+
+    @PostMapping("/addStudent")
+    public String addStudent(@RequestBody(required=false) Student student){
+        studentService.addStudent(student);
+        return "redirect:/admin/listPerms";
+    }
+
+    @PutMapping("/updateStudent")
+    public String updateStudent(@RequestBody(required=false) Student student) {
+        studentService.updateStudent(student);
+        return "redirect:/admin/listPerms";
+    }
+
+    @DeleteMapping("/deleteStudent")
+    public String deleteStudent(@RequestParam(value="id",required=false) int id){
+        studentService.deleteStudent(id);
+        return "redirect:/admin/listPerms";
+    }
+
+    @ResponseBody
+    @GetMapping("/listStudent")
+    public List<Student> listStudent(){
+        return studentService.listStudent();
     }
 
 }

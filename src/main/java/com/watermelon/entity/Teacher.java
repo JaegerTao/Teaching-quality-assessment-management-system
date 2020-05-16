@@ -24,13 +24,13 @@ public class Teacher extends User {
      * degree 学历
      * graduateSchool 毕业院校
      */
-    private String departmentName;
+    private Department department;
     private Integer gender;
     private String region;
     private Integer totalClass;
     private Date birth;
     private Date entranceDate;
-    private String jobTile;
+    private String jobTitle;
     private Date grantDate;
     private String politicalStatus;
     private String degree;
@@ -46,6 +46,17 @@ public class Teacher extends User {
         super.setPassword(user.getPassword());
         super.setRoleId(user.getRoleId());
         super.setRole(user.getRole());
+    }
+
+    /**
+     * 通过一个User完善Teacher的信息
+     * @param user User
+     */
+    public void addUserInfo(User user){
+        super.setPassword(user.getPassword());
+        super.setRoleId(user.getRoleId());
+        super.setRole(user.getRole());
+        super.setIdNumber(user.getIdNumber());
     }
 
 }

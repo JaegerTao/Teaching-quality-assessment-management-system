@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.watermelon.mapper.StudentMapper">
+
+    <select id="getStudentById" parameterType="int" resultType="Student">
+        select student_id as id,
+            name,
+            gender,
+            birth,
+            region,
+            score,
+            entrance_date as entranceDate
+        from student where student_id=#{id}
+    </select>
+
+    <insert id="addStudent" parameterType="Student">
+        insert into student (student_id, name, gender, birth, region, score, entrance_date)
+            values(
+            #{id},
+            #{name},
+            #{gender},
+            #{birth},
+            #{region},
+            #{score},
+            #{entranceDate});
+    </insert>
+
+    <update id="updateStudent" parameterType="Student">
+        update student set
+            score = #{id},
+            name = #{name},
+            gender = #{gender},
+            birth = #{birth},
+            region = #{region},
+            score = #{score},
+            entrance_date = #{entranceDate}
+        where student_id=#{id}
+    </update>
+
+    <delete id="deleteStudent" parameterType="int">
+        delete from student where student_id = #{id}
+    </delete>
+
+    <select id="getMaxStudentId" resultType="int">
+        select max(student_id) from student
+    </select>
+
+    <select id="listStudent" resultType="Student">
+        select student_id as id,
+            name,
+            gender,
+            birth,
+            region,
+            score,
+            entrance_date as entranceDate
+        from student
+    </select>
+</mapper>

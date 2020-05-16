@@ -56,4 +56,9 @@ public class SupervisorServiceImpl implements SupervisorService {
     public void deleteSupervisor(int id) {
         supervisorMapper.deleteSupervisor(id);
     }
+
+    @Override
+    public List<Supervisor> listSupervisor() {
+        return supervisorMapper.listSupervisor();
+    }
 }

@@ -9,15 +9,15 @@
     </insert>
 
     <select id="getPermissionById" parameterType="int" resultType="Permission">
-        select * from permission where permission_id = #{id}
+        select permission_id as id, name, url, perms, type from permission where permission_id = #{id}
     </select>
 
     <select id="getPermissionByName" parameterType="String" resultType="Permission">
-        select * from permission where name = #{name}
+        select permission_id as id, name, url, perms, type from permission where name = #{name}
     </select>
 
     <select id="listPermission" resultType="Permission">
-        select permission_id as id, name, url, perms, parrent_id, type from permission
+        select permission_id as id, name, url, perms, type from permission
     </select>
 
     <update id="updatePermission" parameterType="Permission">

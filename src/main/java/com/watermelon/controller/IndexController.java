@@ -7,9 +7,12 @@ import org.apache.shiro.authc.UnknownAccountException;
 import org.apache.shiro.authc.UsernamePasswordToken;
 import org.apache.shiro.subject.Subject;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.web.servlet.server.Session;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+
+import javax.servlet.http.HttpSession;
 
 @Controller
 public class IndexController {
@@ -28,12 +31,14 @@ public class IndexController {
     }
 
     @PostMapping("/login")
-    public String login(@RequestParam(value="username",required=false) String username,@RequestParam(value="password",required=false) String password, Model model) {
+    public String login(@RequestParam(value="username",required=false) String username,@RequestParam(value="password",required=false) String password, HttpSession session,Model model) {
         //获取当前用户
         Subject subject = SecurityUtils.getSubject();
         UsernamePasswordToken token = new UsernamePasswordToken(username, password);
-        model.addAttribute("username",username);
+        session.setAttribute("username",username);
 
+        System.out.println("username:"+username);
+        System.out.println("password:"+password);
 //        System.out.println(userService.encodeMD5(password));
 
         try {
