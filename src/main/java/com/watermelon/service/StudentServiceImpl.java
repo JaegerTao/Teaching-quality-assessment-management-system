@@ -34,19 +34,21 @@ public class StudentServiceImpl implements StudentService {
 
     @Override
     public void addStudent(Student student) {
-        student.setId(studentMapper.getMaxStudentId()+1);
+        student.setId(studentMapper.getMaxUserId()+1);
         userMapper.addUser(toUser(student));
         studentMapper.addStudent(student);
     }
 
     @Override
     public void updateStudent(Student student) {
+        userMapper.updateUser(toUser(student));
         studentMapper.updateStudent(student);
     }
 
     @Override
     public void deleteStudent(int id) {
         studentMapper.deleteStudent(id);
+        userMapper.deleteUser(id);
     }
 
     @Override
@@ -74,7 +76,8 @@ public class StudentServiceImpl implements StudentService {
         user.setId(student.getId());
         user.setName(student.getName());
         user.setPassword(student.getPassword());
-        user.setRoleId(student.getRoleId());
+        user.setRoleId(student.getRole().getId());
+        user.setRole(student.getRole());
         user.setIdNumber(student.getIdNumber());
         return user;
     }

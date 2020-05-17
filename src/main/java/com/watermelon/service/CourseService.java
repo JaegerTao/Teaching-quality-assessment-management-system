@@ -12,6 +12,8 @@ public interface CourseService {
 
     List<Course> listCourse();
 
+    List<Course> listCourseWithoutTeacher();
+
     int addCourse(Course course);
 
     void updateCourse(Course course);

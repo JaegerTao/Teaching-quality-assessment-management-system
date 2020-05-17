@@ -24,6 +24,7 @@ public class Student extends User {
     private float score;
     private Date birth;
     private Date entranceDate;
+    private Department department;
     private List<Course> courseList;
 
     /**

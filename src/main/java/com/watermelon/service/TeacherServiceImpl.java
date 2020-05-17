@@ -37,19 +37,21 @@ public class TeacherServiceImpl implements TeacherService{
 
     @Override
     public void addTeacher(Teacher teacher) {
-        teacher.setId(teacherMapper.getMaxTeacherId()+1);
+        teacher.setId(teacherMapper.getMaxUserId()+1);
         userMapper.addUser(toUser(teacher));
         teacherMapper.addTeacher(teacher);
     }
 
     @Override
     public void updateTeacher(Teacher teacher) {
+        userMapper.updateUser(toUser(teacher));
         teacherMapper.updateTeacher(teacher);
     }
 
     @Override
     public void deleteTeacher(int id) {
         teacherMapper.deleteTeacher(id);
+        userMapper.deleteUser(id);
     }
 
     @Override

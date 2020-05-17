@@ -43,7 +43,6 @@
     <update id="updateTeacher" parameterType="Teacher">
         update teacher set
             teacher_id = #{id},
-            department_id = #{department.id},
             name = #{name},
             gender = #{gender},
             birth = #{birth},
@@ -54,7 +53,7 @@
             grant_date = #{grantDate},
             political_status = #{politicalStatus},
             degree = #{degree},
-            graduate_school = #{graduateSchool})
+            graduate_school = #{graduateSchool}
         where teacher_id=#{id}
     </update>
 
@@ -66,8 +65,8 @@
         delete from teacher where teacher_id = #{id}
     </delete>
 
-    <select id="getMaxTeacherId" resultType="int">
-        select max(teacher_id) from teacher
+    <select id="getMaxUserId" resultType="int">
+        select max(user_id) from user
     </select>
 
     <select id="listTeacher" resultType="Teacher">

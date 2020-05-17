@@ -16,6 +16,8 @@ public interface CourseMapper {
 
     List<Course> listCourse();
 
+    List<Course> listCourseWithoutTeacher();
+
     int addCourse(Course course);
 
     void updateCourse(Course course);

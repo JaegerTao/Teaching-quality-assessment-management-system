@@ -18,7 +18,7 @@ public interface StudentMapper {
 
     void deleteStudent(int id);
 
-    int getMaxStudentId();
+    int getMaxUserId();
 
     List<Student> listStudent();
 

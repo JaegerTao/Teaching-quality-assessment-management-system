@@ -29,6 +29,11 @@ public class CourseServiceImpl implements CourseService {
     }
 
     @Override
+    public List<Course> listCourseWithoutTeacher() {
+        return courseMapper.listCourseWithoutTeacher();
+    }
+
+    @Override
     public int addCourse(Course course) {
         course.setId(courseMapper.getMaxCourseId()+1);
         return courseMapper.addCourse(course);

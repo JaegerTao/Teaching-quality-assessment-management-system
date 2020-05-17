@@ -20,7 +20,7 @@ public interface TeacherMapper {
 
     void deleteTeacher(int id);
 
-    int getMaxTeacherId();
+    int getMaxUserId();
 
     List<Teacher> listTeacher();
 }

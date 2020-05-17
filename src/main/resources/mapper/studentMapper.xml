@@ -43,8 +43,8 @@
         delete from student where student_id = #{id}
     </delete>
 
-    <select id="getMaxStudentId" resultType="int">
-        select max(student_id) from student
+    <select id="getMaxUserId" resultType="int">
+        select max(user_id) from user
     </select>
 
     <select id="listStudent" resultType="Student">

@@ -20,7 +20,7 @@
         delete from admin where admin_id = #{id}
     </delete>
 
-    <select id="getMaxAdminId" resultType="int">
-        select max(admin_id) from admin
+    <select id="getMaxUserId" resultType="int">
+        select max(user_id) from user
     </select>
 </mapper>
