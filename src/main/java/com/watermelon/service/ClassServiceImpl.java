@@ -10,6 +10,7 @@ import java.util.List;
 @Service
 
 public class ClassServiceImpl implements ClassService{
+    @Autowired
     private ClassMapper classMapper;
     @Override
     public Class getClassById(int id) {
@@ -39,5 +40,10 @@ public class ClassServiceImpl implements ClassService{
     @Override
     public void deleteClass(int id) {
     classMapper.deleteClass(id);
+    }
+
+    @Override
+    public int getMaxClass() {
+        return classMapper.getMaxClassId();
     }
 }

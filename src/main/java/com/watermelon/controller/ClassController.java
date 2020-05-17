@@ -4,17 +4,14 @@ import com.watermelon.entity.Class;
 import com.watermelon.service.ClassService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 
-@Controller
+@RestController
 @RequestMapping("/classe")
 public class ClassController {
 
@@ -22,7 +19,7 @@ public class ClassController {
     private ClassService classService;
 
     @PostMapping("/addClass")
-    public Map<String, String> addClass(@RequestParam(value="classe",required=false)Class classe){
+    public Map<String, String> addClass(@RequestBody(required=false)Class classe){
         classService.addClass(classe);
         Map<String,String> map = new HashMap<>();
         map.put("status","200");
@@ -30,8 +27,8 @@ public class ClassController {
         return map;
     }
 
-    @PostMapping("/updatClass")
-    public Map<String, String> updateClass(@RequestParam(value="classe",required=false) Class classe){
+    @PutMapping("/updateClass")
+    public Map<String, String> updateClass(@RequestBody(required=false) Class classe){
         classService.updateClass(classe);
         Map<String,String> map = new HashMap<>();
         map.put("status","200");
@@ -40,8 +37,8 @@ public class ClassController {
     }
 
 
-    @GetMapping("/deleteClass/{id}")
-    public Map<String, String> deleteClass(@RequestParam(value="id",required=false) int id){
+    @DeleteMapping("/deleteClass/{id}")
+    public Map<String, String> deleteClass(@RequestParam(value = "id",required=false) int id){
         classService.deleteClass(id);
         Map<String,String> map = new HashMap<>();
         map.put("status","200");

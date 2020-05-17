@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.watermelon.mapper.ClassMapper">
+
+    <select id="getClassById" parameterType="int" resultType="Class">
+        select * from class where class_id = #{id}
+    </select>
+
+    <select id="getClassByName" parameterType="String" resultType="Class">
+        select * from class where name = #{name}
+    </select>
+
+    <select id="listClass" resultType="Class">
+        select c1.class_id as id,
+            c1.department_id as departmentId,
+            c1.number,
+            c1.name,
+            c1.grade,
+            c.course_id as "courseId",
+            c.name,
+            c.number,
+            c.course_type as "courseType",
+            c.course_class as "courseClass",
+            c.course_dep as "courseDep",
+            c.score,
+            c.time
+        from class_course as cc,
+            course as c,
+            class as c1
+        where cc.class_id=c1.class_id and
+            cc.course_id=c.course_id
+    </select>
+
+    <insert id="addClass" parameterType="Class">
+        insert into class (class_id, department_id, number, name, grade)
+            values(#{id},#{departmentId},#{number},#{name},#{grade});
+    </insert>
+
+    <update id="updateClass" parameterType="Class">
+        update class set department_id=#{departmentId},number=#{number},name=#{name},grade=#{grade}
+            where class_id=#{id}
+    </update>
+
+    <delete id="deleteClass" parameterType="int">
+        delete from class where class_id = #{id}
+    </delete>
+
+    <select id="getMaxClassId" resultType="int">
+        select max(class_id) from class
+    </select>
+</mapper>

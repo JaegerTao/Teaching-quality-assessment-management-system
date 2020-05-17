@@ -17,4 +17,6 @@ public interface ClassService {
     void updateClass(Class classe);
 
     void deleteClass(int id);
+
+    int getMaxClass();
 }

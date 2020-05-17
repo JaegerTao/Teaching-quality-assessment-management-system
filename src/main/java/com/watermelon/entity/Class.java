@@ -9,7 +9,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class Class {
 private int id;
-private int department_id;
+private int departmentId;
 private String number;
 private String name;
 private String grade;

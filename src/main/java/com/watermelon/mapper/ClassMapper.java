@@ -22,4 +22,6 @@ public interface ClassMapper {
 
     void deleteClass(int id);
 
+    int getMaxClassId();
+
 }
