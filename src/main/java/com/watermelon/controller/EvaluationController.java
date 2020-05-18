@@ -3,11 +3,17 @@ package com.watermelon.controller;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.watermelon.entity.Course;
 import com.watermelon.entity.IndividualEvaluation;
+import com.watermelon.entity.User;
 import com.watermelon.service.EvaluationService;
+import com.watermelon.service.UserService;
 import com.watermelon.utils.ResultUtil;
+import org.apache.shiro.SecurityUtils;
+import org.apache.shiro.session.Session;
+import org.apache.shiro.subject.Subject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 
@@ -16,15 +22,22 @@ import javax.validation.constraints.NotNull;
 public class EvaluationController {
     @Autowired
     private EvaluationService evaluationService;
-//获取可评价的课程
-    @GetMapping("/courses/byTeacherId")
-    public Object findCoursesByTeacherId(int id){
-        return ResultUtil.success(evaluationService.getCoursesByTeacherId(id));
-    }
+    @Autowired
+    private UserService userService;
 
-    @GetMapping("/courses/byTeacherId/withPage")
-    public Object findCoursesByTeacherId(int id,int startPage, int pageSize){
-        return ResultUtil.success(evaluationService.getCoursesByTeacherId(id,startPage,pageSize));
+    //获取可评价的课程
+//    @GetMapping("/teacher/courses")
+//    public Object findCoursesOfTeacher(HttpSession session){
+//        Object username = session.getAttribute("username");
+//        User user = userService.getUserByName((String) username);
+//        return ResultUtil.success(evaluationService.getCoursesByTeacherId(user.getId()));
+//    }
+
+    @GetMapping("teacher/courses")
+    public Object findCoursesOfTeacher(int startPage, int pageSize,HttpSession session){
+        Object username = session.getAttribute("username");
+        User user = userService.getUserByName((String) username);
+        return ResultUtil.success(evaluationService.getCoursesByTeacherId(user.getId(),startPage,pageSize));
     }
 
     @GetMapping("/courses/byStudentId")
