@@ -18,19 +18,9 @@
             c1.number,
             c1.name,
             c1.grade,
-            c.course_id as "courseId",
-            c.name,
-            c.number,
-            c.course_type as "courseType",
-            c.course_class as "courseClass",
-            c.course_dep as "courseDep",
-            c.score,
-            c.time
-        from class_course as cc,
-            course as c,
-            class as c1
-        where cc.class_id=c1.class_id and
-            cc.course_id=c.course_id
+            d.name as "department.name"
+        from class as c1,
+        department as d where d.department_id = c1.department_id
     </select>
 
     <insert id="addClass" parameterType="Class">
@@ -45,6 +35,9 @@
 
     <delete id="deleteClass" parameterType="int">
         delete from class where class_id = #{id}
+    </delete>
+    <delete id="deleteCCourse" parameterType="int">
+           delete from class_course where class_id = #{id}
     </delete>
 
     <select id="getMaxClassId" resultType="int">

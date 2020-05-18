@@ -39,10 +39,20 @@ public class ClassController {
 
     @DeleteMapping("/deleteClass/{id}")
     public Map<String, String> deleteClass(@RequestParam(value = "id",required=false) int id){
+
         classService.deleteClass(id);
         Map<String,String> map = new HashMap<>();
         map.put("status","200");
         map.put("massage","delete classe succeed");
+        return map;
+    }
+    @DeleteMapping("/deleteCCourse/{id}")
+    public Map<String, String> deleteCCourse(@RequestParam(value = "id",required=false) int id){
+
+        classService.deleteCCourse(id);
+        Map<String,String> map = new HashMap<>();
+        map.put("status","200");
+        map.put("massage","delete classe_course succeed");
         return map;
     }
 

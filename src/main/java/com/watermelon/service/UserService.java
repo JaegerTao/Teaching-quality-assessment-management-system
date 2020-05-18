@@ -2,6 +2,7 @@ package com.watermelon.service;
 
 import com.watermelon.entity.User;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
 public interface UserService {
@@ -21,4 +22,9 @@ public interface UserService {
     List<User> listUser();
 
     int getMaxUserId();
+
+    //找回密码
+    String findALL(HttpServletRequest request);
+    //修改密码
+    String updatePWD(HttpServletRequest request);
 }

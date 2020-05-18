@@ -18,5 +18,7 @@ public interface ClassService {
 
     void deleteClass(int id);
 
+    void deleteCCourse(int id);
+
     int getMaxClass();
 }

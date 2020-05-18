@@ -43,6 +43,11 @@ public class ClassServiceImpl implements ClassService{
     }
 
     @Override
+    public void deleteCCourse(int id) {
+        classMapper.deleteCCourse(id);
+    }
+
+    @Override
     public int getMaxClass() {
         return classMapper.getMaxClassId();
     }
