@@ -1,5 +1,6 @@
 package com.watermelon.service;
 
+import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.watermelon.entity.Course;
 import com.watermelon.entity.IndividualEvaluation;
@@ -33,24 +34,26 @@ public class EvaluationServiceImpl implements EvaluationService{
 
 // 分页查询课程
     @Override
-    public List<Course> getCoursesByStuId(int id, int startPage, int pageSize) {
+    public IPage<Course> getCoursesByStuId(int id, int startPage, int pageSize) {
         Page<Course> p = new Page<>(startPage,pageSize);
         p.setRecords(evaluationMapper.getCoursesByStuIdWithPage(id, p));
-        return p.getRecords();
+        return p;
     }
 
     @Override
-    public List<Course> getCoursesBySuperId(int id, int startPage, int pageSize) {
+    public IPage<Course> getCoursesBySuperId(int id, int startPage, int pageSize) {
         Page<Course> p = new Page<>(startPage,pageSize);
-        return evaluationMapper.getCoursesBySuperIdWithPage(id, p);
+        p.setRecords(evaluationMapper.getCoursesBySuperIdWithPage(id, p));
+        return p;
     }
 
     @Override
-    public List<Course> getCoursesByTeacherId(int id, int startPage, int pageSize) {
+    public IPage<Course> getCoursesByTeacherId(int id, int startPage, int pageSize) {
         Page<Course> p = new Page<>(startPage,pageSize);
-        return evaluationMapper.getCoursesByTeacherIdWithPage(id, p);
+        p.setRecords(evaluationMapper.getCoursesByTeacherIdWithPage(id, p));
+        return p;
     }
-
+// 获取个人评价
     @Override
     public IndividualEvaluation getSuperIndiEvaluation(int superId, int teacherId, int courseId) {
         return evaluationMapper.getSuperIndiEvaluation(superId,teacherId,courseId);
@@ -85,4 +88,20 @@ public class EvaluationServiceImpl implements EvaluationService{
     public List<Map> getSummaryEvaluation(int teacherId,int courseId) {
         return evaluationMapper.getSummaryEvaluation(teacherId,courseId);
     }
+
+    @Override
+    public IPage<Course> getCoursesOfTeacher(int teacherId, int startPage, int pageSize) {
+        Page<Course> p = new Page<>(startPage,pageSize);
+        p.setRecords(evaluationMapper.getCoursesOfTeacher(teacherId, p));
+        return p;
+    }
+
+    @Override
+    public IPage getAdvices(int teacherId, int courseId, int roleId, int startPage, int pageSize) {
+        Page p = new Page<>(startPage,pageSize);
+        p.setRecords(evaluationMapper.getAdvices(teacherId, courseId,roleId,p));
+        return p;
+    }
+
+
 }
