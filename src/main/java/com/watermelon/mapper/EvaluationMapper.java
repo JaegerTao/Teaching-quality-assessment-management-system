@@ -1,6 +1,7 @@
 package com.watermelon.mapper;
 
 import com.alibaba.fastjson.JSONObject;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.watermelon.entity.Course;
 import com.watermelon.entity.IndividualEvaluation;
 import com.watermelon.entity.Teacher;
@@ -15,6 +16,10 @@ public interface EvaluationMapper {
     List<Course> getCoursesByTeacherId(int id);
     List<Course> getCoursesByStuId(int id);
     List<Course> getCoursesBySuperId(int id);
+
+    List<Course> getCoursesByStuIdWithPage(int id, Page<Course> page);
+    List<Course> getCoursesByTeacherIdWithPage(int id, Page<Course> page);
+    List<Course> getCoursesBySuperIdWithPage(int id, Page<Course> page);
 
     //获取对应个人评价
     /**
@@ -58,6 +63,6 @@ public interface EvaluationMapper {
     int addSuperIndiEvaluation(IndividualEvaluation individualEvaluation);
 
     //获取教师总评价
-    List<Map> getSummaryEvaluation(int teacherId);
+    List<Map> getSummaryEvaluation(int teacherId,int courseId);
 
 }

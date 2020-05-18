@@ -18,24 +18,24 @@ public class EvaluationItemController {
 
     @GetMapping("/list")
     public Object findList(int rid){
-        return ResultUtil.successJson(evaluationItemService.findList(rid));
+        return ResultUtil.success(evaluationItemService.findList(rid));
     }
     public Object findLists(){
-        return ResultUtil.successJson(evaluationItemService.findLists());
+        return ResultUtil.success(evaluationItemService.findLists());
     }
     @PutMapping("/update")
     public Object updateEvaluationItem(@RequestBody EvaluationItem evaluationItem){
         evaluationItemService.updateEvaluatinItem(evaluationItem);
-        return ResultUtil.successJson();
+        return ResultUtil.success();
     }
     @DeleteMapping("/delete")
     public Object deleteEvaluationItem(int id){
         evaluationItemService.deleteEvaluationItem(id);
-        return ResultUtil.successJson();
+        return ResultUtil.success();
     }
     @PostMapping("/insert")
     public Object insertEvaluationItem(@RequestBody EvaluationItem evaluationItem){
         evaluationItemService.insertEvaluationItem(evaluationItem);
-        return ResultUtil.successJson();
+        return ResultUtil.success();
     }
 }

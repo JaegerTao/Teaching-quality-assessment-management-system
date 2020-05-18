@@ -14,6 +14,6 @@ class EvaluationMapperTest {
 
     @Test
     void getSummaryEvaluation() {
-        System.out.println(evaluationMapper.getSummaryEvaluation(5));
+        System.out.println(evaluationMapper.getSummaryEvaluation(5,5));
     }
 }

@@ -1,8 +1,6 @@
 package com.watermelon.service;
 
-import com.alibaba.fastjson.JSON;
-import com.alibaba.fastjson.JSONArray;
-import com.alibaba.fastjson.JSONObject;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.watermelon.entity.Course;
 import com.watermelon.entity.IndividualEvaluation;
 import com.watermelon.entity.Teacher;
@@ -19,34 +17,38 @@ public class EvaluationServiceImpl implements EvaluationService{
     private EvaluationMapper evaluationMapper;
 
     @Override
-    public JSONArray getCoursesByTeacherId(int id) {
-        List<Course> courseList = evaluationMapper.getCoursesByTeacherId(id);
-        System.out.println(courseList);
-        JSONArray courseJsonArray = new JSONArray();
-        JSONArray jsonArray = (JSONArray) JSON.toJSON(courseList);
-        for(Object jsonObject : jsonArray){
-            JSONObject newjsonObject = new JSONObject();
-            JSONObject oldjsonObject = (JSONObject) ((JSONObject)jsonObject).get("teacher");
-            newjsonObject.put("id",oldjsonObject.get("id"));
-            newjsonObject.put("name",oldjsonObject.get("name"));
-            ((JSONObject) jsonObject).put("teacher",newjsonObject);
-            courseJsonArray.add(jsonObject);
-        }
-        return courseJsonArray;
+    public List<Course> getCoursesByTeacherId(int id) {
+        return evaluationMapper.getCoursesByTeacherId(id);
     }
 
     @Override
-    public JSONArray getCoursesBySuperId(int id) {
-        String jsonString = JSON.toJSONString(evaluationMapper.getCoursesBySuperId(id));
-        JSONArray jsonArray = JSON.parseArray(jsonString);
-        return jsonArray;
+    public List<Course> getCoursesBySuperId(int id) {
+        return evaluationMapper.getCoursesBySuperId(id);
     }
 
     @Override
-    public JSONArray getCoursesByStuId(int id) {
-        String jsonString = JSON.toJSONString(evaluationMapper.getCoursesByStuId(id));
-        JSONArray jsonArray = JSON.parseArray(jsonString);
-        return jsonArray;
+    public List<Course> getCoursesByStuId(int id) {
+        return evaluationMapper.getCoursesByStuId(id);
+    }
+
+// 分页查询课程
+    @Override
+    public List<Course> getCoursesByStuId(int id, int startPage, int pageSize) {
+        Page<Course> p = new Page<>(startPage,pageSize);
+        p.setRecords(evaluationMapper.getCoursesByStuIdWithPage(id, p));
+        return p.getRecords();
+    }
+
+    @Override
+    public List<Course> getCoursesBySuperId(int id, int startPage, int pageSize) {
+        Page<Course> p = new Page<>(startPage,pageSize);
+        return evaluationMapper.getCoursesBySuperIdWithPage(id, p);
+    }
+
+    @Override
+    public List<Course> getCoursesByTeacherId(int id, int startPage, int pageSize) {
+        Page<Course> p = new Page<>(startPage,pageSize);
+        return evaluationMapper.getCoursesByTeacherIdWithPage(id, p);
     }
 
     @Override
@@ -80,7 +82,7 @@ public class EvaluationServiceImpl implements EvaluationService{
     }
 
     @Override
-    public List<Map> getSummaryEvaluation(int teacherId) {
-        return evaluationMapper.getSummaryEvaluation(teacherId);
+    public List<Map> getSummaryEvaluation(int teacherId,int courseId) {
+        return evaluationMapper.getSummaryEvaluation(teacherId,courseId);
     }
 }

@@ -2,6 +2,7 @@ package com.watermelon.service;
 
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
+import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.watermelon.entity.Course;
 import com.watermelon.entity.IndividualEvaluation;
 import com.watermelon.entity.Teacher;
@@ -16,21 +17,26 @@ public interface EvaluationService {
      * @param id
      * @return
      */
-    JSONArray getCoursesByTeacherId(int id);
+    List<Course> getCoursesByTeacherId(int id);
 
     /**
      * 获取督导需要评价的教师列表
      * @param id
      * @return
      */
-    JSONArray getCoursesBySuperId(int id);
+    List<Course> getCoursesBySuperId(int id);
 
     /**
      * 获取学生需要评价的课程（包括老师）列表
      * @param id
      * @return
      */
-    JSONArray getCoursesByStuId(int id);
+    List<Course> getCoursesByStuId(int id);
+
+
+    List<Course> getCoursesByStuId(int id, int startPage, int pageSize);
+    List<Course> getCoursesBySuperId(int id, int startPage, int pageSize);
+    List<Course> getCoursesByTeacherId(int id, int startPage, int pageSize);
 
     /**
      * 获取督导的个人评价
@@ -72,6 +78,6 @@ public interface EvaluationService {
     int addSuperIndiEvaluation(IndividualEvaluation individualEvaluation);
 
     //获取老师总评价
-    List<Map> getSummaryEvaluation(int teacherId);
+    List<Map> getSummaryEvaluation(int teacherId,int courseId);
 
 }

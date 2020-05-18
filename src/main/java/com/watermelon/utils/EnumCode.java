@@ -22,14 +22,6 @@ public enum EnumCode {
      */
     FORBIDDEN(403, "没有权限"),
     /**
-     * 410已被删除
-     */
-    GONE(410, "已被删除"),
-    /**
-     * 423已被锁定
-     */
-    LOCKED(423, "已被锁定"),
-    /**
      * 500服务器出错
      */
     INTERNAL_SERVER_ERROR(500, "服务器出错"),
@@ -41,7 +33,7 @@ public enum EnumCode {
     private final Integer value;
     private final String text;
 
-    private EnumCode(Integer value, String text) {
+    EnumCode(Integer value, String text) {
         this.value = value;
         this.text = text;
     }

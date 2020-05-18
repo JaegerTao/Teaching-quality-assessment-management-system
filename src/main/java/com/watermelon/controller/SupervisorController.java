@@ -19,18 +19,18 @@ public class SupervisorController {
 
     @GetMapping("/supervisors")
     public Object getAllSupervisor(){
-        return ResultUtil.successJson(supervisorService.getAllSupervisor());
+        return ResultUtil.success(supervisorService.getAllSupervisor());
     }
 
     // 设置督导可评价的课程
     @PostMapping("/supervisorCourse")
     public Object addSupervisorCourse(int supervisorId, int courseId, int teacherId){
         supervisorService.addSupervisorCourse(supervisorId,courseId,teacherId);
-        return ResultUtil.successJson();
+        return ResultUtil.success();
     }
     @DeleteMapping("/supervisorCourse")
     public Object deleteSupervisorCourse(int supervisorId, int courseId, int teacherId){
         supervisorService.deleteSupervisorCourse(supervisorId,courseId,teacherId);
-        return ResultUtil.successJson();
+        return ResultUtil.success();
     }
 }
