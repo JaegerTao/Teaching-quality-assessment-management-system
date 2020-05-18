@@ -34,9 +34,9 @@ public interface EvaluationService {
     List<Course> getCoursesByStuId(int id);
 
 
-    List<Course> getCoursesByStuId(int id, int startPage, int pageSize);
-    List<Course> getCoursesBySuperId(int id, int startPage, int pageSize);
-    List<Course> getCoursesByTeacherId(int id, int startPage, int pageSize);
+    IPage<Course> getCoursesByStuId(int id, int startPage, int pageSize);
+    IPage<Course> getCoursesBySuperId(int id, int startPage, int pageSize);
+    IPage<Course> getCoursesByTeacherId(int id, int startPage, int pageSize);
 
     /**
      * 获取督导的个人评价
@@ -79,5 +79,12 @@ public interface EvaluationService {
 
     //获取老师总评价
     List<Map> getSummaryEvaluation(int teacherId,int courseId);
+
+    //获取某教师的所有课程
+    IPage<Course> getCoursesOfTeacher(int teacherId,int startPage,int pageSize);
+
+    //获取教师某门课程的建议
+    IPage getAdvices(int teacherId,int courseId,int roleId,int startPage,int pageSize);
+
 
 }

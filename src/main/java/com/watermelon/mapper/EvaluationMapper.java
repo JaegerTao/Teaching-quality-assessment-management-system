@@ -65,4 +65,11 @@ public interface EvaluationMapper {
     //获取教师总评价
     List<Map> getSummaryEvaluation(int teacherId,int courseId);
 
+    //获取教师教的课程
+    List<Course> getCoursesOfTeacher(int teacherId, Page<Course> p);
+
+    //获取教师某门课的建议
+    List<String> getAdvices(int teacherId,int courseId,int roleId,Page<String> p);
+
+
 }
