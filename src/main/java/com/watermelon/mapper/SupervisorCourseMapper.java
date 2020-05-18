@@ -1,8 +1,10 @@
 package com.watermelon.mapper;
 
 import org.apache.ibatis.annotations.Mapper;
+import org.springframework.stereotype.Repository;
 
 @Mapper
+@Repository
 public interface SupervisorCourseMapper {
 
     // 设置督导可评价的课程老师

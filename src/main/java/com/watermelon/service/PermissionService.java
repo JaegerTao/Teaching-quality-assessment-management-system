@@ -10,7 +10,7 @@ public interface PermissionService {
 
     Permission getPermissionByName(String name);
 
-    List<Permission> listPermission();
+    List<Permission> listPermission(int startPage, int pageSize);
 
     void addPermission(Permission permission);
 

@@ -22,6 +22,6 @@ public interface SupervisorService {
 
     void deleteSupervisor(int id);
 
-    List<Supervisor> listSupervisor();
+    List<Supervisor> listSupervisor(int startPage, int pageSize);
 
 }

@@ -1,5 +1,7 @@
 package com.watermelon.service;
 
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.watermelon.entity.Course;
 import com.watermelon.entity.Permission;
 import com.watermelon.entity.Role;
 import com.watermelon.mapper.PermissionMapper;
@@ -49,8 +51,9 @@ public class RoleServiceImpl implements RoleService {
     }
 
     @Override
-    public List<Role> listRole() {
-        List<Role> list = roleMapper.listRole();
+    public List<Role> listRole(int startPage, int pageSize) {
+        Page<Course> page = new Page<>(startPage,pageSize);
+        List<Role> list = roleMapper.listRole(page);
         for (Role role : list){
             role.setPermissions((ArrayList<Permission>) getRolesPermissions(role.getId()));
         }

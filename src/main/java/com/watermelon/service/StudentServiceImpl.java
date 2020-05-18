@@ -1,5 +1,7 @@
 package com.watermelon.service;
 
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.watermelon.entity.Course;
 import com.watermelon.entity.Role;
 import com.watermelon.entity.Student;
 import com.watermelon.entity.User;
@@ -34,24 +36,27 @@ public class StudentServiceImpl implements StudentService {
 
     @Override
     public void addStudent(Student student) {
-        student.setId(studentMapper.getMaxStudentId()+1);
+        student.setId(studentMapper.getMaxUserId()+1);
         userMapper.addUser(toUser(student));
         studentMapper.addStudent(student);
     }
 
     @Override
     public void updateStudent(Student student) {
+        userMapper.updateUser(toUser(student));
         studentMapper.updateStudent(student);
     }
 
     @Override
     public void deleteStudent(int id) {
         studentMapper.deleteStudent(id);
+        userMapper.deleteUser(id);
     }
 
     @Override
-    public List<Student> listStudent() {
-        List<Student> list = studentMapper.listStudent();
+    public List<Student> listStudent(int startPage, int pageSize) {
+        Page<Course> page = new Page<>(startPage,pageSize);
+        List<Student> list = studentMapper.listStudent(page);
         for (Student s : list){
             User u = userMapper.getUserById(s.getId());
             if (u!=null){
@@ -74,7 +79,8 @@ public class StudentServiceImpl implements StudentService {
         user.setId(student.getId());
         user.setName(student.getName());
         user.setPassword(student.getPassword());
-        user.setRoleId(student.getRoleId());
+        user.setRoleId(student.getRole().getId());
+        user.setRole(student.getRole());
         user.setIdNumber(student.getIdNumber());
         return user;
     }

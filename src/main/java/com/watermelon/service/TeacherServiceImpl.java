@@ -1,9 +1,7 @@
 package com.watermelon.service;
 
-import com.watermelon.entity.Department;
-import com.watermelon.entity.Role;
-import com.watermelon.entity.Teacher;
-import com.watermelon.entity.User;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.watermelon.entity.*;
 import com.watermelon.mapper.DepartmentMapper;
 import com.watermelon.mapper.RoleMapper;
 import com.watermelon.mapper.TeacherMapper;
@@ -37,24 +35,27 @@ public class TeacherServiceImpl implements TeacherService{
 
     @Override
     public void addTeacher(Teacher teacher) {
-        teacher.setId(teacherMapper.getMaxTeacherId()+1);
+        teacher.setId(teacherMapper.getMaxUserId()+1);
         userMapper.addUser(toUser(teacher));
         teacherMapper.addTeacher(teacher);
     }
 
     @Override
     public void updateTeacher(Teacher teacher) {
+        userMapper.updateUser(toUser(teacher));
         teacherMapper.updateTeacher(teacher);
     }
 
     @Override
     public void deleteTeacher(int id) {
         teacherMapper.deleteTeacher(id);
+        userMapper.deleteUser(id);
     }
 
     @Override
-    public List<Teacher> listTeacher() {
-        List<Teacher> list = teacherMapper.listTeacher();
+    public List<Teacher> listTeacher(int startPage, int pageSize) {
+        Page<Course> page = new Page<>(startPage,pageSize);
+        List<Teacher> list = teacherMapper.listTeacher(page);
         for (Teacher t : list){
             User u = userMapper.getUserById(t.getId());
             if (u!=null){

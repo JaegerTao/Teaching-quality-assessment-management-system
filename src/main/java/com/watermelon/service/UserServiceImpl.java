@@ -1,5 +1,7 @@
 package com.watermelon.service;
 
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.watermelon.entity.Course;
 import com.watermelon.entity.Role;
 import com.watermelon.entity.User;
 import com.watermelon.mapper.RoleMapper;
@@ -70,8 +72,9 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public List<User> listUser() {
-        List<User> list = userMapper.listUser();
+    public List<User> listUser(int startPage, int pageSize) {
+        Page<Course> page = new Page<>(startPage,pageSize);
+        List<User> list = userMapper.listUser(page);
         for (User user : list){
             Role role = roleService.getRoleById(user.getRoleId());
             user.setRole(role);

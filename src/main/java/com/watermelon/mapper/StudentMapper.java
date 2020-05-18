@@ -1,5 +1,7 @@
 package com.watermelon.mapper;
 
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.watermelon.entity.Course;
 import com.watermelon.entity.Student;
 import org.apache.ibatis.annotations.Mapper;
 import org.springframework.stereotype.Repository;
@@ -18,8 +20,8 @@ public interface StudentMapper {
 
     void deleteStudent(int id);
 
-    int getMaxStudentId();
+    int getMaxUserId();
 
-    List<Student> listStudent();
+    List<Student> listStudent(Page<Course> page);
 
 }

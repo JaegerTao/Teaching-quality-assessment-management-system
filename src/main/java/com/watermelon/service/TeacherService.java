@@ -14,6 +14,6 @@ public interface TeacherService {
 
     void deleteTeacher(int id);
 
-    List<Teacher> listTeacher();
+    List<Teacher> listTeacher(int startPage, int pageSize);
 
 }

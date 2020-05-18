@@ -1,5 +1,7 @@
 package com.watermelon.mapper;
 
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.watermelon.entity.Course;
 import com.watermelon.entity.Permission;
 import org.apache.ibatis.annotations.Mapper;
 import org.springframework.stereotype.Repository;
@@ -14,7 +16,7 @@ public interface PermissionMapper {
 
     Permission getPermissionByName(String name);
 
-    List<Permission> listPermission();
+    List<Permission> listPermission(Page<Course> page);
 
     void addPermission(Permission permission);
 

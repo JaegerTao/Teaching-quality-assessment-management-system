@@ -1,6 +1,8 @@
 package com.watermelon.service;
 
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.watermelon.entity.Class;
+import com.watermelon.entity.Course;
 import com.watermelon.entity.Department;
 import com.watermelon.mapper.DepartmentMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,8 +23,9 @@ public class DepartmentServiceImpl implements DepartmentService {
     }
 
     @Override
-    public List<Department> listDepartment() {
-        return departmentMapper.listDepartment();
+    public List<Department> listDepartment(int startPage, int pageSize) {
+        Page<Course> page = new Page<>(startPage,pageSize);
+        return departmentMapper.listDepartment(page);
     }
 
     @Override

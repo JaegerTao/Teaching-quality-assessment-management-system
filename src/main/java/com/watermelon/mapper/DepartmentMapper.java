@@ -1,5 +1,7 @@
 package com.watermelon.mapper;
 
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.watermelon.entity.Course;
 import com.watermelon.entity.Department;
 import org.apache.ibatis.annotations.Mapper;
 import org.springframework.stereotype.Repository;
@@ -16,7 +18,7 @@ public interface DepartmentMapper {
 
     void addDepartment(Department department);
 
-    List<Department> listDepartment();
+    List<Department> listDepartment(Page<Course> page);
 
     void updateDepartment(Department department);
 

@@ -1,5 +1,7 @@
 package com.watermelon.mapper;
 
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.watermelon.entity.Course;
 import com.watermelon.entity.Supervisor;
 import net.bytebuddy.implementation.bind.annotation.Super;
 import org.apache.ibatis.annotations.Mapper;
@@ -22,6 +24,6 @@ public interface SupervisorMapper {
 
     int getMaxSupervisorId();
 
-    List<Supervisor> listSupervisor();
+    List<Supervisor> listSupervisor(Page<Course> page);
 
 }

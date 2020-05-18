@@ -5,7 +5,9 @@ import com.watermelon.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/admin")
@@ -30,150 +32,202 @@ public class AdminController {
     private SupervisorService supervisorService;
 
     @PostMapping("/addUser")
-    public String addUser(@RequestBody(required=false) User user) {
+    public Map<String,String> addUser(@RequestBody(required=false) User user) {
         userService.addUser(user);
-        return "/user/add";
+        Map<String,String> map = new HashMap<>();
+        map.put("status","200");
+        map.put("massage","添加用户成功");
+        return map;
     }
 
     @PutMapping("/updateUser")
-    public String updateUser(@RequestBody(required=false) User user){
+    public Map<String, String> updateUser(@RequestBody(required=false) User user){
         userService.updateUser(user);
-        return "redirect:/admin/listUser";
+        Map<String,String> map = new HashMap<>();
+        map.put("status","200");
+        map.put("massage","修改用户成功");
+        return map;
     }
 
     @DeleteMapping("/deleteUser")
-    public String deleteUser(@RequestParam(value="id",required=false) int id){
+    public Map<String, String> deleteUser(@RequestParam(value="id",required=false) int id){
         userService.deleteUser(id);
-        return "redirect:/admin/listUser";
+        Map<String,String> map = new HashMap<>();
+        map.put("status","200");
+        map.put("massage","删除用户成功");
+        return map;
     }
 
     @ResponseBody
     @GetMapping("/listUser")
-    public List<User> listUser() {
-        List<User> list = userService.listUser();
+    public List<User> listUser(int startPage, int pageSize) {
+        List<User> list = userService.listUser(startPage, pageSize);
         return list;
     }
 
     @PostMapping("/addRole")
-    public String addRole(@RequestBody(required=false) Role role){
+    public Map<String, String> addRole(@RequestBody(required=false) Role role){
         roleService.addRole(role);
-        return "redirect:/admin/listRole";
+        Map<String,String> map = new HashMap<>();
+        map.put("status","200");
+        map.put("massage","添加角色成功");
+        return map;
     }
 
     @PutMapping("/updateRole")
-    public String updateRole(@RequestBody(required=false) Role role){
+    public Map<String, String> updateRole(@RequestBody(required=false) Role role){
         roleService.updateRole(role);
-        return "redirect:/admin/listRole";
+        Map<String,String> map = new HashMap<>();
+        map.put("status","200");
+        map.put("massage","修改角色成功");
+        return map;
     }
 
     @DeleteMapping("/deleteRole")
-    public String deleteRole(@RequestParam(value="id",required=false) int id){
+    public Map<String, String> deleteRole(@RequestParam(value="id",required=false) int id){
         roleService.deleteRole(id);
-        return "redirect:/admin/listRole";
+        Map<String,String> map = new HashMap<>();
+        map.put("status","200");
+        map.put("massage","删除角色成功");
+        return map;
     }
 
     @ResponseBody
     @GetMapping("/listRole")
-    public List<Role> listRole(){
-        return roleService.listRole();
+    public List<Role> listRole(int startPage, int pageSize){
+        return roleService.listRole(startPage, pageSize);
     }
 
     @PostMapping("/addPerms")
-    public String addPerms(@RequestBody(required=false) Permission permission){
-        System.out.println(permission);
+    public Map<String, String> addPerms(@RequestBody(required=false) Permission permission){
         permissionService.addPermission(permission);
-        return "redirect:/admin/listPerms";
+        Map<String,String> map = new HashMap<>();
+        map.put("status","200");
+        map.put("massage","添加权限成功");
+        return map;
     }
 
     @PutMapping("/updatePerms")
-    public String updatePerms(@RequestBody(required=false) Permission permission) {
+    public Map<String, String> updatePerms(@RequestBody(required=false) Permission permission) {
         permissionService.updatePermission(permission);
-        return "redirect:/admin/listPerms";
+        Map<String,String> map = new HashMap<>();
+        map.put("status","200");
+        map.put("massage","修改权限成功");
+        return map;
     }
 
     @DeleteMapping("/deletePerms")
-    public String deletePerms(@RequestParam(value="id",required=false) int id){
+    public Map<String, String> deletePerms(@RequestParam(value="id",required=false) int id){
         permissionService.deletePermission(id);
-        return "redirect:/admin/listPerms";
+        Map<String,String> map = new HashMap<>();
+        map.put("status","200");
+        map.put("massage","删除权限成功");
+        return map;
     }
 
     @ResponseBody
     @GetMapping("/listPerms")
-    public List<Permission> listPermission(){
-        return permissionService.listPermission();
+    public List<Permission> listPermission(int startPage, int pageSize){
+        return permissionService.listPermission(startPage, pageSize);
     }
 
     @PostMapping("/addSupervisor")
-    public String addSupervisor(@RequestBody(required=false) Permission permission){
-        System.out.println(permission);
-        permissionService.addPermission(permission);
-        return "redirect:/admin/listPerms";
+    public Map<String, String> addSupervisor(@RequestBody(required=false) Supervisor supervisor){
+        supervisorService.addSupervisor(supervisor);
+        Map<String,String> map = new HashMap<>();
+        map.put("status","200");
+        map.put("massage","添加督导成功");
+        return map;
     }
 
     @PutMapping("/updateSupervisor")
-    public String updateSupervisor(@RequestBody(required=false) Permission permission) {
-        permissionService.updatePermission(permission);
-        return "redirect:/admin/listPerms";
+    public Map<String, String> updateSupervisor(@RequestBody(required=false) Supervisor supervisor) {
+        supervisorService.updateSupervisor(supervisor);
+        Map<String,String> map = new HashMap<>();
+        map.put("status","200");
+        map.put("massage","修改督导成功");
+        return map;
     }
 
     @DeleteMapping("/deleteSupervisor")
-    public String deleteSupervisor(@RequestParam(value="id",required=false) int id){
-        permissionService.deletePermission(id);
-        return "redirect:/admin/listPerms";
+    public Map<String, String> deleteSupervisor(@RequestParam(value="id",required=false) int id){
+        supervisorService.deleteSupervisor(id);
+        Map<String,String> map = new HashMap<>();
+        map.put("status","200");
+        map.put("massage","删除督导成功");
+        return map;
     }
 
     @ResponseBody
     @GetMapping("/listSupervisor")
-    public List<Supervisor> listSupervisor(){
-        return supervisorService.listSupervisor();
+    public List<Supervisor> listSupervisor(int startPage, int pageSize){
+        return supervisorService.listSupervisor(startPage, pageSize);
     }
 
     @PostMapping("/addTeacher")
-    public String addTeacher(@RequestBody(required=false) Teacher teacher){
+    public Map<String, String> addTeacher(@RequestBody(required=false) Teacher teacher){
         teacherService.addTeacher(teacher);
-        return "redirect:/admin/listPerms";
+        Map<String,String> map = new HashMap<>();
+        map.put("status","200");
+        map.put("massage","添加教师成功");
+        return map;
     }
 
     @PutMapping("/updateTeacher")
-    public String updateTeacher(@RequestBody(required=false) Teacher teacher) {
+    public Map<String, String> updateTeacher(@RequestBody(required=false) Teacher teacher) {
         teacherService.updateTeacher(teacher);
-        return "redirect:/admin/listPerms";
+        Map<String,String> map = new HashMap<>();
+        map.put("status","200");
+        map.put("massage","修改教师成功");
+        return map;
     }
 
     @DeleteMapping("/deleteTeacher")
-    public String deleteTeacher(@RequestParam(value="id",required=false) int id){
+    public Map<String, String> deleteTeacher(@RequestParam(value="id",required=false) int id){
         teacherService.deleteTeacher(id);
-        return "redirect:/admin/listPerms";
+        Map<String,String> map = new HashMap<>();
+        map.put("status","200");
+        map.put("massage","删除教师成功");
+        return map;
     }
 
     @ResponseBody
     @GetMapping("/listTeacher")
-    public List<Teacher> listTeacher(){
-        return teacherService.listTeacher();
+    public List<Teacher> listTeacher(int startPage, int pageSize){
+        return teacherService.listTeacher(startPage, pageSize);
     }
 
     @PostMapping("/addStudent")
-    public String addStudent(@RequestBody(required=false) Student student){
+    public Map<String, String> addStudent(@RequestBody(required=false) Student student){
         studentService.addStudent(student);
-        return "redirect:/admin/listPerms";
+        Map<String,String> map = new HashMap<>();
+        map.put("status","200");
+        map.put("massage","添加学生成功");
+        return map;
     }
 
     @PutMapping("/updateStudent")
-    public String updateStudent(@RequestBody(required=false) Student student) {
+    public Map<String, String> updateStudent(@RequestBody(required=false) Student student) {
         studentService.updateStudent(student);
-        return "redirect:/admin/listPerms";
+        Map<String,String> map = new HashMap<>();
+        map.put("status","200");
+        map.put("massage","修改学生成功");
+        return map;
     }
 
     @DeleteMapping("/deleteStudent")
-    public String deleteStudent(@RequestParam(value="id",required=false) int id){
+    public Map<String, String> deleteStudent(@RequestParam(value="id",required=false) int id){
         studentService.deleteStudent(id);
-        return "redirect:/admin/listPerms";
+        Map<String,String> map = new HashMap<>();
+        map.put("status","200");
+        map.put("massage","删除学生成功");
+        return map;
     }
 
     @ResponseBody
     @GetMapping("/listStudent")
-    public List<Student> listStudent(){
-        return studentService.listStudent();
+    public List<Student> listStudent(int startPage, int pageSize){
+        return studentService.listStudent(startPage, pageSize);
     }
 
 }
