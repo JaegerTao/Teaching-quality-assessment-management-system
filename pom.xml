@@ -50,6 +50,12 @@
             <version>2.1.0</version>
         </dependency>
 
+        <dependency>
+            <groupId>com.baomidou</groupId>
+            <artifactId>mybatis-plus</artifactId>
+            <version>3.0-beta</version>
+        </dependency>
+
         <!--druid数据源-->
         <dependency>
             <groupId>com.alibaba</groupId>

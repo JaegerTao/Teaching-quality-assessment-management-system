@@ -1,5 +1,6 @@
 package com.watermelon.controller;
 
+import com.watermelon.entity.User;
 import com.watermelon.service.UserService;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.IncorrectCredentialsException;
@@ -43,7 +44,10 @@ public class IndexController {
         try {
             //登陆以后进入UserRealm类doGetAuthenticationInfo方法进行认证
             subject.login(token);
+            User user = userService.getUserByName(username);
             map.put("status","200");
+            map.put("username",user.getName());
+            map.put("role_id",user.getRoleId()+"");
             return map;
         } catch (UnknownAccountException e) {
             map.put("status","401");
@@ -55,7 +59,7 @@ public class IndexController {
             return map;
         } catch (Exception e) {
             e.printStackTrace();
-            map.put("status","500");
+            map.put("status","-1");
             map.put("massage","未知错误");
             return map;
         }

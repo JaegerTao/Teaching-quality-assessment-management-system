@@ -15,7 +15,9 @@
     </resultMap>
 
     <resultMap id="courseResultMap" type="Course">
-        <id column="course_id" property="id"/>
+        <!-- 解决mybatis去重-->
+        <id column="rowNo" property="rowNo"/>
+        <result column="course_id" property="id"/>
         <result column="name" property="name"/>
         <result column="number" property="number"/>
         <result column="course_type" property="courseType"/>
@@ -29,30 +31,122 @@
         </association>
     </resultMap>
 
-    <select id="getTeachersByTeacherId" resultMap="teacherResultMap" parameterType="int">
-        select t.teacher_id,t.name
-        from teacher t
-        where department_id=
-            (select department_id
-            from teacher
-            where teacher_id=#{id}) and teacher_id!=#{id}
+<!--获取可评价的课程教师列表-->
+    <select id="getCoursesByTeacherId" resultMap="courseResultMap" parameterType="int">
+        select distinct cc.course_id,c.number,c.name,c.course_type,c.course_class,
+            (select name from department where department_id = c.department_id) course_dep,
+            c.score,c.time,cc.teacher_id,t.name as teacher_name
+        from (class_course cc
+        left join teacher t on t.teacher_id=cc.teacher_id)
+        left join course c on cc.course_id=c.course_id
+        where c.course_id in
+           (select course_id from class_course cc where teacher_id=#{id})
+        and cc.teacher_id!=#{id}
+        order by c.number
+    </select>
+
+    <select id="getCoursesByTeacherIdWithPage" resultMap="courseResultMap" parameterType="int">
+        select distinct cc.course_id,c.number,c.name,c.course_type,c.course_class,
+            (select name from department where department_id = c.department_id) course_dep,
+            c.score,c.time,cc.teacher_id,t.name as teacher_name
+        from (class_course cc
+        left join teacher t on t.teacher_id=cc.teacher_id)
+        left join course c on cc.course_id=c.course_id
+        where c.course_id in
+           (select course_id from class_course cc where teacher_id=#{id})
+        and cc.teacher_id!=#{id}
+        order by c.number
     </select>
 
     <select id="getCoursesByStuId" resultMap="courseResultMap" parameterType="int">
-        select course.`*`,teacher.teacher_id,teacher.name teacher_name
-        from teacher,course,class_course
-	    where class_course.teacher_id=teacher.teacher_id
-		    and class_course.course_id=course.course_id
-		    and class_course.class_id=
-		        (select class_id from student where student_id=#{id})
+        select c.course_id,c.number,c.name,c.course_type,c.course_class,
+           (select name from department where department_id = c.department_id) course_dep,
+           c.score,c.time,t.teacher_id,t.name as teacher_name
+        from teacher t,course c,class_course cc
+        where cc.teacher_id=t.teacher_id
+         and cc.course_id=c.course_id
+         and cc.class_id=
+             (select class_id from student where student_id=#{id})
+         order by c.number
     </select>
 
-    <select id="getTeachersBySuperId" resultMap="teacherResultMap2" parameterType="int">
-        select t.teacher_id,t.name as teacher_name,d.name as department_name
-        from (supervisor_teacher s
-        left join teacher t on t.teacher_id=s.teacher_id)
-        left join department d on d.department_id= t.department_id
-        where supervisor_id=#{id}
+    <select id="getCoursesByStuIdWithPage" resultMap="courseResultMap" parameterType="int">
+        select c.course_id,c.number,c.name,c.course_type,c.course_class,
+           (select name from department where department_id = c.department_id) course_dep,
+           c.score,c.time,t.teacher_id,t.name as teacher_name
+        from teacher t,course c,class_course cc
+        where cc.teacher_id=t.teacher_id
+         and cc.course_id=c.course_id
+         and cc.class_id=
+             (select class_id from student where student_id=#{id})
+         order by c.number
     </select>
+
+    <select id="getCoursesBySuperId" resultMap="courseResultMap" parameterType="int">
+        select c.course_id,c.number,c.name,c.course_type,c.course_class,
+            (select name from department where department_id = c.department_id) course_dep,
+            c.score,c.time,t.teacher_id,t.name as teacher_name
+        from (supervisor_course s
+        left join course c on s.course_id=c.course_id)
+        left join teacher t on t.teacher_id=s.teacher_id
+        where s.supervisor_id = #{id}
+        order by course_dep,c.number
+    </select>
+
+    <select id="getCoursesBySuperIdWithPage" resultMap="courseResultMap" parameterType="int">
+        select c.course_id,c.number,c.name,c.course_type,c.course_class,
+            (select name from department where department_id = c.department_id) course_dep,
+            c.score,c.time,t.teacher_id,t.name as teacher_name
+        from (supervisor_course s
+        left join course c on s.course_id=c.course_id)
+        left join teacher t on t.teacher_id=s.teacher_id
+        where s.supervisor_id = #{id}
+        order by course_dep,c.number
+    </select>
+
+<!--    获取个人评价-->
+    <select id="getSuperIndiEvaluation" resultType="IndividualEvaluation">
+        select * from individual_evaluation
+        where role_id=4 and from_id=#{param1} and teacher_id=#{param2} and course_id=#{param3}
+    </select>
+
+    <select id="getStudentIndiEvaluation" resultType="IndividualEvaluation">
+        select * from individual_evaluation
+        where role_id=3 and from_id=#{param1} and teacher_id=#{param2} and course_id=#{param3}
+    </select>
+
+    <select id="getTeacherIndiEvaluation" resultType="IndividualEvaluation">
+        select * from individual_evaluation
+        where role_id=2 and from_id=#{param1} and teacher_id=#{param2} and course_id=#{param3}
+    </select>
+
+<!--  插入个人评价 -->
+    <insert id="addSuperIndiEvaluation" parameterType="IndividualEvaluation">
+        insert into individual_evaluation(role_id,from_id,teacher_id,course_id,score_1,score_2,score_3,score_4,score_5,score_6,total_score,advice)
+        values(4,#{fromId},#{teacherId},#{courseId},#{score1},#{score2},#{score3},#{score4},#{score5},#{score6},#{totalScore},#{advice})
+    </insert>
+
+    <insert id="addStudentIndiEvaluation" parameterType="IndividualEvaluation">
+        insert into individual_evaluation(role_id,from_id,teacher_id,course_id,score_1,score_2,score_3,score_4,score_5,score_6,total_score,advice)
+        values(3,#{fromId},#{teacherId},#{courseId},#{score1},#{score2},#{score3},#{score4},#{score5},#{score6},#{totalScore},#{advice})
+    </insert>
+
+    <insert id="addTeacherIndiEvaluation" parameterType="IndividualEvaluation">
+        insert into individual_evaluation(role_id,from_id,teacher_id,course_id,score_1,score_2,score_3,score_4,score_5,score_6,total_score,advice)
+        values(2,#{fromId},#{teacherId},#{courseId},#{score1},#{score2},#{score3},#{score4},#{score5},#{score6},#{totalScore},#{advice})
+    </insert>
+
+    <select id="getSummaryEvaluation" resultType="map">
+        select (select name from role where individual_evaluation.role_id = role.role_id) role_name,
+            avg(score_1) score_1,avg(score_2) score_2,
+            avg(score_3) score_3,avg(score_4) score_4,
+            avg(score_5) score_5,avg(score_6) score_6,
+            avg(total_score) total_score
+        from individual_evaluation
+        where teacher_id=#{param1}
+        and course_id=#{param2}
+        group by role_id
+    </select>
+
 
 </mapper>

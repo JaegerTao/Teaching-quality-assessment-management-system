@@ -1,5 +1,6 @@
 package com.watermelon.service;
 
+import com.watermelon.entity.Class;
 import com.watermelon.entity.Department;
 import com.watermelon.mapper.DepartmentMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,6 +34,7 @@ public class DepartmentServiceImpl implements DepartmentService {
     public void deleteDepartment(int id) {
         departmentMapper.deleteDepartment(id);
     }
+
 
     @Override
     public int getMaxDepartmentId() {
