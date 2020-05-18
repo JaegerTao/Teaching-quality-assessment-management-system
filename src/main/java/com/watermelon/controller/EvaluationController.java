@@ -86,21 +86,27 @@ public class EvaluationController {
     }
 //插入个人评价
     @PostMapping("/studentIndividualEvaluation")
-    public Object addStudentIndividualEvaluation(@RequestBody @Valid IndividualEvaluation individualEvaluation){
+    public Object addStudentIndividualEvaluation(@RequestBody @Valid IndividualEvaluation individualEvaluation,HttpSession session){
+        User user = userService.getUserByName((String) session.getAttribute("username"));
+        individualEvaluation.setFromId(user.getId());
         individualEvaluation.setTotalScore(((double)(individualEvaluation.getScore1() + individualEvaluation.getScore2() + individualEvaluation.getScore3() + individualEvaluation.getScore4() + individualEvaluation.getScore5() + individualEvaluation.getScore6())/6));
         evaluationService.addStudentIndiEvaluation(individualEvaluation);
         return ResultUtil.success();
     }
 
     @PostMapping("/teacherIndividualEvaluation")
-    public Object addTeacherIndividualEvaluation(@RequestBody @Valid IndividualEvaluation individualEvaluation){
+    public Object addTeacherIndividualEvaluation(@RequestBody @Valid IndividualEvaluation individualEvaluation,HttpSession session){
+        User user = userService.getUserByName((String) session.getAttribute("username"));
+        individualEvaluation.setFromId(user.getId());
         individualEvaluation.setTotalScore(((double)(individualEvaluation.getScore1() + individualEvaluation.getScore2() + individualEvaluation.getScore3() + individualEvaluation.getScore4() + individualEvaluation.getScore5() + individualEvaluation.getScore6())/6));
         evaluationService.addTeacherIndiEvaluation(individualEvaluation);
         return ResultUtil.success();
     }
 
     @PostMapping("/superIndividualEvaluation")
-    public Object addSuperIndividualEvaluation(@RequestBody @Valid IndividualEvaluation individualEvaluation){
+    public Object addSuperIndividualEvaluation(@RequestBody @Valid IndividualEvaluation individualEvaluation,HttpSession session){
+        User user = userService.getUserByName((String) session.getAttribute("username"));
+        individualEvaluation.setFromId(user.getId());
         individualEvaluation.setTotalScore(((double)(individualEvaluation.getScore1() + individualEvaluation.getScore2() + individualEvaluation.getScore3() + individualEvaluation.getScore4() + individualEvaluation.getScore5() + individualEvaluation.getScore6())/6));
         evaluationService.addSuperIndiEvaluation(individualEvaluation);
         return ResultUtil.success();

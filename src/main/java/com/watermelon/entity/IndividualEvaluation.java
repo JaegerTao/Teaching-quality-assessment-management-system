@@ -15,7 +15,7 @@ public class IndividualEvaluation{
     private Integer individualId;
     @Null
     private Integer roleId;
-    @NotNull
+    @Null
     private Integer fromId;
     @NotNull
     private Integer teacherId;
