@@ -82,7 +82,11 @@ public class UserController {
         String password2 = sysUser.getPassword();
         if (password2.equals(newpwd)&&newpwd.equals(comfirmpwd)) {
             sysUser.setPassword(newpwd);
+<<<<<<< HEAD
             //如果输入原来密码正确就修改密码
+=======
+            //如果输入原密码正确就修改密码
+>>>>>>> origin
             userService.updateUser(sysUser);
             session1.setAttribute("result","true");
             return "main";

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.watermelon.mapper.SupervisorCourseMapper">
+
+    <insert id="addSupervisorCourse">
+        insert into supervisor_course(supervisor_id,course_id,teacher_id) values(#{param1},#{param2},#{param3})
+    </insert>
+
+    <delete id="deleteSupervisorCourse">
+        delete from supervisor_course
+        where supervisor_id=#{param1} and course_id=#{param2} and teacher_id=#{param3}
+    </delete>
+
+</mapper>

@@ -1,5 +1,6 @@
 package com.watermelon.entity;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -7,6 +8,7 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
+@JsonInclude(JsonInclude.Include.NON_NULL)  //非空才会序列化
 public class Course {
     /**
      * id 课程号
@@ -26,5 +28,4 @@ public class Course {
     private float score;
     private int time;
     private Teacher teacher;
-
 }
