@@ -8,6 +8,7 @@ import org.apache.shiro.crypto.hash.Md5Hash;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
 
@@ -50,6 +51,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public int addUser(User user) {
+        user.setRoleId(user.getRole().getId());
         return userMapper.addUser(user);
     }
 
@@ -80,6 +82,16 @@ public class UserServiceImpl implements UserService {
     @Override
     public int getMaxUserId() {
         return getMaxUserId();
+    }
+
+    @Override
+    public String findALL(HttpServletRequest request) {
+        return userMapper.findALL(request);
+    }
+
+    @Override
+    public String updatePWD(HttpServletRequest request) {
+        return userMapper.updatePWD(request);
     }
 
 

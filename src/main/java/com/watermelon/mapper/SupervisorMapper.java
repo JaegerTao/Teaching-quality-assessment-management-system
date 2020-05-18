@@ -22,4 +22,6 @@ public interface SupervisorMapper {
 
     int getMaxSupervisorId();
 
+    List<Supervisor> listSupervisor();
+
 }

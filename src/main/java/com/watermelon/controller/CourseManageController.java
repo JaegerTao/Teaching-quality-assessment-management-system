@@ -25,8 +25,7 @@ public class CourseManageController {
         return map;
     }
 
-    @PostMapping("/updateCourse")
-
+    @PutMapping("/updateCourse")
     public Map<String, String> updateCourse(@RequestBody(required=false) Course course){
         courseService.updateCourse(course);
         Map<String,String> map = new HashMap<>();
@@ -35,7 +34,7 @@ public class CourseManageController {
         return map;
     }
 
-    @GetMapping("/deleteCourse/{id}")
+    @DeleteMapping("/deleteCourse/{id}")
     public Map<String, String> deleteCourse(@RequestParam(value="id",required=false) int id){
         courseService.deleteCourse(id);
         Map<String,String> map = new HashMap<>();

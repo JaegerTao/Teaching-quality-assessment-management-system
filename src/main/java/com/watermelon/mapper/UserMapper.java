@@ -4,6 +4,7 @@ import com.watermelon.entity.User;
 import org.apache.ibatis.annotations.Mapper;
 import org.springframework.stereotype.Repository;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
 @Mapper
@@ -25,4 +26,9 @@ public interface UserMapper {
     int deleteUser(int id);
 
     int getMaxUserId();
+
+    //找回密码
+    String findALL(HttpServletRequest request);
+    //修改密码
+    String updatePWD(HttpServletRequest request);
 }

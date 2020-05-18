@@ -38,4 +38,15 @@ public class Student extends User {
         super.setRole(user.getRole());
     }
 
+    /**
+     * 通过一个User完善Student的信息
+     * @param user User
+     */
+    public void addUserInfo(User user){
+        super.setPassword(user.getPassword());
+        super.setRoleId(user.getRoleId());
+        super.setRole(user.getRole());
+        super.setIdNumber(user.getIdNumber());
+    }
+
 }

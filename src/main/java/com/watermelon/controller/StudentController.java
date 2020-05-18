@@ -1,37 +1,35 @@
 package com.watermelon.controller;
 
-import com.watermelon.entity.Teacher;
+import com.watermelon.entity.Student;
 import com.watermelon.entity.User;
 import com.watermelon.service.StudentService;
-import com.watermelon.service.TeacherService;
 import com.watermelon.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpSession;
 
 @RestController
-@RequestMapping("/teacher")
-public class TeachController {
+@RequestMapping("/student")
+public class StudentController {
 
     @Autowired
     private UserService userService;
 
     @Autowired
-    private TeacherService teacherService;
+    private StudentService studentService;
 
     @ResponseBody
     @GetMapping("/getTeacher")
-    public Teacher getTeacher(HttpSession session){
+    public Student getTeacher(HttpSession session){
         String username = (String) session.getAttribute("username");
         User user = userService.getUserByName(username);
-        return teacherService.getTeacherById(user.getId());
+        return studentService.getStudentById(user.getId());
     }
 
     @PutMapping("/updateTeacher")
-    public void updateTeacher(@RequestBody(required=false) Teacher teacher) {
-        teacherService.updateTeacher(teacher);
+    public void updateTeacher(@RequestBody(required=false) Student student) {
+        studentService.updateStudent(student);
     }
 
 }

@@ -17,11 +17,11 @@
     </delete>
 
     <select id="getRoleById" parameterType="int" resultType="Role">
-        select * from role where role_id = #{id}
+        select role_id as id, name from role where role_id = #{id}
     </select>
 
     <select id="getRoleByName" parameterType="String" resultType="Role">
-        select role_id as id, name  from role where name = #{name}
+        select role_id as id, name from role where name = #{name}
     </select>
 
     <select id="listRole" resultType="Role">

@@ -5,6 +5,8 @@ import net.bytebuddy.implementation.bind.annotation.Super;
 
 import java.util.List;
 
+import java.util.List;
+
 public interface SupervisorService {
     List<Supervisor> getAllSupervisor();
 
@@ -19,5 +21,7 @@ public interface SupervisorService {
     void updateSupervisor(Supervisor supervisor);
 
     void deleteSupervisor(int id);
+
+    List<Supervisor> listSupervisor();
 
 }

@@ -18,6 +18,7 @@ public class User {
     private String name;
     private String password;
     private Integer roleId;
+    private String idNumber;
     private Role role;
 
 }
