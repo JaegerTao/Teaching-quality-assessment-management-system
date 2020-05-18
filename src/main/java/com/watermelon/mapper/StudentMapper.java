@@ -22,6 +22,6 @@ public interface StudentMapper {
 
     int getMaxUserId();
 
-    List<Student> listStudent(Page<Course> page);
+    List<Student> listStudentWithNoCourse(Page<Course> page);
 
 }

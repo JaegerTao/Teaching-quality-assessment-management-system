@@ -1,6 +1,8 @@
 package com.watermelon.mapper;
 
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.watermelon.entity.Class;
+import com.watermelon.entity.Course;
 import org.apache.ibatis.annotations.Mapper;
 import org.springframework.stereotype.Repository;
 
@@ -14,7 +16,7 @@ public interface ClassMapper {
 
     Class getClassByName(String name);
 
-    List<Class> listClass();
+    List<Class> listClass(Page<Course> page);
 
     int addClass(Class classe);
 

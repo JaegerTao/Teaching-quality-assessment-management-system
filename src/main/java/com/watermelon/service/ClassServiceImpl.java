@@ -1,6 +1,8 @@
 package com.watermelon.service;
 
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.watermelon.entity.Class;
+import com.watermelon.entity.Course;
 import com.watermelon.mapper.ClassMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -23,8 +25,9 @@ public class ClassServiceImpl implements ClassService{
     }
 
     @Override
-    public List<Class> listClass() {
-        return classMapper.listClass();
+    public List<Class> listClass(int startPage, int pageSize) {
+        Page<Course> page = new Page<>(startPage,pageSize);
+        return classMapper.listClass(page);
     }
 
     @Override

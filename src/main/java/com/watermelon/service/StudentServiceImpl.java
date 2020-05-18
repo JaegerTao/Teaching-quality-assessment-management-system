@@ -1,10 +1,12 @@
 package com.watermelon.service;
 
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.watermelon.entity.Class;
 import com.watermelon.entity.Course;
 import com.watermelon.entity.Role;
 import com.watermelon.entity.Student;
 import com.watermelon.entity.User;
+import com.watermelon.mapper.CourseMapper;
 import com.watermelon.mapper.StudentMapper;
 import com.watermelon.mapper.UserMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,6 +25,9 @@ public class StudentServiceImpl implements StudentService {
 
     @Autowired
     private RoleService roleService;
+
+    @Autowired
+    private CourseMapper courseMapper;
 
     @Override
     public Student getStudentById(int id) {
@@ -54,9 +59,9 @@ public class StudentServiceImpl implements StudentService {
     }
 
     @Override
-    public List<Student> listStudent(int startPage, int pageSize) {
+    public List<Student> listStudentWithNoCourse(int startPage, int pageSize) {
         Page<Course> page = new Page<>(startPage,pageSize);
-        List<Student> list = studentMapper.listStudent(page);
+        List<Student> list = studentMapper.listStudentWithNoCourse(page);
         for (Student s : list){
             User u = userMapper.getUserById(s.getId());
             if (u!=null){
@@ -65,6 +70,28 @@ public class StudentServiceImpl implements StudentService {
                 if (r!=null){
                     s.setRole(r);
                 }
+            }
+        }
+        return list;
+    }
+
+    @Override
+    public List<Student> listStudent(int startPage, int pageSize) {
+        List<Student> list = studentMapper.listStudentWithNoCourse(new Page<>(startPage,pageSize));
+        for (Student s : list){
+            User u = userMapper.getUserById(s.getId());
+            if (u!=null){
+                s.addUserInfo(u);
+                Role r = roleService.getRoleById(s.getRoleId());
+                if (r!=null){
+                    s.setRole(r);
+                }
+            }
+            Class aClass = s.getAClass();
+            if (aClass!=null){
+                int classId = aClass.getId();
+                List<Course> courseList =  courseMapper.listCourseByClassId(classId);
+                s.setCourseList(courseList);
             }
         }
         return list;

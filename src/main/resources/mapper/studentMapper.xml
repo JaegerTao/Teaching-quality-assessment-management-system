@@ -47,14 +47,21 @@
         select max(user_id) from user
     </select>
 
-    <select id="listStudent" resultType="Student">
-        select student_id as id,
-            name,
-            gender,
-            birth,
-            region,
-            score,
-            entrance_date as entranceDate
-        from student
+    <select id="listStudentWithNoCourse" resultType="Student">
+        select s.student_id as id,
+            s.name,
+            s.gender,
+            s.birth,
+            s.region,
+            s.score,
+            s.entrance_date as entranceDate,
+            c.class_id as "aclass.id",
+            c.name as "aClass.name",
+            c.number as "aClass.number",
+            c.grade as "aClass.grade",
+            c.department_id as "aClass.departmentId"
+        from student as s,
+            class as c
+        where s.class_id=c.class_id
     </select>
 </mapper>

@@ -57,8 +57,8 @@ public class ClassController {
     }
 
     @GetMapping("/listClass")
-    public List<Class> listClass(){
-        List<Class> list = classService.listClass();
+    public List<Class> listClass(int startPage, int pageSize){
+        List<Class> list = classService.listClass(startPage, pageSize);
         return list;
     }
 

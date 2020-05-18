@@ -14,6 +14,7 @@ public interface StudentService {
 
     void deleteStudent(int id);
 
-    List<Student> listStudent(int startPage, int pageSize);
+    List<Student> listStudentWithNoCourse(int startPage, int pageSize);
 
+    List<Student> listStudent(int startPage, int pageSize);
 }

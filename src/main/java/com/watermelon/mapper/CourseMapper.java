@@ -17,6 +17,10 @@ public interface CourseMapper {
 
     List<Course> listCourse(Page<Course> page);
 
+    List<Course> listCourseByClassId(int classId);
+
+    List<Course> listCourseByClassId(Page<Course> page,int classId);
+
     List<Course> listCourseWithoutTeacher(Page<Course> page);
 
     int addCourse(Course course);

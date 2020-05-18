@@ -10,7 +10,7 @@ public interface ClassService {
 
     Class getClassByName(String name);
 
-    List<Class> listClass();
+    List<Class> listClass(int startPage, int pageSize);
 
     int addClass(Class classe);
 

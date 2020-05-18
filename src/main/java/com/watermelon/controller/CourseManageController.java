@@ -43,11 +43,17 @@ public class CourseManageController {
         return map;
     }
 
-    //此接口尚未完成，需级联Teacher、Class完成查询
     @ResponseBody
     @GetMapping("/listCourse")
     public List<Course> listCourse(int startPage, int pageSize){
         List<Course> list = courseService.listCourse(startPage, pageSize);
+        return list;
+    }
+
+    @ResponseBody
+    @GetMapping("/listCourseByClassId")
+    public List<Course> listCourseByClassId(int startPage, int pageSize,int classId){
+        List<Course> list = courseService.listCourseByClassId(startPage, pageSize, classId);
         return list;
     }
 

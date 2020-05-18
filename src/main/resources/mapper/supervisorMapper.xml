@@ -24,7 +24,7 @@
     </delete>
 
     <select id="getMaxSupervisorId" resultType="int">
-        select max(supervisor_id) from supervisor
+        select max(user_id) from user
     </select>
 
     <select id="listSupervisor" resultType="Supervisor">
