@@ -1,5 +1,7 @@
 package com.watermelon.mapper;
 
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.watermelon.entity.Course;
 import com.watermelon.entity.Teacher;
 import org.apache.ibatis.annotations.Mapper;
 import org.springframework.stereotype.Repository;
@@ -22,5 +24,5 @@ public interface TeacherMapper {
 
     int getMaxUserId();
 
-    List<Teacher> listTeacher();
+    List<Teacher> listTeacher(Page<Course> page);
 }

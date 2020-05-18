@@ -46,15 +46,15 @@ public class CourseManageController {
     //此接口尚未完成，需级联Teacher、Class完成查询
     @ResponseBody
     @GetMapping("/listCourse")
-    public List<Course> listCourse(){
-        List<Course> list = courseService.listCourse();
+    public List<Course> listCourse(int startPage, int pageSize){
+        List<Course> list = courseService.listCourse(startPage, pageSize);
         return list;
     }
 
     @ResponseBody
     @GetMapping("/listCourseWithNoTeacher")
-    public List<Course> listCourseWithoutTeacher(){
-        List<Course> list = courseService.listCourseWithoutTeacher();
+    public List<Course> listCourseWithoutTeacher(int startPage, int pageSize){
+        List<Course> list = courseService.listCourseWithoutTeacher(startPage, pageSize);
         return list;
     }
 

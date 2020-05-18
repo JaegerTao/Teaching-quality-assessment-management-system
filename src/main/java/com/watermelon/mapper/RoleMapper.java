@@ -1,5 +1,7 @@
 package com.watermelon.mapper;
 
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.watermelon.entity.Course;
 import com.watermelon.entity.Role;
 import org.apache.ibatis.annotations.Mapper;
 import org.springframework.stereotype.Repository;
@@ -16,7 +18,7 @@ public interface RoleMapper {
 
     List<Integer> getRolesPermissionsId(int id);
 
-    List<Role> listRole();
+    List<Role> listRole(Page<Course> page);
 
     void addRole(Role role);
 

@@ -1,5 +1,7 @@
 package com.watermelon.service;
 
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.watermelon.entity.Course;
 import com.watermelon.entity.Role;
 import com.watermelon.entity.Student;
 import com.watermelon.entity.User;
@@ -52,8 +54,9 @@ public class StudentServiceImpl implements StudentService {
     }
 
     @Override
-    public List<Student> listStudent() {
-        List<Student> list = studentMapper.listStudent();
+    public List<Student> listStudent(int startPage, int pageSize) {
+        Page<Course> page = new Page<>(startPage,pageSize);
+        List<Student> list = studentMapper.listStudent(page);
         for (Student s : list){
             User u = userMapper.getUserById(s.getId());
             if (u!=null){

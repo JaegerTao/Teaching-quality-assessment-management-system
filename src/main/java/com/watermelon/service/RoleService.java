@@ -15,7 +15,7 @@ public interface RoleService {
 
     List<Permission> getRolesPermissions(int id);
 
-    List<Role> listRole();
+    List<Role> listRole(int startPage, int pageSize);
 
     void addRole(Role role);
 

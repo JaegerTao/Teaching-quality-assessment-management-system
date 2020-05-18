@@ -1,5 +1,7 @@
 package com.watermelon.mapper;
 
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.watermelon.entity.Course;
 import com.watermelon.entity.User;
 import org.apache.ibatis.annotations.Mapper;
 import org.springframework.stereotype.Repository;
@@ -11,7 +13,7 @@ import java.util.List;
 @Repository
 public interface UserMapper {
 
-    List<User> listUser();
+    List<User> listUser(Page<Course> page);
 
     int getUserNumber();
 

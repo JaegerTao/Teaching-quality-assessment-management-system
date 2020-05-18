@@ -1,5 +1,6 @@
 package com.watermelon.mapper;
 
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.watermelon.entity.Course;
 import org.apache.ibatis.annotations.Mapper;
 import org.springframework.stereotype.Repository;
@@ -14,9 +15,9 @@ public interface CourseMapper {
 
     Course getCourseByName(String name);
 
-    List<Course> listCourse();
+    List<Course> listCourse(Page<Course> page);
 
-    List<Course> listCourseWithoutTeacher();
+    List<Course> listCourseWithoutTeacher(Page<Course> page);
 
     int addCourse(Course course);
 

@@ -1,5 +1,7 @@
 package com.watermelon.service;
 
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.watermelon.entity.Course;
 import com.watermelon.entity.Permission;
 import com.watermelon.mapper.PermissionMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,8 +26,9 @@ public class PermissionServiceImpl implements PermissionService {
     }
 
     @Override
-    public List<Permission> listPermission() {
-        return permissionMapper.listPermission();
+    public List<Permission> listPermission(int startPage, int pageSize) {
+        Page<Course> page = new Page<>(startPage,pageSize);
+        return permissionMapper.listPermission(page);
     }
 
     @Override

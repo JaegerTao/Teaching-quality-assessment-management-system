@@ -34,20 +34,22 @@ public class IndexController {
     }
 
     @PostMapping("/login")
-    public Map<String,String> login(@RequestParam(value="username",required=false) String username,@RequestParam(value="password",required=false) String password, HttpSession session) {
+    public Map<String,String> login(@RequestBody(required=false) User user, HttpSession session) {
         //获取当前用户
         Subject subject = SecurityUtils.getSubject();
-        UsernamePasswordToken token = new UsernamePasswordToken(username, password);
-        session.setAttribute("username",username);
+        UsernamePasswordToken token = new UsernamePasswordToken(user.getName(), user.getPassword());
+        System.out.println("username:"+user.getName());
+        System.out.println("password:"+user.getPassword());
+        session.setAttribute("username",user.getName());
 //        System.out.println(userService.encodeMD5(password));
         Map<String,String> map = new HashMap<>();
         try {
             //登陆以后进入UserRealm类doGetAuthenticationInfo方法进行认证
             subject.login(token);
-            User user = userService.getUserByName(username);
+            User u = userService.getUserByName(user.getName());
             map.put("status","200");
-            map.put("username",user.getName());
-            map.put("role_id",user.getRoleId()+"");
+            map.put("username",u.getName());
+            map.put("role_id",u.getRoleId()+"");
             return map;
         } catch (UnknownAccountException e) {
             map.put("status","401");

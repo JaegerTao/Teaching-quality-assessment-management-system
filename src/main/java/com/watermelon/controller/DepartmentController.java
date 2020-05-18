@@ -45,8 +45,8 @@ public class DepartmentController {
     }
 
     @GetMapping("/listDepartment")
-    public List<Department> listDepartment(){
-        List<Department> list = departmentService.listDepartment();
+    public List<Department> listDepartment(int startPage, int pageSize){
+        List<Department> list = departmentService.listDepartment(startPage, pageSize);
         return list;
     }
 }

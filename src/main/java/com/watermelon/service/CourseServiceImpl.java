@@ -1,5 +1,6 @@
 package com.watermelon.service;
 
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.watermelon.entity.Course;
 import com.watermelon.mapper.CourseMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,13 +25,15 @@ public class CourseServiceImpl implements CourseService {
     }
 
     @Override
-    public List<Course> listCourse() {
-        return courseMapper.listCourse();
+    public List<Course> listCourse(int startPage, int pageSize) {
+        Page<Course> page = new Page<>(startPage,pageSize);
+        return courseMapper.listCourse(page);
     }
 
     @Override
-    public List<Course> listCourseWithoutTeacher() {
-        return courseMapper.listCourseWithoutTeacher();
+    public List<Course> listCourseWithoutTeacher(int startPage, int pageSize) {
+        Page<Course> page = new Page<>(startPage,pageSize);
+        return courseMapper.listCourseWithoutTeacher(page);
     }
 
     @Override

@@ -9,12 +9,11 @@ public interface DepartmentService {
 
     void addDepartment(Department department);
 
-    List<Department> listDepartment();
+    List<Department> listDepartment(int startPage, int pageSize);
 
     void updateDepartment(Department department);
 
     void deleteDepartment(int id);
-
 
     int getMaxDepartmentId();
 }

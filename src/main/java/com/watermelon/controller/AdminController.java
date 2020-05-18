@@ -60,8 +60,8 @@ public class AdminController {
 
     @ResponseBody
     @GetMapping("/listUser")
-    public List<User> listUser() {
-        List<User> list = userService.listUser();
+    public List<User> listUser(int startPage, int pageSize) {
+        List<User> list = userService.listUser(startPage, pageSize);
         return list;
     }
 
@@ -94,8 +94,8 @@ public class AdminController {
 
     @ResponseBody
     @GetMapping("/listRole")
-    public List<Role> listRole(){
-        return roleService.listRole();
+    public List<Role> listRole(int startPage, int pageSize){
+        return roleService.listRole(startPage, pageSize);
     }
 
     @PostMapping("/addPerms")
@@ -127,8 +127,8 @@ public class AdminController {
 
     @ResponseBody
     @GetMapping("/listPerms")
-    public List<Permission> listPermission(){
-        return permissionService.listPermission();
+    public List<Permission> listPermission(int startPage, int pageSize){
+        return permissionService.listPermission(startPage, pageSize);
     }
 
     @PostMapping("/addSupervisor")
@@ -160,8 +160,8 @@ public class AdminController {
 
     @ResponseBody
     @GetMapping("/listSupervisor")
-    public List<Supervisor> listSupervisor(){
-        return supervisorService.listSupervisor();
+    public List<Supervisor> listSupervisor(int startPage, int pageSize){
+        return supervisorService.listSupervisor(startPage, pageSize);
     }
 
     @PostMapping("/addTeacher")
@@ -193,8 +193,8 @@ public class AdminController {
 
     @ResponseBody
     @GetMapping("/listTeacher")
-    public List<Teacher> listTeacher(){
-        return teacherService.listTeacher();
+    public List<Teacher> listTeacher(int startPage, int pageSize){
+        return teacherService.listTeacher(startPage, pageSize);
     }
 
     @PostMapping("/addStudent")
@@ -226,8 +226,8 @@ public class AdminController {
 
     @ResponseBody
     @GetMapping("/listStudent")
-    public List<Student> listStudent(){
-        return studentService.listStudent();
+    public List<Student> listStudent(int startPage, int pageSize){
+        return studentService.listStudent(startPage, pageSize);
     }
 
 }

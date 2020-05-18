@@ -1,5 +1,7 @@
 package com.watermelon.service;
 
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.watermelon.entity.Course;
 import com.watermelon.entity.Supervisor;
 import com.watermelon.mapper.SupervisorCourseMapper;
 import com.watermelon.mapper.SupervisorMapper;
@@ -58,7 +60,8 @@ public class SupervisorServiceImpl implements SupervisorService {
     }
 
     @Override
-    public List<Supervisor> listSupervisor() {
-        return supervisorMapper.listSupervisor();
+    public List<Supervisor> listSupervisor(int startPage, int pageSize) {
+        Page<Course> page = new Page<>(startPage,pageSize);
+        return supervisorMapper.listSupervisor(page);
     }
 }

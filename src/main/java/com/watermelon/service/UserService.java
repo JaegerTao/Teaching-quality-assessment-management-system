@@ -19,7 +19,7 @@ public interface UserService {
 
     int deleteUser(int id);
 
-    List<User> listUser();
+    List<User> listUser(int startPage, int pageSize);
 
     int getMaxUserId();
 
