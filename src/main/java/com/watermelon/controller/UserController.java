@@ -1,16 +1,19 @@
 package com.watermelon.controller;
 
+import com.watermelon.entity.Query;
 import com.watermelon.entity.User;
 import com.watermelon.service.UserService;
+import org.apache.shiro.authc.UnknownAccountException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import java.util.HashMap;
+import java.util.Map;
 
-@Controller
+@RestController
 @RequestMapping("/user")
 public class UserController {
 
@@ -36,61 +39,62 @@ public class UserController {
     }
 
     //找回密码
-    @GetMapping("/findPWD")
-    public String findALL(HttpServletRequest request){
-        //获取session
-        HttpSession session = request.getSession();
-        //获取用户输入id
-        String username = request.getParameter("username");
-        //获取用户输入的身份证
-        String idnumber = request.getParameter("idnumber");
-        //用户输入的新密码
-        String newpwd = request.getParameter("newpwd");
-        //确认新密码
-        String comfirmpwd = request.getParameter("comfirmpwd");
-        //根据名字获得用户
-        User sysUser = userService.getUserByName(username);
-        if (idnumber.equals(sysUser.getIdNumber())&&username.equals(sysUser.getName())&&newpwd.equals(comfirmpwd)) {
-            sysUser.setPassword(newpwd);
-            //如果输入原密码正确就修改密码
-            userService.updateUser(sysUser);
-            session.setAttribute("result","true");
-            return "main";
-        } else {
-            //如果不存在提示密码不正确
-            session.setAttribute("result","false");
+    @PostMapping("/findPWD")
+    Map<String,String> findPWD(@RequestBody(required = false)Query query){
+        String idnumber = query.getIdnumber();
+        String username = query.getUsername();
+        String newpwd = query.getNewpwd();
+        String comfirmpwd = query.getComfirmpwd();
+        User u = userService.getUserByName(username);
+        Map<String,String> map = new HashMap<>();
+       if(idnumber.equals(u.getIdNumber())&&newpwd.equals(comfirmpwd)){
+           u.setPassword(newpwd);
+           userService.updateUser(u);
+           map.put("status","200");
+           map.put("username",u.getName());
+           return map;
+       }else if(!idnumber.equals(u.getIdNumber())){
+           map.put("status","401");
+           map.put("massage","身份证不匹配");
+           return map;
+       }else if(!newpwd.equals(comfirmpwd)){
+            map.put("status","401");
+            map.put("massage","密码不匹配");
+            return map;
+        }else{
+           map.put("status","401");
+           map.put("massage","其他错误");
+           return map;
         }
-        return "reset-password";
-
     }
 
     //修改密码
-    @GetMapping("/updatePWD")
-    public String updatePWD(HttpServletRequest request,HttpSession session) {
-        //获取session
-        HttpSession session1 = request.getSession();
-        //获取用户输入的原密码
-        String oldpwd = request.getParameter("oldpwd");
-        //用户输入的新密码
-        String newpwd = request.getParameter("newpwd");
-        //确认新密码
-        String comfirmpwd = request.getParameter("comfirmpwd");
-        //根据名字获得用户
-        String username = (String) session.getAttribute("username");
-        User sysUser = userService.getUserByName(username);
-        //获得用户加密后的原密码
-        String password2 = sysUser.getPassword();
-        if (password2.equals(newpwd)&&newpwd.equals(comfirmpwd)) {
-            sysUser.setPassword(newpwd);
-            //如果输入原密码正确就修改密码
-            userService.updateUser(sysUser);
-            session1.setAttribute("result","true");
-            return "main";
-        } else {
-            //如果不存在提示密码不正确
-            session1.setAttribute("result","false");
+    @PostMapping("/updatePWD")
+    Map<String,String> updatePWD(@RequestBody(required = false)Query query,HttpSession session){
+        String oldpwd = query.getOldpwd();
+        String username = query.getUsername();
+        String newpwd = query.getNewpwd();
+        String comfirmpwd = query.getComfirmpwd();
+        User u = userService.getUserByName(username);
+        Map<String,String> map = new HashMap<>();
+        if(oldpwd.equals(u.getPassword())&&newpwd.equals(comfirmpwd)){
+            u.setPassword(newpwd);
+            userService.updateUser(u);
+            map.put("status","200");
+            map.put("username",u.getName());
+            return map;
+        }else if(!newpwd.equals(u.getPassword())){
+            map.put("status","401");
+            map.put("massage","旧密码不正确");
+            return map;
+        }else if(!newpwd.equals(comfirmpwd)){
+            map.put("status","401");
+            map.put("massage","密码不匹配");
+            return map;
+        }else{
+            map.put("status","401");
+            map.put("massage","其他错误");
+            return map;
         }
-        return "update-password";
     }
-
 }

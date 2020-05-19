@@ -2,6 +2,7 @@ package com.watermelon.mapper;
 
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.watermelon.entity.Course;
+import com.watermelon.entity.Query;
 import com.watermelon.entity.User;
 import org.apache.ibatis.annotations.Mapper;
 import org.springframework.stereotype.Repository;
@@ -29,8 +30,4 @@ public interface UserMapper {
 
     int getMaxUserId();
 
-    //找回密码
-    String findALL(HttpServletRequest request);
-    //修改密码
-    String updatePWD(HttpServletRequest request);
 }

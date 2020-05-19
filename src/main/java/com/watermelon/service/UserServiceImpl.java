@@ -2,6 +2,7 @@ package com.watermelon.service;
 
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.watermelon.entity.Course;
+import com.watermelon.entity.Query;
 import com.watermelon.entity.Role;
 import com.watermelon.entity.User;
 import com.watermelon.mapper.RoleMapper;
@@ -87,15 +88,6 @@ public class UserServiceImpl implements UserService {
         return getMaxUserId();
     }
 
-    @Override
-    public String findALL(HttpServletRequest request) {
-        return userMapper.findALL(request);
-    }
-
-    @Override
-    public String updatePWD(HttpServletRequest request) {
-        return userMapper.updatePWD(request);
-    }
 
 
     /**
