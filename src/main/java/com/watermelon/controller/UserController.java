@@ -3,9 +3,7 @@ package com.watermelon.controller;
 import com.watermelon.entity.User;
 import com.watermelon.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -74,23 +72,5 @@ public class UserController {
         }
         return "update-password";
     }
-
-    /**
-     * 测试用方法
-     */
-//    @GetMapping("/add")
-//    public String add() {
-//        return "/user/add";
-//    }
-//
-//    @GetMapping("/update")
-//    public String update() {
-//        return "/user/update";
-//    }
-//
-//    @GetMapping("/view")
-//    public String view() {
-//        return "/user/view";
-//    }
 
 }

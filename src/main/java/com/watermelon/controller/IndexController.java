@@ -23,8 +23,6 @@ public class IndexController {
 
     @Autowired
     private UserService userService;
-    @Autowired
-    private UserServiceImpl userServiceImpl;
 
     @PostMapping("/login")
     public Map<String,String> login(@RequestBody(required=false) User user, HttpSession session) {
