@@ -23,6 +23,8 @@ public interface UserService {
 
     int getMaxUserId();
 
+    String encodeMD5(String str);
+
     //找回密码
     String findALL(HttpServletRequest request);
     //修改密码

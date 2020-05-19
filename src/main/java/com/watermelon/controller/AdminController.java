@@ -23,6 +23,9 @@ public class AdminController {
     private PermissionService permissionService;
 
     @Autowired
+    private AdminService adminService;
+
+    @Autowired
     private StudentService studentService;
 
     @Autowired
@@ -36,7 +39,7 @@ public class AdminController {
         userService.addUser(user);
         Map<String,String> map = new HashMap<>();
         map.put("status","200");
-        map.put("massage","添加用户成功");
+        map.put("message","添加用户成功");
         return map;
     }
 
@@ -45,7 +48,7 @@ public class AdminController {
         userService.updateUser(user);
         Map<String,String> map = new HashMap<>();
         map.put("status","200");
-        map.put("massage","修改用户成功");
+        map.put("message","修改用户成功");
         return map;
     }
 
@@ -54,7 +57,7 @@ public class AdminController {
         userService.deleteUser(id);
         Map<String,String> map = new HashMap<>();
         map.put("status","200");
-        map.put("massage","删除用户成功");
+        map.put("message","删除用户成功");
         return map;
     }
 
@@ -70,7 +73,7 @@ public class AdminController {
         roleService.addRole(role);
         Map<String,String> map = new HashMap<>();
         map.put("status","200");
-        map.put("massage","添加角色成功");
+        map.put("message","添加角色成功");
         return map;
     }
 
@@ -79,7 +82,7 @@ public class AdminController {
         roleService.updateRole(role);
         Map<String,String> map = new HashMap<>();
         map.put("status","200");
-        map.put("massage","修改角色成功");
+        map.put("message","修改角色成功");
         return map;
     }
 
@@ -88,7 +91,7 @@ public class AdminController {
         roleService.deleteRole(id);
         Map<String,String> map = new HashMap<>();
         map.put("status","200");
-        map.put("massage","删除角色成功");
+        map.put("message","删除角色成功");
         return map;
     }
 
@@ -103,7 +106,7 @@ public class AdminController {
         permissionService.addPermission(permission);
         Map<String,String> map = new HashMap<>();
         map.put("status","200");
-        map.put("massage","添加权限成功");
+        map.put("message","添加权限成功");
         return map;
     }
 
@@ -112,7 +115,7 @@ public class AdminController {
         permissionService.updatePermission(permission);
         Map<String,String> map = new HashMap<>();
         map.put("status","200");
-        map.put("massage","修改权限成功");
+        map.put("message","修改权限成功");
         return map;
     }
 
@@ -121,7 +124,7 @@ public class AdminController {
         permissionService.deletePermission(id);
         Map<String,String> map = new HashMap<>();
         map.put("status","200");
-        map.put("massage","删除权限成功");
+        map.put("message","删除权限成功");
         return map;
     }
 
@@ -136,7 +139,7 @@ public class AdminController {
         supervisorService.addSupervisor(supervisor);
         Map<String,String> map = new HashMap<>();
         map.put("status","200");
-        map.put("massage","添加督导成功");
+        map.put("message","添加督导成功");
         return map;
     }
 
@@ -145,7 +148,7 @@ public class AdminController {
         supervisorService.updateSupervisor(supervisor);
         Map<String,String> map = new HashMap<>();
         map.put("status","200");
-        map.put("massage","修改督导成功");
+        map.put("message","修改督导成功");
         return map;
     }
 
@@ -154,7 +157,7 @@ public class AdminController {
         supervisorService.deleteSupervisor(id);
         Map<String,String> map = new HashMap<>();
         map.put("status","200");
-        map.put("massage","删除督导成功");
+        map.put("message","删除督导成功");
         return map;
     }
 
@@ -169,7 +172,7 @@ public class AdminController {
         teacherService.addTeacher(teacher);
         Map<String,String> map = new HashMap<>();
         map.put("status","200");
-        map.put("massage","添加教师成功");
+        map.put("message","添加教师成功");
         return map;
     }
 
@@ -178,7 +181,7 @@ public class AdminController {
         teacherService.updateTeacher(teacher);
         Map<String,String> map = new HashMap<>();
         map.put("status","200");
-        map.put("massage","修改教师成功");
+        map.put("message","修改教师成功");
         return map;
     }
 
@@ -187,7 +190,7 @@ public class AdminController {
         teacherService.deleteTeacher(id);
         Map<String,String> map = new HashMap<>();
         map.put("status","200");
-        map.put("massage","删除教师成功");
+        map.put("message","删除教师成功");
         return map;
     }
 
@@ -202,7 +205,7 @@ public class AdminController {
         studentService.addStudent(student);
         Map<String,String> map = new HashMap<>();
         map.put("status","200");
-        map.put("massage","添加学生成功");
+        map.put("message","添加学生成功");
         return map;
     }
 
@@ -211,7 +214,7 @@ public class AdminController {
         studentService.updateStudent(student);
         Map<String,String> map = new HashMap<>();
         map.put("status","200");
-        map.put("massage","修改学生成功");
+        map.put("message","修改学生成功");
         return map;
     }
 
@@ -220,7 +223,7 @@ public class AdminController {
         studentService.deleteStudent(id);
         Map<String,String> map = new HashMap<>();
         map.put("status","200");
-        map.put("massage","删除学生成功");
+        map.put("message","删除学生成功");
         return map;
     }
 
@@ -228,6 +231,33 @@ public class AdminController {
     @GetMapping("/listStudent")
     public List<Student> listStudent(int startPage, int pageSize){
         return studentService.listStudent(startPage, pageSize);
+    }
+
+    @PostMapping("/addAdmin")
+    public Map<String,String> addAdmin(@RequestBody(required=false) Admin admin){
+        adminService.addAdmin(admin);
+        Map<String,String> map = new HashMap<>();
+        map.put("status","200");
+        map.put("message","添加管理员成功");
+        return map;
+    }
+
+    @PutMapping("/updateAdmin")
+    public Map<String,String> updateAdmin(@RequestBody(required=false) Admin admin){
+        adminService.updateAdmin(admin);
+        Map<String,String> map = new HashMap<>();
+        map.put("status","200");
+        map.put("message","修改管理员成功");
+        return map;
+    }
+
+    @DeleteMapping("/deleteAdmin")
+    public Map<String,String> deleteAdmin(@RequestParam(value="id",required=false) int id){
+        adminService.deleteAdmin(id);
+        Map<String,String> map = new HashMap<>();
+        map.put("status","200");
+        map.put("message","删除管理员成功");
+        return map;
     }
 
 }

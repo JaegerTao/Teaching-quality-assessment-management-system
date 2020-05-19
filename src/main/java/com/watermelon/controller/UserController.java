@@ -3,40 +3,22 @@ package com.watermelon.controller;
 import com.watermelon.entity.User;
 import com.watermelon.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
-@Controller
+@RestController
 @RequestMapping("/user")
 public class UserController {
 
     @Autowired
     private UserService userService;
 
-    /**
-     * 测试用方法
-     */
-    @GetMapping("/add")
-    public String add() {
-        return "/user/add";
-    }
-
-    @GetMapping("/update")
-    public String update() {
-        return "/user/update";
-    }
-
-    @GetMapping("/view")
-    public String view() {
-        return "/user/view";
-    }
-
     //找回密码
-    @GetMapping("/findPWD")
+    @PostMapping("/findPWD")
     public String findALL(HttpServletRequest request){
         //获取session
         HttpSession session = request.getSession();
@@ -65,7 +47,7 @@ public class UserController {
     }
 
     //修改密码
-    @GetMapping("/updatePWD")
+    @PostMapping("/updatePWD")
     public String updatePWD(HttpServletRequest request,HttpSession session) {
         //获取session
         HttpSession session1 = request.getSession();
@@ -92,5 +74,23 @@ public class UserController {
         }
         return "update-password";
     }
+
+    /**
+     * 测试用方法
+     */
+//    @GetMapping("/add")
+//    public String add() {
+//        return "/user/add";
+//    }
+//
+//    @GetMapping("/update")
+//    public String update() {
+//        return "/user/update";
+//    }
+//
+//    @GetMapping("/view")
+//    public String view() {
+//        return "/user/view";
+//    }
 
 }
