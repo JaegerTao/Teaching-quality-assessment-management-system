@@ -148,5 +148,23 @@
         group by role_id
     </select>
 
+    <select id="getCoursesOfTeacher" resultMap="courseResultMap">
+        select distinct c.course_id,c.number,c.name,c.course_type,c.course_class,
+           (select name from department where department_id = c.department_id) course_dep,
+           c.score,c.time,t.teacher_id,t.name as teacher_name
+        from (class_course cc
+        left join course c on cc.course_id=c.course_id)
+        left join teacher t on t.teacher_id=cc.teacher_id
+        where cc.teacher_id=#{teacherId}
+    </select>
 
+    <select id="getAdvices" resultType="string">
+        select distinct advice
+        from individual_evaluation
+        where teacher_id=#{param1}
+            and course_id=#{param2}
+            and role_id=#{param3}
+            and advice is not null
+            and advice!=''
+    </select>
 </mapper>

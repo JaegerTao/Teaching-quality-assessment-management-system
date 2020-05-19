@@ -2,6 +2,7 @@ package com.watermelon.controller;
 
 import com.watermelon.entity.User;
 import com.watermelon.service.UserService;
+import com.watermelon.service.UserServiceImpl;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.IncorrectCredentialsException;
 import org.apache.shiro.authc.UnknownAccountException;
@@ -22,6 +23,8 @@ public class IndexController {
 
     @Autowired
     private UserService userService;
+    @Autowired
+    private UserServiceImpl userServiceImpl;
 
     @PostMapping("/login")
     public Map<String,String> login(@RequestBody(required=false) User user, HttpSession session) {
@@ -66,7 +69,6 @@ public class IndexController {
         map.put("massage","成功退出");
         return map;
     }
-
     @ResponseBody
     @GetMapping("/noAuth")
     public String noAuth() {
