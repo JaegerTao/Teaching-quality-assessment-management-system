@@ -24,6 +24,6 @@ public interface SupervisorMapper {
 
     int getMaxSupervisorId();
 
-    List<Supervisor> listSupervisor(Page<Course> page);
+    List<Supervisor> listSupervisor(Page<Supervisor> page);
 
 }

@@ -13,7 +13,7 @@ import java.util.List;
 @Repository
 public interface UserMapper {
 
-    List<User> listUser(Page<Course> page);
+    List<User> listUser(Page<User> page);
 
     int getUserNumber();
 

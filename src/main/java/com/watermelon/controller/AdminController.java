@@ -227,10 +227,19 @@ public class AdminController {
         return map;
     }
 
-    @ResponseBody
+    @GetMapping("/listStudentWithNoCourse")
+    public List<Student> listStudentWithNoCourse(int startPage, int pageSize){
+        return studentService.listStudentWithNoCourse(startPage, pageSize);
+    }
+
     @GetMapping("/listStudent")
     public List<Student> listStudent(int startPage, int pageSize){
         return studentService.listStudent(startPage, pageSize);
+    }
+
+    @GetMapping("/listStudentByClassId")
+    public List<Student> listStudentByClassId(int startPage, int pageSize,int classId){
+        return studentService.listStudentByClassId(startPage, pageSize, classId);
     }
 
     @PostMapping("/addAdmin")

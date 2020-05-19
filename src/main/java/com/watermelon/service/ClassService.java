@@ -10,6 +10,8 @@ public interface ClassService {
 
     Class getClassByName(String name);
 
+    List<Class> listClassWithNoCourse(int startPage, int pageSize);
+
     List<Class> listClass(int startPage, int pageSize);
 
     int addClass(Class classe);
@@ -18,7 +20,9 @@ public interface ClassService {
 
     void deleteClass(int id);
 
-    void deleteCCourse(int id);
+    void addClassCourse(int classId,int courseId, int teacherId);
+
+    void deleteClassCourse(int classId,int courseId);
 
     int getMaxClass();
 }

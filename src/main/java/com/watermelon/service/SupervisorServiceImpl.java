@@ -70,7 +70,7 @@ public class SupervisorServiceImpl implements SupervisorService {
 
     @Override
     public List<Supervisor> listSupervisor(int startPage, int pageSize) {
-        Page<Course> page = new Page<>(startPage,pageSize);
+        Page<Supervisor> page = new Page<>(startPage,pageSize);
         List<Supervisor> list = supervisorMapper.listSupervisor(page);
         for (Supervisor s : list){
             User u = userMapper.getUserById(s.getId());

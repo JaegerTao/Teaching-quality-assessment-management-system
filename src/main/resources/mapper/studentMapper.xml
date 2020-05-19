@@ -16,9 +16,10 @@
     </select>
 
     <insert id="addStudent" parameterType="Student">
-        insert into student (student_id, name, gender, birth, region, score, entrance_date)
+        insert into student (student_id, class_id, name, gender, birth, region, score, entrance_date)
             values(
             #{id},
+            #{aClass.id},
             #{name},
             #{gender},
             #{birth},
@@ -29,6 +30,7 @@
 
     <update id="updateStudent" parameterType="Student">
         update student set
+            class_id = #{aClass.id},
             score = #{id},
             name = #{name},
             gender = #{gender},
@@ -64,4 +66,16 @@
             class as c
         where s.class_id=c.class_id
     </select>
+
+    <select id="listStudentByClassId" parameterType="int" resultType="Student">
+        select student_id as id,
+            name,
+            gender,
+            birth,
+            region,
+            score,
+            entrance_date as entranceDate
+        from student where class_id=#{classId}
+    </select>
+
 </mapper>

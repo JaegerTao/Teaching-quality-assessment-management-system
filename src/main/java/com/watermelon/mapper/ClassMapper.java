@@ -16,15 +16,19 @@ public interface ClassMapper {
 
     Class getClassByName(String name);
 
-    List<Class> listClass(Page<Course> page);
+    List<Class> listClass(Page<Class> page);
 
-    int addClass(Class classe);
+    int addClass(Class aClass);
 
-    void updateClass(Class classe);
+    void updateClass(Class aClass);
 
     void deleteClass(int id);
 
-    void deleteCCourse(int id);
+    void addClassCourse(int classId, int courseId, int teacherId);
+
+    void deleteClassCourse(int classId, int courseId);
+
+    void deleteClassFromClassCourse(int classId);
 
     int getMaxClassId();
 

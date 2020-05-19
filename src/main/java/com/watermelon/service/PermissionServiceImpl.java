@@ -27,7 +27,7 @@ public class PermissionServiceImpl implements PermissionService {
 
     @Override
     public List<Permission> listPermission(int startPage, int pageSize) {
-        Page<Course> page = new Page<>(startPage,pageSize);
+        Page<Permission> page = new Page<>(startPage,pageSize);
         return permissionMapper.listPermission(page);
     }
 

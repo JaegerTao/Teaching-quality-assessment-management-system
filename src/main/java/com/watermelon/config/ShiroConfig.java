@@ -49,7 +49,7 @@ public class ShiroConfig {
 //        filterMap.put("/user/add", "perms[user:add]");
 //        filterMap.put("/user/update", "perms[user:update]");
 //        filterMap.put("/user/view", "perms[user:view]");
-        filterMap.put("/admin/*", "perms[user:add]");
+//        filterMap.put("/admin/*", "perms[user:add]");
 
         //usr路径下的所有页面都进行验证拦截
 //        filterMap.put("/user/*", "authc");

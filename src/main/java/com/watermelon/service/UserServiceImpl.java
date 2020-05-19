@@ -73,7 +73,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public List<User> listUser(int startPage, int pageSize) {
-        Page<Course> page = new Page<>(startPage,pageSize);
+        Page<User> page = new Page<>(startPage,pageSize);
         List<User> list = userMapper.listUser(page);
         for (User user : list){
             Role role = roleService.getRoleById(user.getRoleId());

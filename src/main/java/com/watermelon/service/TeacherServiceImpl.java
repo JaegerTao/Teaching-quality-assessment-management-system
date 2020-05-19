@@ -54,7 +54,7 @@ public class TeacherServiceImpl implements TeacherService{
 
     @Override
     public List<Teacher> listTeacher(int startPage, int pageSize) {
-        Page<Course> page = new Page<>(startPage,pageSize);
+        Page<Teacher> page = new Page<>(startPage,pageSize);
         List<Teacher> list = teacherMapper.listTeacher(page);
         for (Teacher t : list){
             User u = userMapper.getUserById(t.getId());

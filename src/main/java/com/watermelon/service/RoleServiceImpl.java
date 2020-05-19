@@ -52,7 +52,7 @@ public class RoleServiceImpl implements RoleService {
 
     @Override
     public List<Role> listRole(int startPage, int pageSize) {
-        Page<Course> page = new Page<>(startPage,pageSize);
+        Page<Role> page = new Page<>(startPage,pageSize);
         List<Role> list = roleMapper.listRole(page);
         for (Role role : list){
             role.setPermissions((ArrayList<Permission>) getRolesPermissions(role.getId()));
