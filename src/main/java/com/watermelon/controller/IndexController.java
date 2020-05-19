@@ -2,6 +2,7 @@ package com.watermelon.controller;
 
 import com.watermelon.entity.User;
 import com.watermelon.service.UserService;
+import com.watermelon.service.UserServiceImpl;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.IncorrectCredentialsException;
 import org.apache.shiro.authc.UnknownAccountException;
@@ -22,6 +23,8 @@ public class IndexController {
 
     @Autowired
     private UserService userService;
+    @Autowired
+    private UserServiceImpl userServiceImpl;
 
     @GetMapping({"/"})
     public String index() {
@@ -73,7 +76,6 @@ public class IndexController {
         subject.logout();
         return "redirect:toLogin";
     }
-
     @ResponseBody
     @GetMapping("/noAuth")
     public String noAuth() {
