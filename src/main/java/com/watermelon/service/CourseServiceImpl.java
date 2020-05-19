@@ -55,6 +55,8 @@ public class CourseServiceImpl implements CourseService {
 
     @Override
     public void deleteCourse(int id) {
+        //由于课程在class_course表中有外键约束，因此需要先删除class_course表中的course记录
+        courseMapper.deleteClassCourse(id);
         courseMapper.deleteCourse(id);
     }
 

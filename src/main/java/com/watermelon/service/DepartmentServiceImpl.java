@@ -24,7 +24,7 @@ public class DepartmentServiceImpl implements DepartmentService {
 
     @Override
     public List<Department> listDepartment(int startPage, int pageSize) {
-        Page<Course> page = new Page<>(startPage,pageSize);
+        Page<Department> page = new Page<>(startPage,pageSize);
         return departmentMapper.listDepartment(page);
     }
 

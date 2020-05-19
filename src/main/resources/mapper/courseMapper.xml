@@ -137,6 +137,10 @@
             where course_id=#{id}
     </update>
 
+    <delete id="deleteClassCourse" parameterType="int">
+        delete from class_course where course_id = #{id}
+    </delete>
+
     <delete id="deleteCourse" parameterType="int">
         delete from course where course_id = #{id}
     </delete>

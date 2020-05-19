@@ -87,11 +87,29 @@ public class StudentServiceImpl implements StudentService {
                     s.setRole(r);
                 }
             }
+            //通过courseMapper根据学生的班级号获取课程，并添加进学生的courseList属性
             Class aClass = s.getAClass();
             if (aClass!=null){
                 int classId = aClass.getId();
                 List<Course> courseList =  courseMapper.listCourseByClassId(classId);
                 s.setCourseList(courseList);
+            }
+        }
+        return list;
+    }
+
+    @Override
+    public List<Student> listStudentByClassId(int startPage, int pageSize,int calssId) {
+        Page<Course> page = new Page<>(startPage,pageSize);
+        List<Student> list = studentMapper.listStudentByClassId(page,calssId);
+        for (Student s : list){
+            User u = userMapper.getUserById(s.getId());
+            if (u!=null){
+                s.addUserInfo(u);
+                Role r = roleService.getRoleById(s.getRoleId());
+                if (r!=null){
+                    s.setRole(r);
+                }
             }
         }
         return list;
