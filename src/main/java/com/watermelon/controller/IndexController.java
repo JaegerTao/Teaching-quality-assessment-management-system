@@ -23,8 +23,6 @@ public class IndexController {
 
     @Autowired
     private UserService userService;
-    @Autowired
-    private UserServiceImpl userServiceImpl;
 
     @GetMapping({"/"})
     public String index() {

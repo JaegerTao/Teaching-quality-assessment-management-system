@@ -52,7 +52,7 @@ public class ShiroConfig {
         filterMap.put("/admin/*", "perms[user:add]");
 
         //usr路径下的所有页面都进行验证拦截
-        filterMap.put("/user/*", "authc");
+        //filterMap.put("/user/*", "authc");
         //设置拦截路径和拦截方式，用户访问包含在filterMap中的任何路径都会进行其相应的验证
         bean.setFilterChainDefinitionMap(filterMap);
         //设置登录url,当没有验证时默认跳转至登陆页面
