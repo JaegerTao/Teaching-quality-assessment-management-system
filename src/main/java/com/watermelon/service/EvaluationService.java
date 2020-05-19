@@ -34,9 +34,9 @@ public interface EvaluationService {
     List<Course> getCoursesByStuId(int id);
 
 
-    IPage<Course> getCoursesByStuId(int id, int startPage, int pageSize);
-    IPage<Course> getCoursesBySuperId(int id, int startPage, int pageSize);
-    IPage<Course> getCoursesByTeacherId(int id, int startPage, int pageSize);
+    IPage<Course> getCoursesByStuId(int id, int startPage, int pageSize,String courseName);
+    IPage<Course> getCoursesBySuperId(int id, int startPage, int pageSize,String courseName);
+    IPage<Course> getCoursesByTeacherId(int id, int startPage, int pageSize,String courseName);
 
     /**
      * 获取督导的个人评价

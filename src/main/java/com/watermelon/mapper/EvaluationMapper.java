@@ -17,9 +17,9 @@ public interface EvaluationMapper {
     List<Course> getCoursesByStuId(int id);
     List<Course> getCoursesBySuperId(int id);
 
-    List<Course> getCoursesByStuIdWithPage(int id, Page<Course> page);
-    List<Course> getCoursesByTeacherIdWithPage(int id, Page<Course> page);
-    List<Course> getCoursesBySuperIdWithPage(int id, Page<Course> page);
+    List<Course> getCoursesByStuIdWithPage(int id, Page<Course> page, String courseName);
+    List<Course> getCoursesByTeacherIdWithPage(int id, Page<Course> page, String courseName);
+    List<Course> getCoursesBySuperIdWithPage(int id, Page<Course> page, String courseName);
 
     //获取对应个人评价
     /**

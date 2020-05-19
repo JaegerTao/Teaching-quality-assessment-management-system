@@ -45,16 +45,21 @@
         order by c.number
     </select>
 
-    <select id="getCoursesByTeacherIdWithPage" resultMap="courseResultMap" parameterType="int">
+    <select id="getCoursesByTeacherIdWithPage" resultMap="courseResultMap">
         select distinct cc.course_id,c.number,c.name,c.course_type,c.course_class,
             (select name from department where department_id = c.department_id) course_dep,
             c.score,c.time,cc.teacher_id,t.name as teacher_name
         from (class_course cc
         left join teacher t on t.teacher_id=cc.teacher_id)
         left join course c on cc.course_id=c.course_id
-        where c.course_id in
-           (select course_id from class_course cc where teacher_id=#{id})
-        and cc.teacher_id!=#{id}
+        <where>
+            c.course_id in
+            (select course_id from class_course cc where teacher_id=#{id})
+            and cc.teacher_id!=#{id}
+            <if test="courseName != null and courseName != ''">
+                and c.name like concat('%',#{courseName},'%')
+            </if>
+        </where>
         order by c.number
     </select>
 
@@ -70,16 +75,19 @@
          order by c.number
     </select>
 
-    <select id="getCoursesByStuIdWithPage" resultMap="courseResultMap" parameterType="int">
+    <select id="getCoursesByStuIdWithPage" resultMap="courseResultMap">
         select c.course_id,c.number,c.name,c.course_type,c.course_class,
-           (select name from department where department_id = c.department_id) course_dep,
-           c.score,c.time,t.teacher_id,t.name as teacher_name
+            (select name from department where department_id = c.department_id) course_dep,
+            c.score,c.time,t.teacher_id,t.name as teacher_name
         from teacher t,course c,class_course cc
         where cc.teacher_id=t.teacher_id
-         and cc.course_id=c.course_id
-         and cc.class_id=
-             (select class_id from student where student_id=#{id})
-         order by c.number
+        and cc.course_id=c.course_id
+        and cc.class_id=
+            (select class_id from student where student_id=#{id})
+        <if test="courseName != null and courseName != ''">
+            and c.name like concat('%',#{courseName},'%')
+        </if>
+        order by c.number
     </select>
 
     <select id="getCoursesBySuperId" resultMap="courseResultMap" parameterType="int">
@@ -93,15 +101,33 @@
         order by course_dep,c.number
     </select>
 
-    <select id="getCoursesBySuperIdWithPage" resultMap="courseResultMap" parameterType="int">
-        select c.course_id,c.number,c.name,c.course_type,c.course_class,
+<!--    <select id="getCoursesBySuperIdWithPage" resultMap="courseResultMap">-->
+<!--        select c.course_id,c.number,c.name,c.course_type,c.course_class,-->
+<!--            (select name from department where department_id = c.department_id) course_dep,-->
+<!--            c.score,c.time,t.teacher_id,t.name as teacher_name-->
+<!--        from (supervisor_course s-->
+<!--        left join course c on s.course_id=c.course_id)-->
+<!--        left join teacher t on t.teacher_id=s.teacher_id-->
+<!--        where s.supervisor_id = #{id}-->
+<!--        <if test="courseName != null and courseName != ''">-->
+<!--            and c.name like concat('%',#{courseName},'%')-->
+<!--        </if>-->
+<!--        order by course_dep,c.number-->
+<!--    </select>-->
+
+    <select id="getCoursesBySuperIdWithPage" resultMap="courseResultMap">
+        select distinct cc.course_id,c.number,c.name,c.course_type,c.course_class,
             (select name from department where department_id = c.department_id) course_dep,
-            c.score,c.time,t.teacher_id,t.name as teacher_name
-        from (supervisor_course s
-        left join course c on s.course_id=c.course_id)
-        left join teacher t on t.teacher_id=s.teacher_id
-        where s.supervisor_id = #{id}
-        order by course_dep,c.number
+            c.score,c.time,cc.teacher_id,t.name as teacher_name
+        from (class_course cc
+        left join course c on cc.course_id=c.course_id)
+        left join teacher t on t.teacher_id=cc.teacher_id
+        <where>
+            <if test="courseName != null and courseName != ''">
+                and c.name like concat('%',#{courseName},'%')
+            </if>
+        </where>
+        order by c.number
     </select>
 
 <!--    获取个人评价-->

@@ -34,23 +34,23 @@ public class EvaluationServiceImpl implements EvaluationService{
 
 // 分页查询课程
     @Override
-    public IPage<Course> getCoursesByStuId(int id, int startPage, int pageSize) {
+    public IPage<Course> getCoursesByStuId(int id, int startPage, int pageSize,String courseName) {
         Page<Course> p = new Page<>(startPage,pageSize);
-        p.setRecords(evaluationMapper.getCoursesByStuIdWithPage(id, p));
+        p.setRecords(evaluationMapper.getCoursesByStuIdWithPage(id, p, courseName));
         return p;
     }
 
     @Override
-    public IPage<Course> getCoursesBySuperId(int id, int startPage, int pageSize) {
+    public IPage<Course> getCoursesBySuperId(int id, int startPage, int pageSize,String courseName) {
         Page<Course> p = new Page<>(startPage,pageSize);
-        p.setRecords(evaluationMapper.getCoursesBySuperIdWithPage(id, p));
+        p.setRecords(evaluationMapper.getCoursesBySuperIdWithPage(id, p, courseName));
         return p;
     }
 
     @Override
-    public IPage<Course> getCoursesByTeacherId(int id, int startPage, int pageSize) {
+    public IPage<Course> getCoursesByTeacherId(int id, int startPage, int pageSize,String courseName) {
         Page<Course> p = new Page<>(startPage,pageSize);
-        p.setRecords(evaluationMapper.getCoursesByTeacherIdWithPage(id, p));
+        p.setRecords(evaluationMapper.getCoursesByTeacherIdWithPage(id, p, courseName));
         return p;
     }
 // 获取个人评价

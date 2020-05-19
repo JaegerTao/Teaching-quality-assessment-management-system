@@ -36,10 +36,10 @@ public class EvaluationController {
 //    }
 
     @GetMapping("teacher/courses")
-    public Object findEvaluCoursesOfTeacher(int startPage, int pageSize,HttpSession session){
+    public Object findEvaluCoursesOfTeacher(int startPage, int pageSize,String courseName,HttpSession session){
         Object username = session.getAttribute("username");
         User user = userService.getUserByName((String) username);
-        return ResultUtil.success(evaluationService.getCoursesByTeacherId(user.getId(),startPage,pageSize));
+        return ResultUtil.success(evaluationService.getCoursesByTeacherId(user.getId(),startPage,pageSize,courseName));
     }
 
 //    @GetMapping("/courses/byStudentId")
@@ -49,10 +49,10 @@ public class EvaluationController {
 
 
     @GetMapping("student/courses")
-    public Object findCoursesByStuId(int startPage, int pageSize,HttpSession session){
+    public Object findCoursesByStuId(int startPage, int pageSize,String courseName,HttpSession session){
         Object username = session.getAttribute("username");
         User user = userService.getUserByName((String) username);
-        return ResultUtil.success(evaluationService.getCoursesByStuId(user.getId(),startPage,pageSize));
+        return ResultUtil.success(evaluationService.getCoursesByStuId(user.getId(),startPage,pageSize,courseName));
     }
 
 //    @GetMapping("/courses/bySuperId")
@@ -61,10 +61,10 @@ public class EvaluationController {
 //    }
 
     @GetMapping("/supervisor/courses")
-    public Object findTeachersBySuperId(int startPage, int pageSize,HttpSession session){
+    public Object findTeachersBySuperId(int startPage, int pageSize,String courseName, HttpSession session){
         Object username = session.getAttribute("username");
         User user = userService.getUserByName((String) username);
-        return ResultUtil.success(evaluationService.getCoursesBySuperId(user.getId(),startPage,pageSize));
+        return ResultUtil.success(evaluationService.getCoursesBySuperId(user.getId(),startPage,pageSize,courseName));
     }
 //获取个人评价
     @GetMapping("/superIndividualEvaluation")
