@@ -1,13 +1,18 @@
 package com.watermelon.config;
 
+import com.watermelon.entity.Permission;
+import com.watermelon.mapper.PermissionMapper;
+import lombok.AllArgsConstructor;
 import org.apache.shiro.authc.credential.HashedCredentialsMatcher;
 import org.apache.shiro.spring.web.ShiroFilterFactoryBean;
 import org.apache.shiro.web.mgt.DefaultWebSecurityManager;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 import java.util.LinkedHashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -22,6 +27,9 @@ import java.util.Map;
  */
 @Configuration
 public class ShiroConfig {
+
+    @Autowired
+    private PermissionMapper permissionMapper;
 
     //通过Spring对UserRealm对象进行托管
     @Bean(name = "userRealm")
@@ -46,13 +54,11 @@ public class ShiroConfig {
 
         Map<String, String> filterMap = new LinkedHashMap<String, String>();
 
-//        filterMap.put("/user/add", "perms[user:add]");
-//        filterMap.put("/user/update", "perms[user:update]");
-//        filterMap.put("/user/view", "perms[user:view]");
-//        filterMap.put("/admin/*", "perms[user:add]");
+        List<Permission> list = permissionMapper.listPermission();
+        for (Permission p : list){
+            filterMap.put(p.getUrl(),"perms["+p.getPerms()+"]");
+        }
 
-        //usr路径下的所有页面都进行验证拦截
-        //filterMap.put("/user/*", "authc");
         //设置拦截路径和拦截方式，用户访问包含在filterMap中的任何路径都会进行其相应的验证
         bean.setFilterChainDefinitionMap(filterMap);
         //设置登录url,当没有验证时默认跳转至登陆页面

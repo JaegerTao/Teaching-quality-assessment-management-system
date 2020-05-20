@@ -16,6 +16,8 @@ public interface PermissionMapper {
 
     Permission getPermissionByName(String name);
 
+    List<Permission> listPermission();
+
     List<Permission> listPermission(Page<Permission> page);
 
     void addPermission(Permission permission);

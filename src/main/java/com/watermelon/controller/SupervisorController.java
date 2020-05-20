@@ -15,20 +15,20 @@ import java.util.List;
 public class SupervisorController {
 
     @Autowired
-    SupervisorService supervisorService;
+    private SupervisorService supervisorService;
 
-    @GetMapping("/supervisors")
+    @GetMapping("/supervisor/listSupervisor")
     public Object getAllSupervisor(){
         return ResultUtil.success(supervisorService.getAllSupervisor());
     }
 
     // 设置督导可评价的课程
-    @PostMapping("/supervisorCourse")
+    @PostMapping("/supervisor/addCourse")
     public Object addSupervisorCourse(int supervisorId, int courseId, int teacherId){
         supervisorService.addSupervisorCourse(supervisorId,courseId,teacherId);
         return ResultUtil.success();
     }
-    @DeleteMapping("/supervisorCourse")
+    @DeleteMapping("/supervisor/deleteCourse")
     public Object deleteSupervisorCourse(int supervisorId, int courseId, int teacherId){
         supervisorService.deleteSupervisorCourse(supervisorId,courseId,teacherId);
         return ResultUtil.success();
