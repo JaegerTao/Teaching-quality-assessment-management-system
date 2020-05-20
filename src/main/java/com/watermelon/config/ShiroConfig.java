@@ -46,17 +46,17 @@ public class ShiroConfig {
 
         Map<String, String> filterMap = new LinkedHashMap<String, String>();
 
-        filterMap.put("/user/add", "perms[user:add]");
-        filterMap.put("/user/update", "perms[user:update]");
-        filterMap.put("/user/view", "perms[user:view]");
-        filterMap.put("/admin/*", "perms[user:add]");
+//        filterMap.put("/user/add", "perms[user:add]");
+//        filterMap.put("/user/update", "perms[user:update]");
+//        filterMap.put("/user/view", "perms[user:view]");
+//        filterMap.put("/admin/*", "perms[user:add]");
 
         //usr路径下的所有页面都进行验证拦截
         //filterMap.put("/user/*", "authc");
         //设置拦截路径和拦截方式，用户访问包含在filterMap中的任何路径都会进行其相应的验证
         bean.setFilterChainDefinitionMap(filterMap);
         //设置登录url,当没有验证时默认跳转至登陆页面
-        bean.setLoginUrl("/toLogin");
+        /*bean.setLoginUrl("/toLogin");*/
         //设置未验证时跳转至noAuth页面
         bean.setUnauthorizedUrl("/noAuth");
 

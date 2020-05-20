@@ -18,7 +18,7 @@ public interface DepartmentMapper {
 
     void addDepartment(Department department);
 
-    List<Department> listDepartment(Page<Course> page);
+    List<Department> listDepartment(Page<Department> page);
 
     void updateDepartment(Department department);
 

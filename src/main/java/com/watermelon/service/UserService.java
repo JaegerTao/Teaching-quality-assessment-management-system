@@ -24,4 +24,6 @@ public interface UserService {
 
     int getMaxUserId();
 
+    String encodeMD5(String str);
+
 }

@@ -24,16 +24,6 @@ public class IndexController {
     @Autowired
     private UserService userService;
 
-    @GetMapping({"/"})
-    public String index() {
-        return "index";
-    }
-
-    @GetMapping("/toLogin")
-    public String toLogin() {
-        return "login";
-    }
-
     @PostMapping("/login")
     public Map<String,String> login(@RequestBody(required=false) User user, HttpSession session) {
         //获取当前用户
@@ -48,6 +38,7 @@ public class IndexController {
             //登陆以后进入UserRealm类doGetAuthenticationInfo方法进行认证
             subject.login(token);
             User u = userService.getUserByName(user.getName());
+            System.out.println(userService.encodeMD5(u.getIdNumber()));
             map.put("status","200");
             map.put("username",u.getName());
             map.put("role_id",u.getRoleId()+"");
@@ -69,10 +60,12 @@ public class IndexController {
     }
 
     @GetMapping("/logout")
-    public String logout(){
+    public Map<String,String> logout(){
         Subject subject = SecurityUtils.getSubject();
         subject.logout();
-        return "redirect:toLogin";
+        Map<String,String> map = new HashMap<>();
+        map.put("massage","成功退出");
+        return map;
     }
     @ResponseBody
     @GetMapping("/noAuth")
@@ -80,6 +73,16 @@ public class IndexController {
         return "未经授权，无法访问该页面！";
     }
 
+//    @GetMapping({"/"})
+//    public String index() {
+//        return "index";
+//    }
+//
+//    @GetMapping("/toLogin")
+//    public String toLogin() {
+//        return "login";
+//    }
+//
 //    @GetMapping("/toRegister")
 //    public String toRegister() {
 //        return "register";

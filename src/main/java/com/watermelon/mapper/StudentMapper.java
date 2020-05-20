@@ -24,4 +24,7 @@ public interface StudentMapper {
 
     List<Student> listStudentWithNoCourse(Page<Course> page);
 
+    List<Student> listStudentByClassId(Page<Course> page,int classId);
+
+
 }

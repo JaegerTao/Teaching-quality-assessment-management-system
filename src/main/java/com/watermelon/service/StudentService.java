@@ -17,4 +17,7 @@ public interface StudentService {
     List<Student> listStudentWithNoCourse(int startPage, int pageSize);
 
     List<Student> listStudent(int startPage, int pageSize);
+
+    List<Student> listStudentByClassId(int startPage, int pageSize,int classId);
+
 }

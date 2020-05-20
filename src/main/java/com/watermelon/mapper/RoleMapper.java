@@ -18,7 +18,7 @@ public interface RoleMapper {
 
     List<Integer> getRolesPermissionsId(int id);
 
-    List<Role> listRole(Page<Course> page);
+    List<Role> listRole(Page<Role> page);
 
     void addRole(Role role);
 
