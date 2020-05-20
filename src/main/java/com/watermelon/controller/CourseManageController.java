@@ -22,7 +22,7 @@ public class CourseManageController {
         courseService.addCourse(course);
         Map<String,String> map = new HashMap<>();
         map.put("status","200");
-        map.put("massage","delete course succeed");
+        map.put("massage","add course succeed");
         return map;
     }
 
@@ -31,7 +31,7 @@ public class CourseManageController {
         courseService.updateCourse(course);
         Map<String,String> map = new HashMap<>();
         map.put("status","200");
-        map.put("massage","delete course succeed");
+        map.put("massage","update course succeed");
         return map;
     }
 
