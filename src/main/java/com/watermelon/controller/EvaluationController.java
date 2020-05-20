@@ -135,30 +135,35 @@ public class EvaluationController {
         page.put("current",p.getCurrent());
         page.put("pages",p.getPages());
         JSONArray records = (JSONArray) JSONArray.toJSON(p.getRecords());
-        JSONArray newRrecords = new JSONArray();
-        for(Object item:records) {
-            int courseId = ((JSONObject)item).getInteger("id");
-            int teacherId = ((JSONObject)item).getJSONObject("teacher").getInteger("id");
+//        JSONArray newRrecords = new JSONArray();
+        for(int j = 0;j < records.size();j++) {
+            int courseId = ((JSONObject)records.get(j)).getInteger("id");
+            int teacherId = ((JSONObject) records.get(j)).getJSONObject("teacher").getInteger("id");
             List<Map> summaryList = evaluationService.getSummaryEvaluation(teacherId,courseId);
             Double totalAvg = 0.0;
-            for(Object summaryItem:summaryList) {
-                Map summaryMap = (HashMap)summaryItem;
-                switch((String)summaryMap.get("role_name")){
+            //若其中一个角色未评价，则不返回
+            int count = 0;
+            for(int i=0;i < summaryList.size();i++) {
+                switch ((String)((HashMap)summaryList.get(i)).get("role_name")) {
                     case "学生":
-                        totalAvg += Double.parseDouble((String.valueOf(summaryMap.get("total_score"))) ) * 0.3;
+                        totalAvg += Double.parseDouble((String.valueOf(((HashMap)summaryList.get(i)).get("total_score"))) ) * 0.3;
+                        count++;
                         break;
                     case "教师":
-                        totalAvg += Double.parseDouble((String.valueOf(summaryMap.get("total_score"))) ) * 0.3;
+                        totalAvg += Double.parseDouble((String.valueOf(((HashMap)summaryList.get(i)).get("total_score"))) ) * 0.3;
+                        count++;
                         break;
                     case "督导":
-                        totalAvg += Double.parseDouble(String.valueOf( summaryMap.get("total_score"))) * 0.4;
+                        totalAvg += Double.parseDouble(String.valueOf( ((HashMap)summaryList.get(i)).get("total_score"))) * 0.4;
+                        count++;
                         break;
                 }
             }
-            ((JSONObject) item).put("totalAvg",new DecimalFormat("#.00").format(totalAvg));
-            newRrecords.add(item);
+            if(count >= 3) {
+                ((JSONObject) records.get(j)).put("totalAvg",new DecimalFormat("#.00").format(totalAvg));
+            }
         }
-        page.put("records",newRrecords);
+        page.put("records",records);
         return ResultUtil.success(JSONObject.parseObject(page.toJSONString()));
     }
     

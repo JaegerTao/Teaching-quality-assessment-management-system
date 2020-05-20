@@ -42,7 +42,7 @@ CREATE TABLE IF NOT EXISTS `class` (
   CONSTRAINT `FK_Relationship_1` FOREIGN KEY (`department_id`) REFERENCES `department` (`department_id`) ON DELETE RESTRICT ON UPDATE RESTRICT
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
--- 正在导出表  evaluation.class 的数据：~6 rows (大约)
+-- 正在导出表  evaluation.class 的数据：~5 rows (大约)
 /*!40000 ALTER TABLE `class` DISABLE KEYS */;
 INSERT INTO `class` (`class_id`, `department_id`, `number`, `name`, `grade`) VALUES
 	(1, 1, '1', '计算机科学与技术', '2017'),
@@ -66,7 +66,7 @@ CREATE TABLE IF NOT EXISTS `class_course` (
   CONSTRAINT `FK_class_course_teacher` FOREIGN KEY (`teacher_id`) REFERENCES `teacher` (`teacher_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
--- 正在导出表  evaluation.class_course 的数据：~13 rows (大约)
+-- 正在导出表  evaluation.class_course 的数据：~12 rows (大约)
 /*!40000 ALTER TABLE `class_course` DISABLE KEYS */;
 INSERT INTO `class_course` (`course_id`, `class_id`, `teacher_id`) VALUES
 	(1, 2, 2),
@@ -183,9 +183,9 @@ CREATE TABLE IF NOT EXISTS `individual_evaluation` (
   CONSTRAINT `FK_individual_evaluation_course` FOREIGN KEY (`course_id`) REFERENCES `course` (`course_id`),
   CONSTRAINT `FK_individual_evaluation_role` FOREIGN KEY (`role_id`) REFERENCES `role` (`role_id`),
   CONSTRAINT `FK_individual_evaluation_user` FOREIGN KEY (`from_id`) REFERENCES `user` (`user_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=39 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=41 DEFAULT CHARSET=utf8;
 
--- 正在导出表  evaluation.individual_evaluation 的数据：~17 rows (大约)
+-- 正在导出表  evaluation.individual_evaluation 的数据：~13 rows (大约)
 /*!40000 ALTER TABLE `individual_evaluation` DISABLE KEYS */;
 INSERT INTO `individual_evaluation` (`individual_id`, `summary_id`, `role_id`, `from_id`, `teacher_id`, `course_id`, `score_1`, `score_2`, `score_3`, `score_4`, `score_5`, `score_6`, `total_score`, `advice`) VALUES
 	(1, NULL, 4, 12, 6, 1, 5, 4, 3, 2, 5, 5, 4.00, '老师教的很好'),
@@ -204,7 +204,9 @@ INSERT INTO `individual_evaluation` (`individual_id`, `summary_id`, `role_id`, `
 	(35, NULL, 4, 12, 5, 1, 5, 5, 5, 5, 5, 5, 5.00, NULL),
 	(36, NULL, 4, 11, 5, 1, 4, 4, 4, 4, 4, 4, 4.00, NULL),
 	(37, NULL, 4, 13, 5, 1, 3, 3, 3, 3, 3, 3, 3.00, NULL),
-	(38, NULL, 2, 5, 5, 1, 5, 5, 5, 5, 5, 5, 5.00, NULL);
+	(38, NULL, 2, 5, 5, 1, 5, 5, 5, 5, 5, 5, 5.00, NULL),
+	(39, NULL, 3, 8, 2, 1, 5, 5, 5, 5, 5, 5, 5.00, NULL),
+	(40, NULL, 2, 2, 2, 1, 5, 5, 5, 5, 5, 5, 5.00, NULL);
 /*!40000 ALTER TABLE `individual_evaluation` ENABLE KEYS */;
 
 -- 导出  表 evaluation.permission 结构
@@ -233,7 +235,7 @@ CREATE TABLE IF NOT EXISTS `role` (
   PRIMARY KEY (`role_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
--- 正在导出表  evaluation.role 的数据：~4 rows (大约)
+-- 正在导出表  evaluation.role 的数据：~3 rows (大约)
 /*!40000 ALTER TABLE `role` DISABLE KEYS */;
 INSERT INTO `role` (`role_id`, `name`) VALUES
 	(1, '管理员'),
