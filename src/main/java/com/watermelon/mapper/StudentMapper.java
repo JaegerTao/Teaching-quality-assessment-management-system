@@ -26,5 +26,6 @@ public interface StudentMapper {
 
     List<Student> listStudentByClassId(Page<Course> page,int classId);
 
+    List<Student> searchStudent(Page<Course> page,String str);
 
 }

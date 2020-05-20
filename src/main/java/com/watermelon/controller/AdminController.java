@@ -2,6 +2,7 @@ package com.watermelon.controller;
 
 import com.watermelon.entity.*;
 import com.watermelon.service.*;
+import io.swagger.annotations.ApiParam;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -83,6 +84,26 @@ public class AdminController {
         Map<String,String> map = new HashMap<>();
         map.put("status","200");
         map.put("message","修改角色成功");
+        return map;
+    }
+
+    @PostMapping("/addRolePermission")
+    public Map<String, String> addRolePermission(@RequestParam(value="roleId",required=false) int roleId,
+                                                 @RequestParam(value="permsId",required=false) int permsId){
+        roleService.addRolePermission(roleId, permsId);
+        Map<String,String> map = new HashMap<>();
+        map.put("status","200");
+        map.put("message","成功为角色添加权限");
+        return map;
+    }
+
+    @PostMapping("/deleteRolePermission")
+    public Map<String, String> deleteRolePermission(@RequestParam(value="roleId",required=false) int roleId,
+                                                    @RequestParam(value="permsId",required=false) int permsId){
+        roleService.deleteRolePermission(roleId, permsId);
+        Map<String,String> map = new HashMap<>();
+        map.put("status","200");
+        map.put("message","成功删除角色权限");
         return map;
     }
 
@@ -240,6 +261,14 @@ public class AdminController {
     @GetMapping("/listStudentByClassId")
     public List<Student> listStudentByClassId(int startPage, int pageSize,int classId){
         return studentService.listStudentByClassId(startPage, pageSize, classId);
+    }
+
+    @GetMapping("/searchStudent")
+    public List<Student> searchStudent(@ApiParam(value="起始页",example="1") @RequestParam(value="startPage",required=false) int startPage,
+                                     @ApiParam(value="页数",example="5") @RequestParam(value="pageSize",required=false) int pageSize,
+                                     @ApiParam(value="查询关键字",example="张阳") @RequestParam(value="str",required=false) String str){
+        List<Student> list = studentService.searchStudent(startPage, pageSize,str);
+        return list;
     }
 
     @PostMapping("/addAdmin")

@@ -23,6 +23,8 @@ public interface CourseMapper {
 
     List<Course> listCourseWithoutTeacher(Page<Course> page);
 
+    List<Course> searchCourse(Page<Course> page,String str);
+
     int addCourse(Course course);
 
     void updateCourse(Course course);

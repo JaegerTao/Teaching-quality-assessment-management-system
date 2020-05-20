@@ -43,6 +43,12 @@ public class CourseServiceImpl implements CourseService {
     }
 
     @Override
+    public List<Course> searchCourse(int startPage, int pageSize, String str) {
+        Page<Course> page = new Page<>(startPage,pageSize);
+        return courseMapper.searchCourse(page,str);
+    }
+
+    @Override
     public int addCourse(Course course) {
         course.setId(courseMapper.getMaxCourseId()+1);
         return courseMapper.addCourse(course);
