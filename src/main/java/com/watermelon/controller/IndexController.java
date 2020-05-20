@@ -31,14 +31,12 @@ public class IndexController {
         UsernamePasswordToken token = new UsernamePasswordToken(user.getName(), user.getPassword());
         System.out.println("username:"+user.getName());
         System.out.println("password:"+user.getPassword());
-        session.setAttribute("username",user.getName());
-//        System.out.println(userService.encodeMD5(password));
         Map<String,String> map = new HashMap<>();
         try {
             //登陆以后进入UserRealm类doGetAuthenticationInfo方法进行认证
             subject.login(token);
+            session.setAttribute("username",user.getName());
             User u = userService.getUserByName(user.getName());
-            System.out.println(userService.encodeMD5(u.getIdNumber()));
             map.put("status","200");
             map.put("username",u.getName());
             map.put("role_id",u.getRoleId()+"");
@@ -67,10 +65,10 @@ public class IndexController {
         map.put("massage","成功退出");
         return map;
     }
-    @ResponseBody
+
     @GetMapping("/noAuth")
     public String noAuth() {
-        return "未经授权，无法访问该页面！";
+        return "未经授权，无法访问该资源！";
     }
 
 //    @GetMapping({"/"})

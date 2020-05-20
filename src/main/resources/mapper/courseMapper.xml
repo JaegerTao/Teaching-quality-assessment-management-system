@@ -127,6 +127,34 @@
         from course as c
     </select>
 
+    <select id="searchCourse" parameterType="String" resultType="Course">
+        select c.course_id as id,
+            c.name,
+            c.number,
+            c.course_type as courseType,
+            c.course_class as courseClass,
+            c.course_dep as courseDep,
+            c.score,
+            c.time,
+            t.teacher_id as "teacher.id",
+            t.name as "teacher.name",
+            t.birth as "teacher.birth",
+            t.region as "teacher.region",
+            t.total_class as "teacher.totalClass",
+            t.entrance_date as "teacher.entranceDate",
+            t.job_title as "teacher.jobTitle",
+            t.grant_date as "teacher.grantDate",
+            t.political_status as "teacher.politicalStatus",
+            t.degree as "teacher.degree",
+            t.graduate_school as "teacher.graduateSchool"
+        from class_course as cc,
+            course as c,
+            teacher as t
+        where cc.teacher_id=t.teacher_id and
+            cc.course_id=c.course_id and
+            c.name like '%${str}%'
+    </select>
+
     <insert id="addCourse" parameterType="Course">
         insert into course (course_id, number, name, course_type, course_class, course_dep, score, time)
             values(#{id},#{number},#{name},#{courseType},#{courseClass},#{courseDep},#{score},#{time});

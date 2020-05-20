@@ -1,12 +1,8 @@
 package com.watermelon.service;
 
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
-import com.watermelon.entity.Course;
-import com.watermelon.entity.Query;
-import com.watermelon.entity.Role;
-import com.watermelon.entity.User;
-import com.watermelon.mapper.RoleMapper;
-import com.watermelon.mapper.UserMapper;
+import com.watermelon.entity.*;
+import com.watermelon.mapper.*;
 import org.apache.shiro.crypto.hash.Md5Hash;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -26,6 +22,18 @@ public class UserServiceImpl implements UserService {
 
     @Autowired
     private RoleService roleService;
+
+    @Autowired
+    private AdminMapper adminMapper;
+
+    @Autowired
+    private TeacherMapper teacherMapper;
+
+    @Autowired
+    private StudentMapper studentMapper;
+
+    @Autowired
+    private SupervisorMapper supervisorMapper;
 
     @Override
     public int registerUser(String username,String password){
@@ -64,6 +72,8 @@ public class UserServiceImpl implements UserService {
         if (user1==null){
             return -1;
         }
+        //当检查到用户角色改变时修改数据库中用户的身份
+        updateUserInfo(user1, user);
         return userMapper.updateUser(user);
     }
 
@@ -86,6 +96,50 @@ public class UserServiceImpl implements UserService {
     @Override
     public int getMaxUserId() {
         return getMaxUserId();
+    }
+
+    /**
+     * 当新的用户角色和原本角色不同时，修改角色的数据库信息（有待完善级联删除）
+     * @param user1 数据库原本保留的用户身份信息
+     * @param user  回传的新的用户身份信息
+     */
+    private void updateUserInfo(User user1,User user){
+        if (user1.getRoleId()!=user.getRole().getId()){
+            //删除原有用户信息
+            switch (user1.getRole().getId()){
+                case 1:
+                    adminMapper.deleteAdmin(user1.getId());
+                    break;
+                case 2:
+                    teacherMapper.deleteTeacher(user1.getId());
+                    break;
+                case 3:
+                    studentMapper.deleteStudent(user1.getId());
+                    break;
+                case 4:
+                    supervisorMapper.deleteSupervisor(user1.getId());
+                    break;
+            }
+            //添加新的用户信息
+            switch (user.getRole().getId()){
+                case 1:
+                    Admin admin = new Admin(user);
+                    adminMapper.addAdmin(admin);
+                    break;
+                case 2:
+                    Teacher teacher = new Teacher(user);
+                    teacherMapper.addTeacher(teacher);
+                    break;
+                case 3:
+                    Student student = new Student(user);
+                    studentMapper.addStudent(student);
+                    break;
+                case 4:
+                    Supervisor supervisor = new Supervisor(user);
+                    supervisorMapper.addSupervisor(supervisor);
+                    break;
+            }
+        }
     }
 
     /**

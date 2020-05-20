@@ -2,6 +2,7 @@ package com.watermelon.controller;
 
 import com.watermelon.entity.Course;
 import com.watermelon.service.CourseService;
+import io.swagger.annotations.ApiParam;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -61,6 +62,14 @@ public class CourseManageController {
     @GetMapping("/listCourseWithNoTeacher")
     public List<Course> listCourseWithoutTeacher(int startPage, int pageSize){
         List<Course> list = courseService.listCourseWithoutTeacher(startPage, pageSize);
+        return list;
+    }
+
+    @GetMapping("/searchCourse")
+    public List<Course> searchCourse(@ApiParam(value="起始页",example="1") @RequestParam(value="startPage",required=false) int startPage,
+                                     @ApiParam(value="页数",example="5") @RequestParam(value="pageSize",required=false) int pageSize,
+                                     @ApiParam(value="查询关键字",example="计算机") @RequestParam(value="str",required=false) String str){
+        List<Course> list = courseService.searchCourse(startPage, pageSize,str);
         return list;
     }
 
