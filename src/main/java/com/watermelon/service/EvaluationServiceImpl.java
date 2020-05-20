@@ -53,7 +53,15 @@ public class EvaluationServiceImpl implements EvaluationService{
         p.setRecords(evaluationMapper.getCoursesByTeacherIdWithPage(id, p, courseName));
         return p;
     }
-// 获取个人评价
+
+    @Override
+    public IPage getCoursesByAdmin(int startPage, int pageSize, String courseName) {
+        Page p = new Page<>(startPage,pageSize);
+        p.setRecords(evaluationMapper.getCoursesByAdminWithPage(p,courseName));
+        return p;
+    }
+
+    // 获取个人评价
     @Override
     public IndividualEvaluation getSuperIndiEvaluation(int superId, int teacherId, int courseId) {
         return evaluationMapper.getSuperIndiEvaluation(superId,teacherId,courseId);

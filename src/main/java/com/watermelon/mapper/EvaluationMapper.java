@@ -71,5 +71,7 @@ public interface EvaluationMapper {
     //获取教师某门课的建议
     List<String> getAdvices(int teacherId,int courseId,int roleId,Page<String> p);
 
+    //获取管理员可评价列表
+    List<Course> getCoursesByAdminWithPage(Page<Course> p, String courseName);
 
 }

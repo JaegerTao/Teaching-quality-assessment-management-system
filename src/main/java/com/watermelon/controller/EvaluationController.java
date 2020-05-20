@@ -1,5 +1,8 @@
 package com.watermelon.controller;
 
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONArray;
+import com.alibaba.fastjson.JSONObject;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.watermelon.entity.Course;
@@ -17,7 +20,10 @@ import org.springframework.web.bind.annotation.*;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
+import java.text.DecimalFormat;
 import java.util.*;
+
+import static com.alibaba.fastjson.JSON.parseObject;
 
 @RestController
 @RequestMapping("/evaluation")
@@ -117,6 +123,49 @@ public class EvaluationController {
     public Object findSummaryEvaluation(int courseId,HttpSession session){
         User user = userService.getUserByName((String) session.getAttribute("username"));
         return ResultUtil.success(evaluationService.getSummaryEvaluation(user.getId(),courseId));
+    }
+
+ //管理员获取教师总评价
+    @GetMapping("admin/summaryEvaluation")
+    public Object findAllSummaryEvaluation(int startPage,int pageSize,String courseName) {
+        Page p = (Page) evaluationService.getCoursesByAdmin(startPage,pageSize,courseName);
+        JSONObject page =  new JSONObject();
+        page.put("total",p.getTotal());
+        page.put("size",p.getSize());
+        page.put("current",p.getCurrent());
+        page.put("pages",p.getPages());
+        JSONArray records = (JSONArray) JSONArray.toJSON(p.getRecords());
+        JSONArray newRrecords = new JSONArray();
+        for(Object item:records) {
+            int courseId = ((JSONObject)item).getInteger("id");
+            int teacherId = ((JSONObject)item).getJSONObject("teacher").getInteger("id");
+            List<Map> summaryList = evaluationService.getSummaryEvaluation(teacherId,courseId);
+            Double totalAvg = 0.0;
+            for(Object summaryItem:summaryList) {
+                Map summaryMap = (HashMap)summaryItem;
+                switch((String)summaryMap.get("role_name")){
+                    case "学生":
+                        totalAvg += Double.parseDouble((String.valueOf(summaryMap.get("total_score"))) ) * 0.3;
+                        break;
+                    case "教师":
+                        totalAvg += Double.parseDouble((String.valueOf(summaryMap.get("total_score"))) ) * 0.3;
+                        break;
+                    case "督导":
+                        totalAvg += Double.parseDouble(String.valueOf( summaryMap.get("total_score"))) * 0.4;
+                        break;
+                }
+            }
+            ((JSONObject) item).put("totalAvg",new DecimalFormat("#.00").format(totalAvg));
+            newRrecords.add(item);
+        }
+        page.put("records",newRrecords);
+        return ResultUtil.success(JSONObject.parseObject(page.toJSONString()));
+    }
+    
+//管理员通过教师id获取详细评价
+    @GetMapping("admin/summaryEvaluation/byTeacherId")
+    public Object findSummaryEvaluationByTeacher(int teacherId,int courseId){
+        return ResultUtil.success(evaluationService.getSummaryEvaluation(teacherId,courseId));
     }
 
 // 获取教师的所有课程

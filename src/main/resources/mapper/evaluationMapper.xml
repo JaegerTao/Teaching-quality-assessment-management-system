@@ -164,10 +164,10 @@
 
     <select id="getSummaryEvaluation" resultType="map">
         select (select name from role where individual_evaluation.role_id = role.role_id) role_name,
-            avg(score_1) score_1,avg(score_2) score_2,
-            avg(score_3) score_3,avg(score_4) score_4,
-            avg(score_5) score_5,avg(score_6) score_6,
-            avg(total_score) total_score
+           round(avg(score_1),2) score_1,round(avg(score_2),2) score_2,
+           round(avg(score_3),2) score_3,round(avg(score_4),2) score_4,
+           round(avg(score_5),2) score_5,round(avg(score_6),2) score_6,
+           round(avg(total_score),2) total_score
         from individual_evaluation
         where teacher_id=#{param1}
         and course_id=#{param2}
@@ -192,5 +192,20 @@
             and role_id=#{param3}
             and advice is not null
             and advice!=''
+    </select>
+
+    <select id="getCoursesByAdminWithPage" resultMap="courseResultMap">
+        select distinct cc.course_id,c.number,c.name,c.course_type,c.course_class,
+        (select name from department where department_id = c.department_id) course_dep,
+        c.score,c.time,cc.teacher_id,t.name as teacher_name
+        from (class_course cc
+        left join course c on cc.course_id=c.course_id)
+        left join teacher t on t.teacher_id=cc.teacher_id
+        <where>
+            <if test="courseName != null and courseName != ''">
+                and c.name like concat('%',#{courseName},'%')
+            </if>
+        </where>
+        order by c.number
     </select>
 </mapper>
