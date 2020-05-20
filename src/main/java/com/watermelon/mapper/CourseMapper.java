@@ -21,6 +21,8 @@ public interface CourseMapper {
 
     List<Course> listCourseByClassId(Page<Course> page,int classId);
 
+    List<Course> listCourseByDepartmentId(Page<Course> page,int departmentId);
+
     List<Course> listCourseWithoutTeacher(Page<Course> page);
 
     List<Course> searchCourse(Page<Course> page,String str);

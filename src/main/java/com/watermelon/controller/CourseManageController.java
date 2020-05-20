@@ -58,6 +58,14 @@ public class CourseManageController {
         return list;
     }
 
+    @GetMapping("/listCourseByDepartmentId")
+    public List<Course> listCourseByDepartmentId(@ApiParam(value="起始页",example="1") @RequestParam(value="startPage",required=false) int startPage,
+                                                 @ApiParam(value="页数",example="5") @RequestParam(value="pageSize",required=false) int pageSize,
+                                                 @ApiParam(value="学院号",example="1") @RequestParam(value="departmentId",required=false) int departmentId){
+        List<Course> list = courseService.listCourseByDepartmentId(startPage, pageSize, departmentId);
+        return list;
+    }
+
     @ResponseBody
     @GetMapping("/listCourseWithNoTeacher")
     public List<Course> listCourseWithoutTeacher(int startPage, int pageSize){

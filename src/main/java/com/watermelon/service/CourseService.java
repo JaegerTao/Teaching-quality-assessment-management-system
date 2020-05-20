@@ -17,6 +17,8 @@ public interface CourseService {
 
     List<Course> listCourseWithoutTeacher(int startPage, int pageSize);
 
+    List<Course> listCourseByDepartmentId(int startPage, int pageSize,int departmentId);
+
     List<Course> searchCourse(int startPage, int pageSize, String str);
 
     int addCourse(Course course);

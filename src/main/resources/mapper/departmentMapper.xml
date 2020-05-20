@@ -9,7 +9,7 @@
     </insert>
 
     <select id="listDepartment" resultType="Department">
-        select * from department
+        select department_id as id, name from department
     </select>
 
     <update id="updateDepartment" parameterType="Department">
@@ -21,11 +21,11 @@
     </delete>
 
     <select id="getDepartmentById" parameterType="int" resultType="Department">
-        select * from department where department_id=#{id}
+        select department_id as id, name from department where department_id=#{id}
     </select>
 
     <select id="getDepartmentByName" parameterType="String" resultType="Department">
-        select * from department where name=#{name}
+        select department_id as id, name from department where name=#{name}
     </select>
 
     <select id="getMaxDepartmentId" resultType="int">

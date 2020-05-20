@@ -37,6 +37,12 @@ public class CourseServiceImpl implements CourseService {
     }
 
     @Override
+    public List<Course> listCourseByDepartmentId(int startPage, int pageSize,int departmentId){
+        Page<Course> page = new Page<>(startPage,pageSize);
+        return courseMapper.listCourseByDepartmentId(page,departmentId);
+    }
+
+    @Override
     public List<Course> listCourseWithoutTeacher(int startPage, int pageSize) {
         Page<Course> page = new Page<>(startPage,pageSize);
         return courseMapper.listCourseWithoutTeacher(page);
