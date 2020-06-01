@@ -14,6 +14,8 @@ public interface UserService {
 
     User getUserByName(String name);
 
+    String getNameById(int id);
+
     int addUser(User user);
 
     int updateUser(User user);

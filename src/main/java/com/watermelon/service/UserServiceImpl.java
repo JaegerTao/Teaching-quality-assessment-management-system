@@ -61,6 +61,27 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    public String getNameById(int id) {
+        String name = "";
+        User user = userMapper.getUserById(id);
+        switch (user.getRoleId()) {
+            case 1:
+                name = adminMapper.getAdminById(id).getName();
+                break;
+            case 2:
+                name = teacherMapper.getTeacherById(id).getName();
+                break;
+            case 3:
+                name = studentMapper.getStudentById(id).getName();
+                break;
+            case 4:
+                name = supervisorMapper.getSupervisorById(id).getName();
+                break;
+        }
+        return name;
+    }
+
+    @Override
     public int addUser(User user) {
         user.setRoleId(user.getRole().getId());
         return userMapper.addUser(user);
