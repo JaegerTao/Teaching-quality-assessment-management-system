@@ -97,7 +97,7 @@ public class AdminController {
         return map;
     }
 
-    @PostMapping("/deleteRolePermission")
+    @DeleteMapping("/deleteRolePermission")
     public Map<String, String> deleteRolePermission(@RequestParam(value="roleId",required=false) int roleId,
                                                     @RequestParam(value="permsId",required=false) int permsId){
         roleService.deleteRolePermission(roleId, permsId);
