@@ -5,6 +5,7 @@ import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.watermelon.entity.Course;
 import com.watermelon.entity.IndividualEvaluation;
 import com.watermelon.entity.Teacher;
+import com.watermelon.exception.MyException;
 import com.watermelon.mapper.EvaluationMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -34,28 +35,31 @@ public class EvaluationServiceImpl implements EvaluationService{
 
 // 分页查询课程
     @Override
-    public IPage<Course> getCoursesByStuId(int id, int startPage, int pageSize,String courseName) {
+    public IPage<Course> getCoursesByStuId(Integer id, Integer startPage, Integer pageSize,String courseName) {
         Page<Course> p = new Page<>(startPage,pageSize);
         p.setRecords(evaluationMapper.getCoursesByStuIdWithPage(id, p, courseName));
         return p;
     }
 
     @Override
-    public IPage<Course> getCoursesBySuperId(int id, int startPage, int pageSize,String courseName) {
+    public IPage<Course> getCoursesBySuperId(Integer id, Integer startPage, Integer pageSize,String courseName) {
         Page<Course> p = new Page<>(startPage,pageSize);
         p.setRecords(evaluationMapper.getCoursesBySuperIdWithPage(id, p, courseName));
         return p;
     }
 
     @Override
-    public IPage<Course> getCoursesByTeacherId(int id, int startPage, int pageSize,String courseName) {
+    public IPage<Course> getCoursesByTeacherId(Integer id, Integer startPage, Integer pageSize,String courseName){
+        if(id == null) {
+            throw new MyException();
+        }
         Page<Course> p = new Page<>(startPage,pageSize);
         p.setRecords(evaluationMapper.getCoursesByTeacherIdWithPage(id, p, courseName));
         return p;
     }
 
     @Override
-    public IPage getCoursesByAdmin(int startPage, int pageSize, String courseName) {
+    public IPage getCoursesByAdmin(Integer startPage, Integer pageSize, String courseName) {
         Page p = new Page<>(startPage,pageSize);
         p.setRecords(evaluationMapper.getCoursesByAdminWithPage(p,courseName));
         return p;
@@ -109,6 +113,11 @@ public class EvaluationServiceImpl implements EvaluationService{
         Page p = new Page<>(startPage,pageSize);
         p.setRecords(evaluationMapper.getAdvices(teacherId, courseId,roleId,p));
         return p;
+    }
+
+    @Override
+    public Integer ifEvaluated(Integer fromId, Integer teacherId, Integer courseId) {
+        return evaluationMapper.ifEvaluated(fromId,teacherId,courseId);
     }
 
 

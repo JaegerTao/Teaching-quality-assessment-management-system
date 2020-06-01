@@ -30,6 +30,7 @@ public class XssFilter implements Filter {
             filterChain.doFilter(request, response);
             return;
         }
+        //设置request
         XssHttpServletRequestWrapper xssRequest = new XssHttpServletRequestWrapper((HttpServletRequest) request, IS_INCLUDE_RICH_TEXT);
         filterChain.doFilter(xssRequest, response);
     }

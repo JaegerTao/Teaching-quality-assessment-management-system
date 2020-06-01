@@ -208,4 +208,12 @@
         </where>
         order by c.number
     </select>
+
+    <select id="ifEvaluated" resultType="int">
+        select count(*)
+        from individual_evaluation
+        where from_id=#{fromId}
+        and course_id=#{courseId}
+        and teacher_id=#{teacherId}
+    </select>
 </mapper>

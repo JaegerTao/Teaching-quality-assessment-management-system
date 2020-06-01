@@ -34,10 +34,10 @@ public interface EvaluationService {
     List<Course> getCoursesByStuId(int id);
 
 
-    IPage<Course> getCoursesByStuId(int id, int startPage, int pageSize,String courseName);
-    IPage<Course> getCoursesBySuperId(int id, int startPage, int pageSize,String courseName);
-    IPage<Course> getCoursesByTeacherId(int id, int startPage, int pageSize,String courseName);
-    IPage getCoursesByAdmin(int startPage,int pageSize,String courseNmae);
+    IPage<Course> getCoursesByStuId(Integer id, Integer startPage, Integer pageSize,String courseName);
+    IPage<Course> getCoursesBySuperId(Integer id, Integer startPage, Integer pageSize,String courseName);
+    IPage<Course> getCoursesByTeacherId(Integer id, Integer startPage, Integer pageSize,String courseName);
+    IPage getCoursesByAdmin(Integer startPage,Integer pageSize,String courseNmae);
 
     /**
      * 获取督导的个人评价
@@ -87,5 +87,6 @@ public interface EvaluationService {
     //获取教师某门课程的建议
     IPage getAdvices(int teacherId,int courseId,int roleId,int startPage,int pageSize);
 
-
+    //查看某老师是否已经评价了某门课程
+    Integer ifEvaluated(Integer fromId, Integer teacherId, Integer courseId);
 }

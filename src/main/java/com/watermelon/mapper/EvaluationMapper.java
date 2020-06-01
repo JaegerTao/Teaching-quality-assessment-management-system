@@ -74,4 +74,6 @@ public interface EvaluationMapper {
     //获取管理员可评价列表
     List<Course> getCoursesByAdminWithPage(Page<Course> p, String courseName);
 
+    //查看是否已经评价
+    Integer ifEvaluated(Integer fromId, Integer teacherId, Integer courseId);
 }

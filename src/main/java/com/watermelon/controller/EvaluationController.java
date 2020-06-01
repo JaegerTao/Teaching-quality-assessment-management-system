@@ -8,17 +8,21 @@ import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.watermelon.entity.Course;
 import com.watermelon.entity.IndividualEvaluation;
 import com.watermelon.entity.User;
+import com.watermelon.exception.MyException;
 import com.watermelon.service.EvaluationService;
 import com.watermelon.service.UserService;
+import com.watermelon.utils.EnumCode;
 import com.watermelon.utils.ResultUtil;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.session.Session;
 import org.apache.shiro.subject.Subject;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
+import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import java.text.DecimalFormat;
 import java.util.*;
@@ -27,13 +31,14 @@ import static com.alibaba.fastjson.JSON.parseObject;
 
 @RestController
 @RequestMapping("/evaluation")
+@Validated
 public class EvaluationController {
     @Autowired
     private EvaluationService evaluationService;
     @Autowired
     private UserService userService;
 
-    //获取可评价的课程
+
 //    @GetMapping("/teacher/courses")
 //    public Object findCoursesOfTeacher(HttpSession session){
 //        Object username = session.getAttribute("username");
@@ -41,9 +46,14 @@ public class EvaluationController {
 //        return ResultUtil.success(evaluationService.getCoursesByTeacherId(user.getId()));
 //    }
 
+//获取可评价的课程
     @GetMapping("teacher/courses")
-    public Object findEvaluCoursesOfTeacher(int startPage, int pageSize,String courseName,HttpSession session){
+    public Object findEvaluCoursesOfTeacher(@NotNull Integer startPage,@NotNull Integer pageSize,String courseName,HttpSession session){
         Object username = session.getAttribute("username");
+        if(username == null) {
+            ResultUtil resultUtil = ResultUtil.error(EnumCode.UNAUTHORIZED);
+            throw new MyException(resultUtil);
+        }
         User user = userService.getUserByName((String) username);
         return ResultUtil.success(evaluationService.getCoursesByTeacherId(user.getId(),startPage,pageSize,courseName));
     }
@@ -55,8 +65,12 @@ public class EvaluationController {
 
 
     @GetMapping("student/courses")
-    public Object findCoursesByStuId(int startPage, int pageSize,String courseName,HttpSession session){
+    public Object findCoursesByStuId(Integer startPage, Integer pageSize,String courseName,HttpSession session){
         Object username = session.getAttribute("username");
+        if(username == null) {
+            ResultUtil resultUtil = ResultUtil.error(EnumCode.UNAUTHORIZED);
+            throw new MyException(resultUtil);
+        }
         User user = userService.getUserByName((String) username);
         return ResultUtil.success(evaluationService.getCoursesByStuId(user.getId(),startPage,pageSize,courseName));
     }
@@ -69,6 +83,10 @@ public class EvaluationController {
     @GetMapping("/supervisor/courses")
     public Object findTeachersBySuperId(int startPage, int pageSize,String courseName, HttpSession session){
         Object username = session.getAttribute("username");
+        if(username == null) {
+            ResultUtil resultUtil = ResultUtil.error(EnumCode.UNAUTHORIZED);
+            throw new MyException(resultUtil);
+        }
         User user = userService.getUserByName((String) username);
         return ResultUtil.success(evaluationService.getCoursesBySuperId(user.getId(),startPage,pageSize,courseName));
     }
@@ -76,24 +94,40 @@ public class EvaluationController {
     @GetMapping("/superIndividualEvaluation")
     public Object findSuperIndividualEvaluation(int teacherId, int courseId,HttpSession session){
         User user = userService.getUserByName((String) session.getAttribute("username"));
+        if(user == null) {
+            ResultUtil resultUtil = ResultUtil.error(EnumCode.UNAUTHORIZED);
+            throw new MyException(resultUtil);
+        }
         return ResultUtil.success(evaluationService.getSuperIndiEvaluation(user.getId(),teacherId,courseId));
     }
 
     @GetMapping("/teacherIndividualEvaluation")
     public Object findTeacherIndividualEvaluation(int TeacherId,int courseId,HttpSession session){
         User user = userService.getUserByName((String) session.getAttribute("username"));
+        if(user == null) {
+            ResultUtil resultUtil = ResultUtil.error(EnumCode.UNAUTHORIZED);
+            throw new MyException(resultUtil);
+        }
         return ResultUtil.success(evaluationService.getTeacherIndiEvaluation(user.getId(),TeacherId,courseId));
     }
 
     @GetMapping("/studentIndividualEvaluation")
     public Object findStudentIndividualEvaluation(int teacherId,int courseId,HttpSession session){
         User user = userService.getUserByName((String) session.getAttribute("username"));
+        if(user == null) {
+            ResultUtil resultUtil = ResultUtil.error(EnumCode.UNAUTHORIZED);
+            throw new MyException(resultUtil);
+        }
         return ResultUtil.success(evaluationService.getStudentIndiEvaluation(user.getId(),teacherId,courseId));
     }
 //插入个人评价
     @PostMapping("/studentIndividualEvaluation")
     public Object addStudentIndividualEvaluation(@RequestBody @Valid IndividualEvaluation individualEvaluation,HttpSession session){
         User user = userService.getUserByName((String) session.getAttribute("username"));
+        if(user == null) {
+            ResultUtil resultUtil = ResultUtil.error(EnumCode.UNAUTHORIZED);
+            throw new MyException(resultUtil);
+        }
         individualEvaluation.setFromId(user.getId());
         individualEvaluation.setTotalScore(((double)(individualEvaluation.getScore1() + individualEvaluation.getScore2() + individualEvaluation.getScore3() + individualEvaluation.getScore4() + individualEvaluation.getScore5() + individualEvaluation.getScore6())/6));
         evaluationService.addStudentIndiEvaluation(individualEvaluation);
@@ -102,9 +136,22 @@ public class EvaluationController {
 
     @PostMapping("/teacherIndividualEvaluation")
     public Object addTeacherIndividualEvaluation(@RequestBody @Valid IndividualEvaluation individualEvaluation,HttpSession session){
+        // 用户未登录抛出异常
+        if(session.getAttribute("username") == null) {
+            ResultUtil resultUtil = ResultUtil.error(EnumCode.UNAUTHORIZED);
+            throw new MyException(resultUtil);
+        }
         User user = userService.getUserByName((String) session.getAttribute("username"));
         individualEvaluation.setFromId(user.getId());
         individualEvaluation.setTotalScore(((double)(individualEvaluation.getScore1() + individualEvaluation.getScore2() + individualEvaluation.getScore3() + individualEvaluation.getScore4() + individualEvaluation.getScore5() + individualEvaluation.getScore6())/6));
+        // 用户已评价抛出异常
+        Integer fromId = individualEvaluation.getFromId();
+        Integer teacherId = individualEvaluation.getTeacherId();
+        Integer courseId = individualEvaluation.getCourseId();
+        if(evaluationService.ifEvaluated(fromId,teacherId,courseId) >= 1){
+            ResultUtil resultUtil = ResultUtil.error(EnumCode.EXCPTION_ERROR,"此评价已完成，不可修改");
+            throw new MyException(resultUtil);
+        }
         evaluationService.addTeacherIndiEvaluation(individualEvaluation);
         return ResultUtil.success();
     }
@@ -112,6 +159,10 @@ public class EvaluationController {
     @PostMapping("/superIndividualEvaluation")
     public Object addSuperIndividualEvaluation(@RequestBody @Valid IndividualEvaluation individualEvaluation,HttpSession session){
         User user = userService.getUserByName((String) session.getAttribute("username"));
+        if(user == null) {
+            ResultUtil resultUtil = ResultUtil.error(EnumCode.UNAUTHORIZED);
+            throw new MyException(resultUtil);
+        }
         individualEvaluation.setFromId(user.getId());
         individualEvaluation.setTotalScore(((double)(individualEvaluation.getScore1() + individualEvaluation.getScore2() + individualEvaluation.getScore3() + individualEvaluation.getScore4() + individualEvaluation.getScore5() + individualEvaluation.getScore6())/6));
         evaluationService.addSuperIndiEvaluation(individualEvaluation);
@@ -122,6 +173,10 @@ public class EvaluationController {
     @GetMapping("/summaryEvaluation/byTeacherId")
     public Object findSummaryEvaluation(int courseId,HttpSession session){
         User user = userService.getUserByName((String) session.getAttribute("username"));
+        if(user == null) {
+            ResultUtil resultUtil = ResultUtil.error(EnumCode.UNAUTHORIZED);
+            throw new MyException(resultUtil);
+        }
         return ResultUtil.success(evaluationService.getSummaryEvaluation(user.getId(),courseId));
     }
 
@@ -169,21 +224,29 @@ public class EvaluationController {
     
 //管理员通过教师id获取详细评价
     @GetMapping("admin/summaryEvaluation/byTeacherId")
-    public Object findSummaryEvaluationByTeacher(int teacherId,int courseId){
+    public Object findSummaryEvaluationByTeacher(Integer teacherId,Integer courseId){
         return ResultUtil.success(evaluationService.getSummaryEvaluation(teacherId,courseId));
     }
 
 // 获取教师的所有课程
     @GetMapping("/teacher/courseList")
-    public Object findAllCourses(int startPage,int pageSize,HttpSession session) {
+    public Object findAllCourses(@NotNull Integer startPage,@NotNull Integer pageSize,HttpSession session) {
         User user = userService.getUserByName((String) session.getAttribute("username"));
+        if(user == null) {
+            ResultUtil resultUtil = ResultUtil.error(EnumCode.UNAUTHORIZED);
+            throw new MyException(resultUtil);
+        }
         return ResultUtil.success(evaluationService.getCoursesOfTeacher(user.getId(),startPage,pageSize));
     }
 
 // 获取教师建议
     @GetMapping("/teacher/advices")
-    public Object findAdvices(int courseId,int roleId,int startPage,int pageSize,HttpSession session) {
+    public Object findAdvices(@NotNull Integer courseId, Integer roleId, Integer startPage, Integer pageSize, HttpSession session) {
         User user = userService.getUserByName((String) session.getAttribute("username"));
+        if(user == null) {
+            ResultUtil resultUtil = ResultUtil.error(EnumCode.UNAUTHORIZED);
+            throw new MyException(resultUtil);
+        }
         IPage p = evaluationService.getAdvices(user.getId(),courseId,roleId,startPage,pageSize);
         List newlist = new ArrayList();
         List list = p.getRecords();

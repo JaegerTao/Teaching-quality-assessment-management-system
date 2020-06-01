@@ -13,7 +13,7 @@ class UserServiceImplTest {
     private UserServiceImpl userService;
     @Test
     void encodeMD5() {
-        System.out.println(userService.encodeMD5("1234567"));
+        System.out.println(userService.encodeMD5("510623199906021184"));
     }
     @Test
     void encodeMD5Salt() {
