@@ -39,7 +39,8 @@ public class SearchController {
 
     @ApiOperation(value="查询所有日志")
     @GetMapping("/searchAll")
-    public JSONObject search(int startPage, int pageSize) throws IOException {
+    public JSONObject search(@ApiParam(value="起始页",example="1") @RequestParam(value="startPage",required=false) int startPage,
+                             @ApiParam(value="页数据数",example="5") @RequestParam(value="pageSize",required=false) int pageSize) throws IOException {
         SearchRequest request = new SearchRequest("logstash-2020.06.03");
         SearchSourceBuilder builder = new SearchSourceBuilder();
         builder.from((startPage-1)*pageSize);
@@ -66,8 +67,8 @@ public class SearchController {
     @ApiOperation(value="精确匹配查询")
     @GetMapping("/termSearch")
     public JSONObject searchByKey(@ApiParam(value="起始页",example="1") @RequestParam(value="startPage",required=false) int startPage,
-                                        @ApiParam(value="页数据数",example="5") @RequestParam(value="pageSize",required=false) int pageSize,
-                                        @ApiParam(value="关键字",example="keyword") @RequestParam(value="key",required=false)String key) throws IOException {
+                                  @ApiParam(value="页数据数",example="5") @RequestParam(value="pageSize",required=false) int pageSize,
+                                  @ApiParam(value="关键字",example="keyword") @RequestParam(value="key",required=false)String key) throws IOException {
         SearchRequest request = new SearchRequest("logstash-2020.06.03");
         SearchSourceBuilder builder = new SearchSourceBuilder();
         //查询分页
@@ -103,8 +104,8 @@ public class SearchController {
     @ApiOperation(value="模糊匹配查询")
     @GetMapping("/fuzzySearch")
     public JSONObject searchExistByKey(@ApiParam(value="起始页",example="1") @RequestParam(value="startPage",required=false) int startPage,
-                                             @ApiParam(value="页数据数",example="5") @RequestParam(value="pageSize",required=false) int pageSize,
-                                             @ApiParam(value="关键字",example="keyword") @RequestParam(value="key",required=false)String key) throws IOException {
+                                       @ApiParam(value="页数据数",example="5") @RequestParam(value="pageSize",required=false) int pageSize,
+                                       @ApiParam(value="关键字",example="keyword") @RequestParam(value="key",required=false)String key) throws IOException {
         SearchRequest request = new SearchRequest("logstash-2020.06.03");
         SearchSourceBuilder builder = new SearchSourceBuilder();
         //查询分页
@@ -145,7 +146,7 @@ public class SearchController {
         HighlightBuilder highlightBuilder = new HighlightBuilder();
         highlightBuilder.field(keyField);
         highlightBuilder.requireFieldMatch(false);
-        highlightBuilder.preTags("<span lass='highLight'>");
+        highlightBuilder.preTags("<span class='highLight'>");
         highlightBuilder.postTags("</span>");
         return highlightBuilder;
     }
