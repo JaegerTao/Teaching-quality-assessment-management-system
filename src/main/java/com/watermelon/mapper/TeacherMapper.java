@@ -25,4 +25,6 @@ public interface TeacherMapper {
     int getMaxUserId();
 
     List<Teacher> listTeacher(Page<Teacher> page);
+
+    List<Teacher> listTeacher();
 }

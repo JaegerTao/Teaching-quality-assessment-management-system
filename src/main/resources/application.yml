@@ -34,15 +34,15 @@ mybatis:
 
 
 #配置日志输出等级以及日志文件输出位置
-logging:
-  level:
-    root: info
-    com.watermleon: info
-  file:
-    #生产环境下的log路径
-    name: /itcast/log/project.log
-    #开发环境下的log路径
-    #name: log/project.log
+#logging:
+#  level:
+#    root: info
+#    com.watermleon: info
+#  file:
+#    #生产环境下的log路径
+#    name: /itcast/log/project.log
+#    #开发环境下的log路径
+#    #name: log/project.log
 
 #swagger接口文档开关
 switch-swagger-up: true
