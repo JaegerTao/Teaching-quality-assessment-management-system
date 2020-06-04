@@ -34,6 +34,8 @@ import java.util.concurrent.TimeUnit;
 @RequestMapping("/search")
 public class SearchController {
 
+    private String INDICES = "filebeat-6.5.4-2020.06.04";
+
     @Autowired
     private RestHighLevelClient client;
 
@@ -41,7 +43,7 @@ public class SearchController {
     @GetMapping("/searchAll")
     public JSONObject search(@ApiParam(value="起始页",example="1") @RequestParam(value="startPage",required=false) int startPage,
                              @ApiParam(value="页数据数",example="5") @RequestParam(value="pageSize",required=false) int pageSize) throws IOException {
-        SearchRequest request = new SearchRequest("logstash-2020.06.03");
+        SearchRequest request = new SearchRequest(INDICES);
         SearchSourceBuilder builder = new SearchSourceBuilder();
         builder.from((startPage-1)*pageSize);
         builder.size(pageSize);
@@ -69,7 +71,7 @@ public class SearchController {
     public JSONObject searchByKey(@ApiParam(value="起始页",example="1") @RequestParam(value="startPage",required=false) int startPage,
                                   @ApiParam(value="页数据数",example="5") @RequestParam(value="pageSize",required=false) int pageSize,
                                   @ApiParam(value="关键字",example="keyword") @RequestParam(value="key",required=false)String key) throws IOException {
-        SearchRequest request = new SearchRequest("logstash-2020.06.03");
+        SearchRequest request = new SearchRequest(INDICES);
         SearchSourceBuilder builder = new SearchSourceBuilder();
         //查询分页
         builder.from((startPage-1)*pageSize);
@@ -106,7 +108,7 @@ public class SearchController {
     public JSONObject searchExistByKey(@ApiParam(value="起始页",example="1") @RequestParam(value="startPage",required=false) int startPage,
                                        @ApiParam(value="页数据数",example="5") @RequestParam(value="pageSize",required=false) int pageSize,
                                        @ApiParam(value="关键字",example="keyword") @RequestParam(value="key",required=false)String key) throws IOException {
-        SearchRequest request = new SearchRequest("logstash-2020.06.03");
+        SearchRequest request = new SearchRequest(INDICES);
         SearchSourceBuilder builder = new SearchSourceBuilder();
         //查询分页
         builder.from((startPage-1)*pageSize);
