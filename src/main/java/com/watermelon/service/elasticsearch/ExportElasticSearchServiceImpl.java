@@ -3,10 +3,8 @@ package com.watermelon.service.elasticsearch;
 import com.alibaba.fastjson.JSON;
 import com.watermelon.entity.Student;
 import com.watermelon.entity.Teacher;
-import com.watermelon.entity.User;
 import com.watermelon.mapper.StudentMapper;
 import com.watermelon.mapper.TeacherMapper;
-import com.watermelon.service.StudentService;
 import org.elasticsearch.action.bulk.BulkRequest;
 import org.elasticsearch.action.bulk.BulkResponse;
 import org.elasticsearch.action.index.IndexRequest;
@@ -18,7 +16,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 
 @Service
